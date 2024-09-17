@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget appBarWidget() {
+Widget appBarWidget({required BuildContext context}) {
   return AppBar(
     leading: IconButton(
       icon: const Icon(
@@ -8,7 +8,7 @@ Widget appBarWidget() {
         color: Colors.black38,
       ),
       onPressed: () {
-        // Add your onPressed code here!
+        Scaffold.of(context).openDrawer();
       },
     ),
     title: const Row(

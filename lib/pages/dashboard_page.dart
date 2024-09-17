@@ -1,5 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:expensor/widgets/appbar_widget.dart';
+
+class ExampleDestination {
+  const ExampleDestination(this.label, this.icon, this.selectedIcon);
+
+  final String label;
+  final Widget icon;
+  final Widget selectedIcon;
+}
+
+const List<ExampleDestination> destinations = <ExampleDestination>[
+  ExampleDestination(
+    'Dashboard',
+    Icon(Icons.widgets_outlined),
+    Icon(Icons.widgets),
+  ),
+  ExampleDestination(
+    'Tags',
+    Icon(Icons.local_offer_outlined),
+    Icon(Icons.local_offer),
+  ),
+  ExampleDestination(
+    'Transactions',
+    Icon(Icons.monetization_on_outlined),
+    Icon(Icons.monetization_on),
+  ),
+  ExampleDestination(
+    'Settings',
+    Icon(Icons.settings_outlined),
+    Icon(Icons.settings),
+  ),
+];
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -9,60 +39,110 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  var currentIndex = 0;
+  int currentIndex = 0;
+
+  void handleScreenChanged(int selectedScreen) {
+    setState(() {
+      currentIndex = selectedScreen;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: appBarWidget(),
+      appBar: _buildAppBar(context),
+      body: const Center(
+        child: Text('Dashboard Page'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
+        isExtended: true,
+        onPressed: () {},
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
         ),
-        body: const Center(
-          child: Text('Dashboard Page'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.deepPurple,
-          isExtended: true,
-          onPressed: () {},
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-        ),
-        bottomNavigationBar: _buildBottomNavigationBar());
+      ),
+      drawer: _buildDrawer(width: screenWidth * 0.2),
+    );
   }
 
-  Widget _buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Dashboard',
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      leading: Builder(builder: (context) {
+        return IconButton(
+          icon: const Icon(
+            Icons.menu,
+            color: Colors.black38,
+          ),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+        );
+      }),
+      title: const Row(
+        children: [
+          CircleAvatar(
+            backgroundColor: Colors.lightBlue,
+            child: Text("JA"),
+          ),
+          SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Hola de nuevo',
+                style: TextStyle(fontSize: 10, color: Colors.grey),
+              ),
+              Text('Javier Andrés'),
+            ],
+          ),
+        ],
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.notifications_none),
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.local_offer),
-          label: 'Tags',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.monetization_on_outlined),
-          label: 'Transactions',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.settings),
         ),
       ],
-      elevation: 20,
-      type: BottomNavigationBarType.shifting,
-      currentIndex: currentIndex,
-      onTap: (index) {
-        setState(() {
-          currentIndex = index;
-        });
-      },
-      selectedItemColor: Colors.deepPurple,
-      unselectedItemColor: Colors.black54,
+    );
+  }
+
+  Widget _buildDrawer({required double width}) {
+    return NavigationDrawer(
+      onDestinationSelected: handleScreenChanged,
+      selectedIndex: currentIndex,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: 30),
+          child: Text("Expensor",
+              style: TextStyle(
+                  fontSize: width * 0.5,
+                  color: Colors.black,
+                  fontFamily: 'Pacifico')),
+        ),
+        const Padding(
+          padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
+          child: Divider(),
+        ),
+        ...destinations.map(
+          (ExampleDestination destination) => NavigationDrawerDestination(
+            label: Text(destination.label),
+            icon: destination.icon,
+            selectedIcon: destination.selectedIcon,
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
+          child: Divider(),
+        ),
+      ],
     );
   }
 }
