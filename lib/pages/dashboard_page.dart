@@ -142,6 +142,13 @@ class _DashboardPageState extends State<DashboardPage> {
           padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
           child: Divider(),
         ),
+        ListTile(
+          leading: const Icon(Icons.exit_to_app, color: Colors.black),
+          title: const Text('Cerrar sesión', style: TextStyle(color: Colors.black)),
+          onTap: () {
+          // Añade aquí la lógica para cerrar sesión
+        },
+      ),
       ],
     );
   }
