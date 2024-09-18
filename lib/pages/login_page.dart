@@ -1,4 +1,4 @@
-import 'package:expensor/pages/dashboard_page.dart';
+import 'package:expensor/pages/dashboard/dashboard_page.dart';
 import 'package:expensor/pages/register_page.dart';
 import 'package:expensor/widgets/text_field.dart';
 import 'package:flutter/material.dart';
