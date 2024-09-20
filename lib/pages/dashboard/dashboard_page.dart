@@ -12,8 +12,13 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   int currentIndex = 0;
 
-  int? selectedIndexFilter;
-  List<String> filters = ['Casa', 'Coche', 'Restaurantes'].toList();
+  List<int> selectedIndexFilter = [];
+  Map<String, IconData> filters = {
+    "House": CupertinoIcons.home,
+    "Car": CupertinoIcons.car,
+    "Bar": CupertinoIcons.scope,
+    "Restaurant": CupertinoIcons.cube_fill,
+  };
 
   void handleScreenChanged(int selectedScreen) {
     setState(() {
@@ -27,6 +32,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
     return Scaffold(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        floatingActionButton: buildCustomFloatingActionButton(context),
         body: SuperScaffold(
           appBar: SuperAppBar(
             title: const Text(
@@ -56,7 +62,9 @@ class _DashboardPageState extends State<DashboardPage> {
                     scrollDirection: Axis.horizontal,
                     itemCount: filters.length,
                     itemBuilder: (context, index) {
-                      bool isSelected = selectedIndexFilter == index;
+                      IconData icon = filters.values.elementAt(index);
+                      String key = filters.keys.elementAt(index);
+                      bool isSelected = selectedIndexFilter.contains(index);
 
                       return Row(children: [
                         Container(
@@ -76,23 +84,27 @@ class _DashboardPageState extends State<DashboardPage> {
                           child: Padding(
                             padding: const EdgeInsets.only(left: 10, right: 10),
                             child: Row(children: [
-                            Icon(CupertinoIcons.home, color: isSelected
+                            Icon(icon, color: isSelected
                                       ? Colors.white
-                                      : colorScheme
-                                          .primary,),
+                                      : colorScheme.primary,),
                             CupertinoButton(
                               borderRadius: BorderRadius.circular(20),
                               onPressed: () {
                                 // Al presionar el botón, actualizamos el índice seleccionado
                                 setState(() {
-                                  selectedIndexFilter = index;
+                                  if(isSelected){
+                                    selectedIndexFilter.remove(index);
+                                    return;
+                                  }else{
+                                     selectedIndexFilter.add(index);
+                                  }
                                 });
                               },
                               padding:
                                   const EdgeInsets.only(left: 10, right: 10),
                               // Cambiamos el estilo del texto según si el botón está seleccionado o no
                               child: Text(
-                                filters[index],
+                                key,
                                 style: TextStyle(
                                   color: isSelected
                                       ? Colors.white
