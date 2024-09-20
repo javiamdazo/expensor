@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ExampleDestination {
-  const ExampleDestination(this.label, this.icon, this.selectedIcon, this.screen);
+class DrawerNavigatorItem {
+  const DrawerNavigatorItem(this.label, this.icon, this.selectedIcon, this.screen);
 
   final String label;
   final Widget icon;
@@ -9,26 +10,26 @@ class ExampleDestination {
   final Widget screen;
 }
 
-const List<ExampleDestination> destinations = <ExampleDestination>[
-  ExampleDestination(
+const List<DrawerNavigatorItem> destinations = <DrawerNavigatorItem>[
+  DrawerNavigatorItem(
     'Dashboard',
     Icon(Icons.widgets_outlined),
     Icon(Icons.widgets),
     Text('Dashboard')
   ),
-  ExampleDestination(
+  DrawerNavigatorItem(
     'Tags',
     Icon(Icons.local_offer_outlined),
     Icon(Icons.local_offer),
     Text('Tags')
   ),
-  ExampleDestination(
+  DrawerNavigatorItem(
     'Transactions',
     Icon(Icons.monetization_on_outlined),
     Icon(Icons.monetization_on),
     Text('Transactions')
   ),
-  ExampleDestination(
+  DrawerNavigatorItem(
     'Settings',
     Icon(Icons.settings_outlined),
     Icon(Icons.settings),
@@ -63,7 +64,7 @@ Widget buildCustomDrawer({
           child: Divider(),
         ),
         ...destinations.map(
-          (ExampleDestination destination) => ListTile(
+          (DrawerNavigatorItem destination) => CupertinoListTile(
             title: Text(destination.label),
             leading: destination.icon,
             onTap: () {
@@ -76,7 +77,7 @@ Widget buildCustomDrawer({
           padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
           child: Divider(),
         ),
-        ListTile(
+        CupertinoListTile(
           leading: const Icon(Icons.exit_to_app),
           title: const Text('Cerrar sesión'),
           onTap: () {

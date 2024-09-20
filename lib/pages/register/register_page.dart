@@ -69,9 +69,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                buildTextField(icon: const Icon(Icons.person), obscure: false, labelText:  'Nombre y apellidos'),
-                buildTextField(icon: const Icon(Icons.mail), obscure: false, labelText:  'Correo electronico'),
-                buildTextField(icon: const Icon(Icons.lock), obscure: true, labelText:  'Nombre y apellidos'),
+                buildCupertinoTextField(icon: const Icon(Icons.person), obscure: false, labelText:  'Nombre y apellidos',),
+                buildCupertinoTextField(icon: const Icon(Icons.mail), obscure: false, labelText:  'Correo electronico'),
+                buildCupertinoTextField(icon: const Icon(Icons.lock), obscure: true, labelText:  'Nombre y apellidos'),
                 _buildButtonRow()
               ],
             ))

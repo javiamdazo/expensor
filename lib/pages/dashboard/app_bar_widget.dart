@@ -1,48 +1,53 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-AppBar buildCustomAppBar(BuildContext context) {
+CupertinoNavigationBar buildCustomCupertinoNavigationBar(BuildContext context) {
+  final brightness = CupertinoTheme.of(context).brightness;
 
-  final colorScheme = Theme.of(context).colorScheme;
-
-  return AppBar(
-    leading: Builder(builder: (context) {
-      return IconButton(
-        icon: const Icon(
-          Icons.menu,
-        ),
-        onPressed: () {
-          Scaffold.of(context).openDrawer();
+  return CupertinoNavigationBar(
+      backgroundColor: brightness == Brightness.dark
+                      ? CupertinoColors.black
+                      : Colors.white,
+      leading: GestureDetector(
+        onTap: () {
+          // Show the drawer or perform your desired action
+          // Here you might implement a modal or another way to show navigation options
         },
-      );
-    }),
-    title: Row(
-      children: [
-        CircleAvatar(
-          backgroundColor: colorScheme.primary,
-          child: const Text("JA"),
-        ),
-        const SizedBox(width: 10),
-        const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Hola de nuevo',
-              style: TextStyle(fontSize: 10),
-            ),
-            const Text('Javier Andrés'),
-          ],
-        ),
-      ],
-    ),
-    actions: [
-      IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.notifications_none),
+        child: Icon(CupertinoIcons.bars, color: brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,),
       ),
-      IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.settings),
+      middle: Row(
+        children: [
+          CircleAvatar(
+            backgroundColor: CupertinoColors.activeBlue,
+            child: Text("JA", style: TextStyle(color: brightness == Brightness.dark
+                      ? Colors.black
+                      : Colors.white)),
+          ),
+          const SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Hola de nuevo',
+                style: TextStyle(fontSize: 10,color: brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black),
+              ),
+              Text('Javier Andrés', style: TextStyle(color: brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black),),
+            ],
+          ),
+        ],
       ),
-    ],
-  );
+      trailing: GestureDetector(
+        onTap: () {
+          // Handle notifications tap
+        },
+        child: Icon(CupertinoIcons.gear, color: brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,),
+      ));
 }
