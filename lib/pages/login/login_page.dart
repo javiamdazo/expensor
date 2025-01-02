@@ -1,4 +1,4 @@
-import 'package:expensor/pages/dashboard/dashboard_page.dart';
+import 'package:expensor/pages/home/home_page.dart';
 import 'package:expensor/pages/register/register_page.dart';
 import 'package:expensor/widgets/text_field.dart';
 import 'package:flutter/cupertino.dart';
@@ -127,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () {
               Navigator.push(
                 context,
-                CupertinoPageRoute(builder: (context) => const DashboardPage()),
+                CupertinoPageRoute(builder: (context) => const HomePage()),
               );
             },
             child: const Text(

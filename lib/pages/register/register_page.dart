@@ -1,4 +1,4 @@
-import 'package:expensor/pages/dashboard/dashboard_page.dart';
+import 'package:expensor/pages/home/home_page.dart';
 import 'package:expensor/pages/login/login_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -115,7 +115,7 @@ class _RegisterPageState extends State<RegisterPage> {
           onPressed: () {
             Navigator.push(
               context,
-              CupertinoPageRoute(builder: (context) => const DashboardPage()),
+              CupertinoPageRoute(builder: (context) => const HomePage()),
             );
           },
           child: const Text('Registrarse'),
