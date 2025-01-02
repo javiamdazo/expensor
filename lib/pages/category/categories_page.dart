@@ -1,4 +1,5 @@
 import 'package:expensor/pages/category/category_provider.dart';
+import 'package:expensor/widgets/logo.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesPage extends StatefulWidget {
@@ -96,38 +97,40 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Categorías'),
+        title: const Text("Categorias")
       ),
-      body: ListView.builder(
-        itemCount: CategoryProvider.categories.length,
-        itemBuilder: (context, index) {
-          final category = CategoryProvider.categories[index];
-          return ListTile(
-            leading: Icon(category['icon']),
-            title: Text(category['name']),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.edit),
-                  onPressed: () {
-                    showCategoryDialog(category: category); // Editar categoría
-                  },
+      body: Expanded(
+            child:ListView.builder(
+            itemCount: CategoryProvider.categories.length,
+            itemBuilder: (context, index) {
+              final category = CategoryProvider.categories[index];
+              return ListTile(
+                leading: Icon(category['icon']),
+                title: Text(category['name']),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.edit),
+                      onPressed: () {
+                        showCategoryDialog(
+                            category: category); // Editar categoría
+                      },
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () {
+                        setState(() {
+                          CategoryProvider.categories
+                              .removeAt(index); // Eliminar categoría
+                        });
+                      },
+                    ),
+                  ],
                 ),
-                IconButton(
-                  icon: const Icon(Icons.delete),
-                  onPressed: () {
-                    setState(() {
-                      CategoryProvider.categories
-                          .removeAt(index); // Eliminar categoría
-                    });
-                  },
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+              );
+            },
+          ) ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showCategoryDialog(); // Mostrar el diálogo para añadir una nueva categoría

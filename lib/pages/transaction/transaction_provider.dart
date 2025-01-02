@@ -1,5 +1,8 @@
 class TransactionProvider {
   static double totalMoney = 12345.67;
+  static double totalExpense = 5000.67;
+  static double totalIncome = 12345.67;
+  static double remainingMoney = 1000;
 
   static final List<Map<String, dynamic>> transactions = [
     {
