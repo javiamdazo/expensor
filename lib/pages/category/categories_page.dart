@@ -1,6 +1,5 @@
 import 'package:expensor/model/category.dart';
 import 'package:expensor/pages/category/category_provider.dart';
-import 'package:expensor/widgets/logo.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesPage extends StatefulWidget {

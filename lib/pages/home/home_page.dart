@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CategoriesPage()),
+              MaterialPageRoute(builder: (context) => const CategoriesPage()),
             );
             },
           ),
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                       controller: amountController,
                       decoration: InputDecoration(
                         labelText: 'Cantidad',
-                        prefixIcon: Icon(Icons.euro),
+                        prefixIcon: const Icon(Icons.euro),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                       controller: descriptionController,
                       decoration: InputDecoration(
                         labelText: 'Descripción',
-                        prefixIcon: Icon(Icons.description),
+                        prefixIcon: const Icon(Icons.description),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),

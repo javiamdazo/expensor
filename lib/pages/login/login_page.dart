@@ -46,7 +46,6 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-    ;
   }
 
   Widget _buildLogo({required double width, required Brightness brightness}) {

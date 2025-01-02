@@ -1,5 +1,3 @@
-import 'package:expensor/model/transaction.dart';
-import 'package:expensor/pages/transaction/transaction_provider.dart';
 import 'package:expensor/pages/transaction/widget/list_transactions.dart';
 import 'package:expensor/pages/transaction/widget/list_transactions_by_categories.dart';
 import 'package:expensor/pages/transaction/widget/resume_kpi.dart';

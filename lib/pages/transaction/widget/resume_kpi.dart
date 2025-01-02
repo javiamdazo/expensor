@@ -47,7 +47,7 @@ Widget buildResumeKpi() {
                     : 0,
                 child: Container(
                   height: 8,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.green,
                   ),
                 ),
@@ -63,7 +63,7 @@ Widget buildResumeKpi() {
                     : 0,
                 child: Container(
                   height: 8,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.red,
                   ),
                 ),
