@@ -1,9 +1,11 @@
+import 'package:expensor/model/category.dart';
+
 class Transaction {
   String type;
   String description;
   DateTime date;
   double amount;
-  String? category;
+  Category? category;
 
   Transaction({
     required this.type,

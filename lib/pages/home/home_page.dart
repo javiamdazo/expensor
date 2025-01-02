@@ -1,3 +1,4 @@
+import 'package:expensor/model/category.dart';
 import 'package:expensor/model/transaction.dart';
 import 'package:expensor/pages/category/categories_page.dart';
 import 'package:expensor/pages/category/category_provider.dart';
@@ -80,11 +81,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   void showTransactionModal(String type) {
-    final TextEditingController cantidadController = TextEditingController();
+    final TextEditingController amountController = TextEditingController();
     final TextEditingController descriptionController = TextEditingController();
     final TextEditingController dateController = TextEditingController();
-    String? selectedCategory;
-    double amount = 0;
+    Category? selectedCategory;
 
     showDialog(
       context: context,
@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     // Campo de cantidad (más grande y visual)
                     TextField(
-                      controller: cantidadController,
+                      controller: amountController,
                       decoration: InputDecoration(
                         labelText: 'Cantidad',
                         prefixIcon: Icon(Icons.euro),
@@ -139,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                         if (selectedDate != null) {
                           // Formatear la fecha a DD/MM/YYYY
                           final formattedDate =
-                              '${selectedDate.day.toString().padLeft(2, '0')}/${selectedDate.month.toString().padLeft(2, '0')}/${selectedDate.year}';
+                              '${selectedDate.year}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.day.toString().padLeft(2, '0')}';
                           setState(() {
                             dateController.text = formattedDate;
                           });
@@ -161,24 +161,23 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(height: 16),
 
                     // Dropdown para seleccionar categoría
-                    DropdownButtonFormField<String>(
+                    DropdownButtonFormField<Category>(
                       value: selectedCategory,
                       hint: const Text('Seleccionar Categoría'),
-                      onChanged: (String? newValue) {
+                      onChanged: (Category? newValue) {
                         setStateModal(() {
                           selectedCategory = newValue;
                         });
                       },
                       items: CategoryProvider.categories
-                          .map<DropdownMenuItem<String>>((category) {
-                        return DropdownMenuItem<String>(
-                          value: category[
-                              'name'], // Usamos 'name' como valor de la categoría
+                          .map<DropdownMenuItem<Category>>((category) {
+                        return DropdownMenuItem<Category>(
+                          value: category,
                           child: Row(
                             children: [
-                              Icon(category['icon']), // Icono de la categoría
+                              Icon(category.icon), // Icono de la categoría
                               const SizedBox(width: 8),
-                              Text(category['name']), // Nombre de la categoría
+                              Text(category.name), // Nombre de la categoría
                             ],
                           ),
                         );
@@ -209,6 +208,7 @@ class _HomePageState extends State<HomePage> {
             // Botón guardar
             TextButton(
               onPressed: () {
+                final double amount = double.parse(amountController.text);
                 final String description = descriptionController.text;
                 final DateTime date =  DateTime.parse(dateController.text);
 

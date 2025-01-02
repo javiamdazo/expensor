@@ -1,3 +1,4 @@
+import 'package:expensor/model/category.dart';
 import 'package:expensor/pages/category/category_provider.dart';
 import 'package:expensor/widgets/logo.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +12,12 @@ class CategoriesPage extends StatefulWidget {
 
 class _CategoriesPageState extends State<CategoriesPage> {
   // Función para mostrar el modal de añadir o editar categoría
-  void showCategoryDialog({Map<String, dynamic>? category}) {
+  void showCategoryDialog({Category? category}) {
     final TextEditingController nameController = TextEditingController();
-    IconData selectedIcon = category?['icon'] ?? Icons.category;
+    IconData selectedIcon = category?.icon ?? Icons.category;
 
     if (category != null) {
-      nameController.text = category['name'];
+      nameController.text = category.name;
     }
 
     showDialog(
@@ -73,14 +74,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 setState(() {
                   if (category == null) {
                     // Añadir nueva categoría
-                    CategoryProvider.categories.add({
-                      'name': nameController.text,
-                      'icon': selectedIcon,
-                    });
+                    CategoryProvider.categories.add(
+                      Category(name: nameController.text, icon: selectedIcon)
+                    );
                   } else {
                     // Editar categoría existente
-                    category['name'] = nameController.text;
-                    category['icon'] = selectedIcon;
+                    category.name = nameController.text;
+                    category.icon = selectedIcon;
                   }
                 });
                 Navigator.pop(context);
@@ -158,13 +158,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      category['icon'],
+                      category.icon,
                       size: 40,
                       color: Colors.blue,
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      category['name'],
+                      category.name,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
