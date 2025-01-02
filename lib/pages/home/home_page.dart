@@ -1,3 +1,4 @@
+import 'package:expensor/model/transaction.dart';
 import 'package:expensor/pages/category/categories_page.dart';
 import 'package:expensor/pages/category/category_provider.dart';
 import 'package:expensor/pages/transaction/transaction_provider.dart';
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
           ),
       floatingActionButton: SpeedDial(
         icon: Icons.add,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         children: [
           SpeedDialChild(
@@ -270,19 +271,19 @@ class _HomePageState extends State<HomePage> {
             TextButton(
               onPressed: () {
                 final String description = descriptionController.text;
-                final String date = dateController.text;
+                final DateTime date =  DateTime.parse(dateController.text);
 
                 if (amount > 0 &&
                     description.isNotEmpty &&
-                    date.isNotEmpty &&
                     selectedCategory != null) {
-                  addTransaction({
-                    'type': type,
-                    'description': description,
-                    'date': date,
-                    'amount': type == 'income' ? amount : -amount,
-                    'category': selectedCategory,
-                  });
+                  addTransaction(
+                    Transaction(
+                      type: type,
+                      description: description,
+                      date: date,
+                      amount: type == 'income' ? amount : -amount,
+                      category: selectedCategory,
+                    ));
                   Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -303,10 +304,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   
-  void addTransaction(Map<String, dynamic> transaction) {
+  void addTransaction(Transaction transaction) {
     setState(() {
       TransactionProvider.transactions.add(transaction);
-      TransactionProvider.totalMoney += transaction['amount'];
+      TransactionProvider.totalMoney += transaction.amount;
     });
   }
 

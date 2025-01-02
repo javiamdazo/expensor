@@ -1,53 +1,97 @@
+import 'package:expensor/model/transaction.dart';
+
 class TransactionProvider {
   static double totalMoney = 12345.67;
   static double totalExpense = 5000.67;
   static double totalIncome = 12345.67;
   static double remainingMoney = 1000;
 
-  static final List<Map<String, dynamic>> transactions = [
-    {
-      'type': 'income',
-      'description': 'Depósito',
-      'date': '01/01/2025',
-      'amount': 1200.00,
-      'category': 'Salario',
-    },
-    {
-      'type': 'expense',
-      'description': 'Pago de factura',
-      'date': '31/12/2024',
-      'amount': -300.00,
-      'category': 'Servicios',
-    },
-    {
-      'type': 'income',
-      'description': 'Transferencia recibida',
-      'date': '30/12/2024',
-      'amount': 500.00,
-      'category': 'Venta',
-    },
-    {
-      'type': 'expense',
-      'description': 'Compra de comida',
-      'date': '01/01/2025',
-      'amount': -50.00,
-      'category': 'Comida',
-    },
-    {
-      'type': 'income',
-      'description': 'Pago por freelance',
-      'date': '02/01/2025',
-      'amount': 250.00,
-      'category': 'Freelance',
-    },
+  // Replace raw list of maps with a list of Transaction objects
+  static final List<Transaction> transactions = [
+    Transaction(
+      type: 'income',
+      description: 'Depósito',
+      date: DateTime.parse('2025-01-01'),
+      amount: 1200.00,
+      category: 'Salario',
+    ),
+    Transaction(
+      type: 'expense',
+      description: 'Pago de factura',
+      date: DateTime.parse('2024-12-31'),
+      amount: -300.00,
+      category: 'Servicios',
+    ),
+    Transaction(
+      type: 'income',
+      description: 'Transferencia recibida',
+      date: DateTime.parse('2024-12-30'),
+      amount: 500.00,
+      category: 'Venta',
+    ),
+    Transaction(
+      type: 'expense',
+      description: 'Compra de comida',
+      date: DateTime.parse('2025-01-01'),
+      amount: -50.00,
+      category: 'Comida',
+    ),
+    Transaction(
+      type: 'income',
+      description: 'Pago por freelance',
+      date: DateTime.parse('2025-01-02'),
+      amount: 250.00,
+      category: 'Freelance',
+    ),
+    Transaction(
+      type: 'income',
+      description: 'Depósito',
+      date: DateTime.parse('2025-01-01'),
+      amount: 1200.00,
+      category: 'Salario',
+    ),
+    Transaction(
+      type: 'expense',
+      description: 'Pago de factura',
+      date: DateTime.parse('2024-12-31'),
+      amount: -300.00,
+      category: 'Servicios',
+    ),
+    Transaction(
+      type: 'income',
+      description: 'Transferencia recibida',
+      date: DateTime.parse('2024-12-30'),
+      amount: 500.00,
+      category: 'Venta',
+    ),
+    Transaction(
+      type: 'expense',
+      description: 'Compra de comida',
+      date: DateTime.parse('2025-01-01'),
+      amount: -50.00,
+      category: 'Comida',
+    ),
+    Transaction(
+      type: 'income',
+      description: 'Pago por freelance',
+      date: DateTime.parse('2025-01-02'),
+      amount: 250.00,
+      category: 'Freelance',
+    ),
   ];
 
+  // Get all transactions ordered by date (most recent first)
+  static List<Transaction> getTransactions() {
+    transactions.sort((a, b) => b.date.compareTo(a.date)); // Sort by date, descending
+    return transactions;
+  }
 
-  static Map<String, List<Map<String, dynamic>>> getTransactionsByCategory() {
-    Map<String, List<Map<String, dynamic>>> groupedTransactions = {};
+  // Group transactions by category
+  static Map<String, List<Transaction>> getTransactionsByCategory() {
+    Map<String, List<Transaction>> groupedTransactions = {};
 
-    for (var transaction in TransactionProvider.transactions) {
-      final category = transaction['category'];
+    for (var transaction in transactions) {
+      final category = transaction.category;
       if (!groupedTransactions.containsKey(category)) {
         groupedTransactions[category] = [];
       }
