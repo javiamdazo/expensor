@@ -92,10 +92,12 @@ class TransactionProvider {
 
     for (var transaction in transactions) {
       final category = transaction.category;
-      if (!groupedTransactions.containsKey(category)) {
+      if(category != null){
+        if (!groupedTransactions.containsKey(category)) {
         groupedTransactions[category] = [];
       }
       groupedTransactions[category]!.add(transaction);
+      }
     }
 
     return groupedTransactions;

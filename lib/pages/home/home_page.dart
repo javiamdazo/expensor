@@ -80,6 +80,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void showTransactionModal(String type) {
+    final TextEditingController cantidadController = TextEditingController();
     final TextEditingController descriptionController = TextEditingController();
     final TextEditingController dateController = TextEditingController();
     String? selectedCategory;
@@ -100,76 +101,14 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     // Campo de cantidad (más grande y visual)
-                    Container(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.blue[50],
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        children: [
-                          const Text(
-                            'Cantidad',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          // Campo para mostrar y editar la cantidad
-                          GestureDetector(
-                            onTap: () {
-                              // Cuando se hace tap en el campo, se convierte en un TextField editable
-                              showModalBottomSheet(
-                                context: context,
-                                builder: (context) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: Column(
-                                      children: [
-                                        const Text(
-                                          'Ingresa la cantidad',
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        TextField(
-                                          keyboardType: TextInputType.number,
-                                          autofocus: true,
-                                          controller: TextEditingController(
-                                              text: amount.toStringAsFixed(2)),
-                                          decoration: InputDecoration(
-                                            hintText: 'Escribe la cantidad',
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                            ),
-                                          ),
-                                          onChanged: (value) {
-                                            setStateModal(() {
-                                              amount =
-                                                  double.tryParse(value) ?? 0;
-                                            });
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                            child: Text(
-                              '\$${amount.toStringAsFixed(2)}',
-                              style: const TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ),
-                        ],
+                    TextField(
+                      controller: cantidadController,
+                      decoration: InputDecoration(
+                        labelText: 'Cantidad',
+                        prefixIcon: Icon(Icons.euro),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16),

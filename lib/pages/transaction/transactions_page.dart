@@ -1,3 +1,4 @@
+import 'package:expensor/model/transaction.dart';
 import 'package:expensor/pages/transaction/transaction_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -236,7 +237,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
     );
   }
 
-  Widget _buildTransactionItem(bool isIncome, dynamic transaction) {
+  Widget _buildTransactionItem(bool isIncome, Transaction transaction) {
     return Card(
       color: isIncome ? Colors.green[50] : Colors.red[50],
       margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -265,7 +266,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    transaction['description'],
+                    transaction.description,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
@@ -274,7 +275,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    transaction['date'],
+                    transaction.date.toString(),
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
@@ -285,7 +286,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
             ),
             const SizedBox(width: 12),
             Text(
-              '${transaction['amount'].toStringAsFixed(2)} €',
+              '${transaction.amount.toStringAsFixed(2)} €',
               style: TextStyle(
                 color: isIncome ? Colors.green : Colors.red,
                 fontWeight: FontWeight.bold,
