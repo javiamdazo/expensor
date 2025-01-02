@@ -1,39 +1,38 @@
 import 'package:flutter/material.dart';
 
-Widget appBarWidget() {
+Widget appBarWidget({required BuildContext context}) {
   return AppBar(
     leading: IconButton(
-      icon: const Icon(Icons.menu),
+      icon: const Icon(
+        Icons.menu,
+        color: Colors.black38,
+      ),
       onPressed: () {
-        // Add your onPressed code here!
+        Scaffold.of(context).openDrawer();
       },
     ),
-    title: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    title: const Row(
       children: [
-        const Row(
+        CircleAvatar(
+          backgroundColor: Colors.lightBlue,
+          child: Text("JA"),
+        ),
+        SizedBox(width: 10),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CircleAvatar(
-              backgroundColor: Colors.lightBlue,
-              child: Text("JA"),
+            Text(
+              'Hola de nuevo',
+              style: TextStyle(fontSize: 10, color: Colors.grey),
             ),
-            SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hola de nuevo',
-                  style: TextStyle(fontSize: 10, color: Colors.grey),
-                ),
-                Text('Javier Andrés'),
-              ],
-            ),
+            Text('Javier Andrés'),
           ],
         ),
-        IconButton(
-            onPressed: () => {}, icon: const Icon(Icons.notifications_none))
       ],
     ),
+    actions: [
+      IconButton(onPressed: () => {}, icon: const Icon(Icons.notifications_none)),
+      IconButton(onPressed: () => {}, icon: const Icon(Icons.settings))
+    ],
   );
 }
