@@ -1,16 +1,23 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
-Widget buildTextField(
-    {required Icon icon, required bool obscure, required String labelText}) {
-  return TextField(
+Widget buildCupertinoTextField({
+  required Icon icon,
+  required bool obscure,
+  required String labelText
+}) {
+  return CupertinoTextField(
     obscureText: obscure,
-    decoration: InputDecoration(
-      labelText: labelText,
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20), // Change the value to adjust the corner radius
-      ),
-      prefixIconColor: Colors.black26,
-      prefixIcon: icon,
+    padding: const EdgeInsets.all(16.0),
+    placeholder: labelText,
+    placeholderStyle: const TextStyle(color: CupertinoColors.systemGrey),
+    prefix: Padding(
+      padding: const EdgeInsets.only(right: 8.0, left: 8),
+      child: icon,
+    ),
+    decoration: BoxDecoration(
+      color: CupertinoColors.white,
+      border: Border.all(color: CupertinoColors.lightBackgroundGray),
+      borderRadius: BorderRadius.circular(20),
     ),
   );
 }
