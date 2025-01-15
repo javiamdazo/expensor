@@ -1,9 +1,11 @@
+import 'package:expensor/model/account.dart';
 import 'package:expensor/model/category.dart';
 import 'package:expensor/model/transaction.dart';
 import 'package:expensor/pages/category/categories_page.dart';
 import 'package:expensor/pages/category/category_provider.dart';
-import 'package:expensor/pages/transaction/transaction_provider.dart';
-import 'package:expensor/pages/transaction/transactions_page.dart';
+import 'package:expensor/pages/home/background.dart';
+import 'package:expensor/pages/transaction/widget/transactions/transaction_provider.dart';
+import 'package:expensor/pages/transaction/dashboard_page.dart';
 import 'package:expensor/widgets/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -22,61 +24,105 @@ class _HomePageState extends State<HomePage> {
 
   // Lista de widgets para cada página
   final List<Widget> _pages = [
-    const TransactionsPage(),
-    const TransactionsPage(),
+    const DashboardPage(),
+    const DashboardPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Logo(),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.category),
-            onPressed: () {
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CategoriesPage()),
-            );
-            },
-          ),
-        ],
-      ),
-      body: Expanded(
-            child: PageView(
-              controller: _pageController,
-              onPageChanged: (index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-              children: _pages,
+    return Stack(
+      children: [
+        const Background(),
+        Positioned.fill(
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              leading: IconButton(
+                  onPressed: () => {},
+                  icon: const Icon(Icons.settings, color: Colors.white)),
+              centerTitle: true,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Account:",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.normal,
+                        ),
+                  ),
+                  const SizedBox(width: 5),
+                  Text("Globalcaja",
+                      style: Theme.of(context).textTheme.titleMedium),
+                  IconButton(
+                      onPressed: () => {},
+                      icon: const Icon(
+                        Icons.arrow_drop_down_sharp,
+                        color: Colors.white,
+                      )),
+                ],
+              ),
+            ),
+            persistentFooterButtons: [
+              BottomNavigationBar(
+                currentIndex: _currentIndex,
+                items: const [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.list),
+                    label: 'Transacciones',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.pie_chart),
+                    label: 'Resumen',
+                  ),
+                ],
+                onTap: (index) {
+                  _pageController.animateToPage(
+                    index,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.ease,
+                  );
+                },
+              ),
+            ],
+            body: Expanded(
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                children: _pages,
+              ),
+            ),
+            floatingActionButton: SpeedDial(
+              icon: Icons.add,
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              children: [
+                SpeedDialChild(
+                  child: const Icon(Icons.add),
+                  label: 'Ingreso',
+                  labelStyle: const TextStyle(fontSize: 18.0),
+                  onTap: () {
+                    showTransactionModal('income');
+                  },
+                ),
+                SpeedDialChild(
+                  child: const Icon(Icons.remove),
+                  label: 'Gasto',
+                  labelStyle: const TextStyle(fontSize: 18.0),
+                  onTap: () {
+                    showTransactionModal('expense');
+                  },
+                ),
+              ],
             ),
           ),
-      floatingActionButton: SpeedDial(
-        icon: Icons.add,
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-        children: [
-          SpeedDialChild(
-            child: const Icon(Icons.add),
-            label: 'Ingreso',
-            labelStyle: const TextStyle(fontSize: 18.0),
-            onTap: () {
-              showTransactionModal('income');
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.remove),
-            label: 'Gasto',
-            labelStyle: const TextStyle(fontSize: 18.0),
-            onTap: () {
-              showTransactionModal('expense');
-            },
-          ),
-        ],
-      ),
+        )
+      ],
     );
   }
 
@@ -210,19 +256,18 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 final double amount = double.parse(amountController.text);
                 final String description = descriptionController.text;
-                final DateTime date =  DateTime.parse(dateController.text);
+                final DateTime date = DateTime.parse(dateController.text);
 
                 if (amount > 0 &&
                     description.isNotEmpty &&
                     selectedCategory != null) {
-                  addTransaction(
-                    Transaction(
+                  addTransaction(Transaction(
                       type: type,
                       description: description,
                       date: date,
                       amount: type == 'income' ? amount : -amount,
                       category: selectedCategory,
-                    ));
+                      account: Account(name: 'Globalcaja', balance: 250)));
                   Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -242,14 +287,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  
   void addTransaction(Transaction transaction) {
     setState(() {
       TransactionProvider.transactions.add(transaction);
       TransactionProvider.totalMoney += transaction.amount;
     });
   }
-
 
   @override
   void dispose() {

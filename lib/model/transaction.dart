@@ -1,3 +1,4 @@
+import 'package:expensor/model/account.dart';
 import 'package:expensor/model/category.dart';
 
 class Transaction {
@@ -6,6 +7,7 @@ class Transaction {
   DateTime date;
   double amount;
   Category? category;
+  Account account;
 
   Transaction({
     required this.type,
@@ -13,5 +15,6 @@ class Transaction {
     required this.date,
     required this.amount,
     required this.category,
+    required this.account,
   });
 }
