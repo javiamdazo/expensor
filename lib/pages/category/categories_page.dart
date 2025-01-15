@@ -74,7 +74,10 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   if (category == null) {
                     // Añadir nueva categoría
                     CategoryProvider.categories.add(
-                      Category(name: nameController.text, icon: selectedIcon)
+                      Category(
+                          name: nameController.text,
+                          icon: selectedIcon,
+                          color: Colors.blue),
                     );
                   } else {
                     // Editar categoría existente
@@ -98,7 +101,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("¿Estás seguro de que deseas eliminar esta categoría?"),
+          title: const Text(
+              "¿Estás seguro de que deseas eliminar esta categoría?"),
           actions: [
             // Botón cancelar
             TextButton(
@@ -111,7 +115,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
             TextButton(
               onPressed: () {
                 setState(() {
-                  CategoryProvider.categories.removeAt(index); // Eliminar categoría
+                  CategoryProvider.categories
+                      .removeAt(index); // Eliminar categoría
                 });
                 Navigator.pop(context); // Cerrar el diálogo
               },
@@ -136,7 +141,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
             crossAxisCount: 2, // Número de columnas
             crossAxisSpacing: 8.0, // Espacio entre columnas
             mainAxisSpacing: 8.0, // Espacio entre filas
-            childAspectRatio: 1.2, // Relación de aspecto para los ítems (ajustable)
+            childAspectRatio:
+                1.2, // Relación de aspecto para los ítems (ajustable)
           ),
           itemCount: CategoryProvider.categories.length,
           itemBuilder: (context, index) {
@@ -151,7 +157,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   showCategoryDialog(category: category); // Editar categoría
                 },
                 onLongPress: () {
-                  showDeleteConfirmationDialog(index); // Mostrar diálogo de confirmación de eliminación
+                  showDeleteConfirmationDialog(
+                      index); // Mostrar diálogo de confirmación de eliminación
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

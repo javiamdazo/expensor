@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 class CategoryProvider {
   // List of categories using the Category object
   static List<Category> categories = [
-    Category(name: 'Salario', icon: Icons.work),
-    Category(name: 'Comida', icon: Icons.fastfood),
-    Category(name: 'Servicios', icon: Icons.lightbulb),
-    Category(name: 'Freelance', icon: Icons.person),
-    Category(name: 'Venta', icon: Icons.shopping_cart),
+    Category(name: 'Salario', icon: Icons.work, color: Colors.green),
+    Category(name: 'Comida', icon: Icons.fastfood, color: Colors.red),
+    Category(name: 'Servicios', icon: Icons.lightbulb, color: Colors.blue),
+    Category(name: 'Freelance', icon: Icons.person, color: Colors.purple),
+    Category(name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
   ];
 
   // Method to get all categories

@@ -13,25 +13,15 @@ Widget appBarWidget({required BuildContext context}) {
     ),
     title: const Row(
       children: [
-        CircleAvatar(
-          backgroundColor: Colors.lightBlue,
-          child: Text("JA"),
-        ),
-        SizedBox(width: 10),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Hola de nuevo',
-              style: TextStyle(fontSize: 10, color: Colors.grey),
-            ),
-            Text('Javier Andrés'),
-          ],
-        ),
+        Text(
+          'Globalcaja',
+          style: TextStyle(fontSize: 10, color: Colors.grey),
+        )
       ],
     ),
     actions: [
-      IconButton(onPressed: () => {}, icon: const Icon(Icons.notifications_none)),
+      IconButton(
+          onPressed: () => {}, icon: const Icon(Icons.notifications_none)),
       IconButton(onPressed: () => {}, icon: const Icon(Icons.settings))
     ],
   );
