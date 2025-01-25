@@ -1,14 +1,10 @@
 import 'package:expensor/model/account.dart';
 import 'package:expensor/model/category.dart';
 import 'package:expensor/model/transaction.dart';
-import 'package:expensor/pages/category/categories_page.dart';
 import 'package:expensor/pages/category/category_provider.dart';
-import 'package:expensor/pages/home/background.dart';
-import 'package:expensor/pages/transaction/widget/transactions/transaction_provider.dart';
-import 'package:expensor/pages/transaction/dashboard_page.dart';
-import 'package:expensor/widgets/logo.dart';
+import 'package:expensor/pages/home/navbar.dart';
+import 'package:expensor/pages/kpis/widget/transactions/transaction_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,112 +14,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0; // Índice actual de la barra inferior
-  final PageController _pageController =
-      PageController(); // Controlador del PageView
-
-  // Lista de widgets para cada página
-  final List<Widget> _pages = [
-    const DashboardPage(),
-    const DashboardPage(),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        const Background(),
-        Positioned.fill(
-          child: Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              leading: IconButton(
-                  onPressed: () => {},
-                  icon: const Icon(Icons.settings, color: Colors.white)),
-              centerTitle: true,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    "Account:",
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.normal,
-                        ),
-                  ),
-                  const SizedBox(width: 5),
-                  Text("Globalcaja",
-                      style: Theme.of(context).textTheme.titleMedium),
-                  IconButton(
-                      onPressed: () => {},
-                      icon: const Icon(
-                        Icons.arrow_drop_down_sharp,
-                        color: Colors.white,
-                      )),
-                ],
-              ),
-            ),
-            persistentFooterButtons: [
-              BottomNavigationBar(
-                currentIndex: _currentIndex,
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.list),
-                    label: 'Transacciones',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.pie_chart),
-                    label: 'Resumen',
-                  ),
-                ],
-                onTap: (index) {
-                  _pageController.animateToPage(
-                    index,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.ease,
-                  );
-                },
-              ),
-            ],
-            body: Expanded(
-              child: PageView(
-                controller: _pageController,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-                children: _pages,
-              ),
-            ),
-            floatingActionButton: SpeedDial(
-              icon: Icons.add,
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.black,
-              children: [
-                SpeedDialChild(
-                  child: const Icon(Icons.add),
-                  label: 'Ingreso',
-                  labelStyle: const TextStyle(fontSize: 18.0),
-                  onTap: () {
-                    showTransactionModal('income');
-                  },
-                ),
-                SpeedDialChild(
-                  child: const Icon(Icons.remove),
-                  label: 'Gasto',
-                  labelStyle: const TextStyle(fontSize: 18.0),
-                  onTap: () {
-                    showTransactionModal('expense');
-                  },
-                ),
-              ],
-            ),
-          ),
-        )
-      ],
-    );
+    return const SafeArea(child: Navbar());
   }
 
   void showTransactionModal(String type) {
@@ -292,11 +185,5 @@ class _HomePageState extends State<HomePage> {
       TransactionProvider.transactions.add(transaction);
       TransactionProvider.totalMoney += transaction.amount;
     });
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
   }
 }

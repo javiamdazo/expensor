@@ -1,4 +1,5 @@
 import 'package:expensor/pages/home/home_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.light,
         theme: ThemeData(
           brightness: Brightness.light, // Tema claro
-          primaryColor: const Color.fromARGB(255, 143, 31, 163),
+          primaryColor: CupertinoColors.systemPurple,
           fontFamily: GoogleFonts.nunito().fontFamily,
           textTheme: const TextTheme(
             displayLarge: TextStyle(

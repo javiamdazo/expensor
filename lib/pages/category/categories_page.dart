@@ -6,10 +6,10 @@ class CategoriesPage extends StatefulWidget {
   const CategoriesPage({super.key});
 
   @override
-  _CategoriesPageState createState() => _CategoriesPageState();
+  CategoriesPageState createState() => CategoriesPageState();
 }
 
-class _CategoriesPageState extends State<CategoriesPage> {
+class CategoriesPageState extends State<CategoriesPage> {
   // Función para mostrar el modal de añadir o editar categoría
   void showCategoryDialog({Category? category}) {
     final TextEditingController nameController = TextEditingController();

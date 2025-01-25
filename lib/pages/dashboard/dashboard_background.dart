@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Background extends StatelessWidget {
-  const Background({Key? key}) : super(key: key);
+class DashboardBackground extends StatelessWidget {
+  const DashboardBackground({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +13,11 @@ class Background extends StatelessWidget {
           Expanded(
             flex: 1,
             child: Container(
-              color: Colors.purple,
+              color: Theme.of(context).primaryColor,
             ),
           ),
           Expanded(
-            flex: 3,
+            flex: 4,
             child: Container(
               color: const Color.fromARGB(255, 9, 26, 41),
             ),

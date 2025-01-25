@@ -5,15 +5,14 @@ import 'package:intl/intl.dart';
 class TransactionItem extends StatelessWidget {
   final bool isIncome;
   final Transaction transaction;
-  const TransactionItem(
-      {Key? key, required this.isIncome, required this.transaction})
-      : super(key: key);
+
+  const TransactionItem({super.key, required this.isIncome, required this.transaction});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: transaction.category?.color,
         child: Icon(
           transaction.category?.icon,
           color: Colors.white,
@@ -43,7 +42,7 @@ class TransactionItem extends StatelessWidget {
                       width: 5,
                     ),
                     Text(
-                      transaction.account!.name,
+                      transaction.account.name,
                       style: Theme.of(context).textTheme.labelSmall,
                     )
                   ],
@@ -55,7 +54,7 @@ class TransactionItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            transaction.amount.toString() + " €",
+            '${transaction.amount.toString()} €',
             style: Theme.of(context).textTheme.labelMedium,
           ),
           Text(

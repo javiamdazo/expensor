@@ -1,3 +1,4 @@
+import 'package:expensor/widgets/formatted_number.dart';
 import 'package:flutter/material.dart';
 
 enum MoneyKpiType {
@@ -25,10 +26,10 @@ class MoneyKpi extends StatelessWidget {
   final double amount;
 
   const MoneyKpi({
-    Key? key,
+    super.key,
     required this.type,
     required this.amount,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +40,8 @@ class MoneyKpi extends StatelessWidget {
           type.name,
           style: Theme.of(context).textTheme.titleSmall,
         ),
-        Text(
-          '${amount.toStringAsFixed(2)} €',
+        FormattedNumber(
+          number: amount,
           style: Theme.of(context).textTheme.displaySmall,
         ),
       ],
