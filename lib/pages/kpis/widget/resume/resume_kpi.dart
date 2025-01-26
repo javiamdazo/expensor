@@ -23,28 +23,44 @@ class ResumeKpiState extends State<ResumeKpi> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: Padding(
-      padding: const EdgeInsets.all(20.0),
+    return Container(
+      padding: const EdgeInsets.all(10),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BudgetTitle(droppedDown: droppedDown, onToggle: toggleDropdown),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: TextButton.icon(
+                  autofocus: true,
+                  icon: Icon(
+                    Icons.arrow_drop_down_sharp,
+                    color: Theme.of(context).iconTheme.color,
+                    size: 20,
+                  ),
+                  iconAlignment: IconAlignment.end,
+                  onPressed: () => {},
+                  label: Text("Globalcaja",
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall!
+                          .copyWith(color: Colors.grey[300])),
+                ),
+              ),
+              IconButton(onPressed: () => {}, 
+              icon: Icon(Icons.remove_red_eye, color: Theme.of(context).iconTheme.color,))
+            ],
+          ),
           Space(),
           const LeftToSpend(),
-          Space(),
-          const IncomeExpense(),
-          Space(),
-          AnimatedCrossFade(
-            firstChild: Container(),
-            secondChild: const ResumeCategoriesBudget(),
-            crossFadeState: droppedDown
-                ? CrossFadeState.showSecond
-                : CrossFadeState.showFirst,
-            duration: const Duration(milliseconds: 300),
+          Space(
+            space: SpaceEnum.double,
           ),
+          const IncomeExpense()
         ],
       ),
-    ));
+    );
   }
 }

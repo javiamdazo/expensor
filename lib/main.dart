@@ -1,5 +1,5 @@
 import 'package:expensor/pages/home/home_page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:expensor/utils/ux_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,17 +17,17 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.light,
         theme: ThemeData(
           brightness: Brightness.light, // Tema claro
-          primaryColor: CupertinoColors.systemPurple,
+          primaryColor: UxColors.belizeHole.value,
           fontFamily: GoogleFonts.nunito().fontFamily,
           textTheme: const TextTheme(
             displayLarge: TextStyle(
-                fontSize: 40, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
             displaySmall: TextStyle(
                 fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
             titleMedium: TextStyle(
                 fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
             titleSmall: TextStyle(
-                fontSize: 12,
+                fontSize: 15,
                 fontWeight: FontWeight.normal,
                 color: Colors.grey),
             labelMedium: TextStyle(

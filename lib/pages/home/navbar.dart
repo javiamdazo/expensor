@@ -1,3 +1,4 @@
+import 'package:expensor/pages/dashboard/dashboard_background.dart';
 import 'package:expensor/pages/dashboard/dashboard_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class NavbarState extends State<Navbar> {
   List<Widget> _buildScreens() {
     return const [
       DashboardPage(),
-      Text("Posicion Global"),
+      DashboardBackground(),
       Text("Add"),
       Text("Inversion"),
       Text("Budget")

@@ -7,22 +7,15 @@ class LeftToSpend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(
-        "LEFT TO SPEND",
-        style: Theme.of(context).textTheme.titleSmall,
-      ),
+    return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       FormattedNumber(
         number: TransactionProvider.remainingMoney,
         style: Theme.of(context).textTheme.displayLarge,
         numberType: NumberType.currency
       ),
-      LinearProgressIndicator(
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-        minHeight: 10,
-        value: 0.5,
-        color: Theme.of(context).primaryColor,
-        backgroundColor: Theme.of(context).primaryColor.withOpacity(0.3),
+      Text(
+        "Cash flow",
+        style: Theme.of(context).textTheme.labelMedium,
       )
     ]);
   }

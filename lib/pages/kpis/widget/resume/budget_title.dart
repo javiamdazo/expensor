@@ -12,20 +12,16 @@ class BudgetTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          "Budget",
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        IconButton(
-          onPressed: onToggle, // Call the parent callback to update state
-          icon: Icon(
-            droppedDown ? Icons.arrow_drop_up : Icons.arrow_drop_down_sharp,
-          ),
-        ),
-      ],
+    return TextButton.icon(
+      icon:
+          Icon(droppedDown ? Icons.arrow_drop_up : Icons.arrow_drop_down_sharp),
+      iconAlignment: IconAlignment.end,
+      onPressed: () => {},
+      label: Text("Globalcaja",
+          style: Theme.of(context)
+              .textTheme
+              .titleSmall!
+              .copyWith(color: Colors.grey[300])),
     );
   }
 }
