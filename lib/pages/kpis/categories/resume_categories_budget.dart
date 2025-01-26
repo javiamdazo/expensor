@@ -24,11 +24,11 @@ class ResumeCategoriesBudget extends StatelessWidget {
     // Convert the Map<Category, num> into a list for ListView
     final List<MapEntry<Category, num>> budgetEntries = budget.categoriesBudget.entries.toList();
 
-    double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height * 0.20;
     double width = MediaQuery.of(context).size.width;
 
     return SizedBox(
-      height: height * 0.15,
+      height: height,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
           itemCount: budgetEntries.length,
@@ -66,8 +66,8 @@ class ResumeCategoriesItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(
-            width: height * 0.1,
-            height: width * 0.25,
+            width: width * 0.30,
+            height: height * 0.6,
             child: DoughutChart(
               categoryColor: category.color,
               budget: budget,
