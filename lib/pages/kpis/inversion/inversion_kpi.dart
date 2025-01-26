@@ -1,5 +1,5 @@
-import 'package:expensor/pages/kpis/widget/inversion/inversion_accounts_provider.dart';
-import 'package:expensor/pages/kpis/widget/inversion/inversion_item.dart';
+import 'package:expensor/pages/kpis/inversion/inversion_accounts_provider.dart';
+import 'package:expensor/pages/kpis/inversion/inversion_item.dart';
 import 'package:expensor/widgets/inversion_resume_data.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class InversionKpiState extends State<InversionKpi> {
                 Text(
                   "View details",
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: const Color.fromRGBO(128, 168, 255, 1),
+                      color: Theme.of(context).primaryColor,
                       fontSize: 15),
                 ),
               ],

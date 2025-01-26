@@ -1,5 +1,5 @@
-import 'package:expensor/pages/kpis/widget/money_kpi.dart';
-import 'package:expensor/pages/kpis/widget/transactions/transaction_provider.dart';
+import 'package:expensor/widgets/money.dart';
+import 'package:expensor/pages/kpis/transactions/transaction_provider.dart';
 import 'package:flutter/cupertino.dart';
 
 class IncomeExpense extends StatelessWidget {

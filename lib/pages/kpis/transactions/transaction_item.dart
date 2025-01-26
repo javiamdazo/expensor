@@ -13,10 +13,10 @@ class TransactionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: transaction.category?.color,
+        backgroundColor: transaction.category?.color.withOpacity(0.3),
         child: Icon(
           transaction.category?.icon,
-          color: Colors.white,
+          color: transaction.category?.color,
         ),
       ),
       title: Text(

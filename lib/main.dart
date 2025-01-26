@@ -39,14 +39,14 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.normal,
                 color: Colors.grey),
           ),
-          iconTheme: const IconThemeData(
-            color: Colors.white,
+          iconTheme: IconThemeData(
+            color: UxColors.clouds.value,
           ),
           cardTheme: CardTheme(
             margin: const EdgeInsets.all(0),
-            color: const Color.fromARGB(255, 17, 48, 75),
+            color: UxColors.darkLight.value,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
             ),
           ),
         ),

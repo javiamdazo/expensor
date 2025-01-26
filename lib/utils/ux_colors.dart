@@ -20,7 +20,10 @@ enum UxColors {
   pumpkin,
   pomegranate,
   silver,
-  asbestos;
+  asbestos,
+  dark,
+  darkLight,
+  darkLightSmooth;
 
   Color get value {
     switch (this) {
@@ -64,6 +67,12 @@ enum UxColors {
         return const Color.fromRGBO(189, 195, 199, 1.0);
       case UxColors.asbestos:
         return const Color.fromRGBO(127, 140, 141, 1.0);
+      case UxColors.dark:
+        return const Color.fromARGB(255, 9, 26, 41);
+      case UxColors.darkLight:
+        return const Color.fromARGB(255, 17, 48, 75);
+      case UxColors.darkLightSmooth:
+        return const Color.fromARGB(255, 21, 60, 95);
     }
   }
 }

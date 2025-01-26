@@ -3,7 +3,7 @@ import 'package:expensor/model/category.dart';
 import 'package:expensor/model/transaction.dart';
 import 'package:expensor/pages/category/category_provider.dart';
 import 'package:expensor/pages/home/navbar.dart';
-import 'package:expensor/pages/kpis/widget/transactions/transaction_provider.dart';
+import 'package:expensor/pages/kpis/transactions/transaction_provider.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

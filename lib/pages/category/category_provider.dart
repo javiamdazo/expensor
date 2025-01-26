@@ -1,18 +1,19 @@
 import 'package:expensor/model/category.dart';
+import 'package:expensor/utils/ux_colors.dart';
 import 'package:flutter/material.dart';
 
 class CategoryProvider {
   // List of categories using the Category object
   static List<Category> categories = [
-    Category(name: 'Salario', icon: Icons.work, color: Colors.green),
-    Category(name: 'Comida', icon: Icons.fastfood, color: Colors.red),
-    Category(name: 'Servicios', icon: Icons.lightbulb, color: Colors.blue),
-    Category(name: 'Freelance', icon: Icons.person, color: Colors.purple),
-    Category(name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
-    Category(name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
-    Category(name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
-    Category(name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
-    Category(name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
+    Category(name: 'Salario', icon: Icons.work, color: UxColors.alizarin.value),
+    Category(name: 'Comida', icon: Icons.fastfood, color: UxColors.amethyst.value),
+    Category(name: 'Servicios', icon: Icons.lightbulb, color: UxColors.carrot.value),
+    Category(name: 'Freelance', icon: Icons.person, color: UxColors.greenSea.value),
+    Category(name: 'Venta', icon: Icons.shopping_cart, color: UxColors.alizarin.value),
+    Category(name: 'Venta', icon: Icons.shopping_cart, color: UxColors.asbestos.value),
+    Category(name: 'Venta', icon: Icons.shopping_cart, color: UxColors.alizarin.value),
+    Category(name: 'Venta', icon: Icons.shopping_cart, color: UxColors.concrete.value),
+    Category(name: 'Venta', icon: Icons.shopping_cart, color: UxColors.alizarin.value),
   ];
 
   // Method to get all categories

@@ -1,4 +1,4 @@
-import 'package:expensor/pages/kpis/widget/transactions/transaction_provider.dart';
+import 'package:expensor/pages/kpis/transactions/transaction_provider.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:flutter/material.dart';
 

@@ -1,7 +1,9 @@
 import 'package:expensor/pages/dashboard/dashboard_background.dart';
-import 'package:expensor/pages/kpis/widget/inversion/inversion_kpi.dart';
-import 'package:expensor/pages/kpis/widget/resume/resume_kpi.dart';
-import 'package:expensor/pages/kpis/widget/transactions/transactions_list_kpi.dart';
+import 'package:expensor/pages/kpis/categories/categories_kpi.dart';
+import 'package:expensor/pages/kpis/inversion/inversion_kpi.dart';
+import 'package:expensor/pages/kpis/resume/resume_kpi.dart';
+import 'package:expensor/pages/kpis/transactions/transactions_list_kpi.dart';
+import 'package:expensor/utils/ux_colors.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
@@ -12,49 +14,16 @@ class DashboardPage extends StatefulWidget {
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late List<Animation<Offset>> _itemAnimations;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1000),
-    );
-
-    _itemAnimations = List.generate(
-      3, // Number of items to animate
-      (index) => Tween<Offset>(
-        begin: const Offset(0, 1), // Start below the screen
-        end: Offset.zero, // End at the original position
-      ).animate(
-        CurvedAnimation(
-          parent: _animationController,
-          curve: Interval(
-            index * 0.2, // Stagger the animations
-            1.0,
-            curve: Curves.easeOut,
-          ),
-        ),
-      ),
-    );
-
-    // Start the animation
-    _animationController.forward();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
+class _DashboardPageState extends State<DashboardPage>{
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).primaryColor,
+        onPressed: () => {},
+        child: Icon(Icons.add, color: Theme.of(context).iconTheme.color,),
+      ),
       body: Stack(
         children: [
           const DashboardBackground(),
@@ -64,9 +33,9 @@ class _DashboardPageState extends State<DashboardPage>
               Space(),
               Container(
                 height: MediaQuery.of(context).size.height,
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 9, 26, 41),
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  color: UxColors.dark.value,
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30)
                   )
@@ -75,6 +44,10 @@ class _DashboardPageState extends State<DashboardPage>
                   padding: const EdgeInsets.all(20),
                   child: Column(
                     children: [
+                      const CategoriesKpi(),
+                      Space(
+                        space: SpaceEnum.triple,
+                      ),
                       const TransactionsListKpi(),
                       Space(
                         space: SpaceEnum.triple,
