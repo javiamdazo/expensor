@@ -42,7 +42,7 @@ class InversionKpiState extends State<InversionKpi> {
         Space(),
         Card(
             child: SizedBox(
-                height: height * 0.15,
+                height: height * 0.20,
                 child: ListView.builder(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 10),

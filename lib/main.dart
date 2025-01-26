@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.light,
         theme: ThemeData(
           brightness: Brightness.light, // Tema claro
-          primaryColor: UxColors.belizeHole.value,
+          primaryColor: UxColors.amethyst.value,
           fontFamily: GoogleFonts.nunito().fontFamily,
           textTheme: const TextTheme(
             displayLarge: TextStyle(
