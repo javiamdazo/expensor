@@ -9,6 +9,10 @@ class CategoryProvider {
     Category(name: 'Servicios', icon: Icons.lightbulb, color: Colors.blue),
     Category(name: 'Freelance', icon: Icons.person, color: Colors.purple),
     Category(name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
+    Category(name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
+    Category(name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
+    Category(name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
+    Category(name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
   ];
 
   // Method to get all categories

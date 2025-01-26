@@ -15,62 +15,54 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Transactions",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Text(
-                    "View details",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(color: const Color.fromRGBO(128, 168, 255, 1), fontSize: 15),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    "20,89 €",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Text("Spend today",
-                      style: Theme.of(context).textTheme.titleSmall),
-                ],
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.25,
-            child: Card(
-              margin: const EdgeInsets.all(0),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Transactions",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    Text(
+                      "View details",
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(color: const Color.fromRGBO(128, 168, 255, 1), fontSize: 15),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(
+                      "20,89 €",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    Text("Spend today",
+                        style: Theme.of(context).textTheme.titleSmall),
+                  ],
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.25,
+              child: Card(
                 child: Expanded(
                   child: byCategory
                       ? buildListTransactionsByCategories()
                       : buildListTransactions(),
                 ),
               ),
-            ),
-          )
-        ],
-      ),
-    ));
+            )
+          ],
+        ));
   }
 }
 
@@ -98,7 +90,6 @@ Widget buildListTransactionsByCategories() {
       final categoryTransactions = transactionsGroupedByCategory[category]!;
 
       return Container(
-        margin: const EdgeInsets.symmetric(vertical: 2.0),
         decoration: BoxDecoration(
           color: Colors.grey[200],
           borderRadius: BorderRadius.circular(12),

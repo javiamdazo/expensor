@@ -2,6 +2,7 @@ import 'package:expensor/pages/kpis/widget/resume/budget_title.dart';
 import 'package:expensor/pages/kpis/widget/resume/income_expense.dart';
 import 'package:expensor/pages/kpis/widget/resume/left_to_spend.dart';
 import 'package:expensor/pages/kpis/widget/resume/resume_categories_budget.dart';
+import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class ResumeKpi extends StatefulWidget {
@@ -24,15 +25,16 @@ class ResumeKpiState extends State<ResumeKpi> {
   Widget build(BuildContext context) {
     return Card(
         child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20),
+      padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BudgetTitle(droppedDown: droppedDown, onToggle: toggleDropdown),
-          const SizedBox(height: 10),
+          Space(),
           const LeftToSpend(),
-          const SizedBox(height: 15),
+          Space(),
           const IncomeExpense(),
+          Space(),
           AnimatedCrossFade(
             firstChild: Container(),
             secondChild: const ResumeCategoriesBudget(),

@@ -15,6 +15,7 @@ class LeftToSpend extends StatelessWidget {
       FormattedNumber(
         number: TransactionProvider.remainingMoney,
         style: Theme.of(context).textTheme.displayLarge,
+        numberType: NumberType.currency
       ),
       LinearProgressIndicator(
         borderRadius: const BorderRadius.all(Radius.circular(10)),

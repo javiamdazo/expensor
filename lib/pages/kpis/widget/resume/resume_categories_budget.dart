@@ -1,5 +1,7 @@
 import 'package:expensor/model/category.dart';
 import 'package:expensor/pages/category/category_provider.dart';
+import 'package:expensor/widgets/formatted_number.dart';
+import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class ResumeCategoriesBudget extends StatelessWidget {
@@ -12,15 +14,13 @@ class ResumeCategoriesBudget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
-          height: 15,
-        ),
         Text(
           "Categories",
           style: Theme.of(context).textTheme.labelMedium,
         ),
+        Space(),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.12,
+          height: MediaQuery.of(context).size.height * 0.07,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: CategoryProvider.categories.length,
@@ -46,7 +46,7 @@ class ResumeCategoriesItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -64,10 +64,10 @@ class ResumeCategoriesItem extends StatelessWidget {
             category.name,
             style: Theme.of(context).textTheme.labelSmall,
           ),
-          Text(
-            "15€",
-            style: Theme.of(context).textTheme.labelMedium,
-          )
+          FormattedNumber(
+              number: 15,
+              style: Theme.of(context).textTheme.labelMedium,
+              numberType: NumberType.currency)
         ],
       ),
     );

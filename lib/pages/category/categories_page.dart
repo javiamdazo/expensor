@@ -134,55 +134,52 @@ class CategoriesPageState extends State<CategoriesPage> {
       appBar: AppBar(
         title: const Text("Categorías"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // Número de columnas
-            crossAxisSpacing: 8.0, // Espacio entre columnas
-            mainAxisSpacing: 8.0, // Espacio entre filas
-            childAspectRatio:
-                1.2, // Relación de aspecto para los ítems (ajustable)
-          ),
-          itemCount: CategoryProvider.categories.length,
-          itemBuilder: (context, index) {
-            final category = CategoryProvider.categories[index];
-            return Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  showCategoryDialog(category: category); // Editar categoría
-                },
-                onLongPress: () {
-                  showDeleteConfirmationDialog(
-                      index); // Mostrar diálogo de confirmación de eliminación
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      category.icon,
-                      size: 40,
-                      color: Colors.blue,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      category.name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // Número de columnas
+          crossAxisSpacing: 8.0, // Espacio entre columnas
+          mainAxisSpacing: 8.0, // Espacio entre filas
+          childAspectRatio:
+              1.2, // Relación de aspecto para los ítems (ajustable)
         ),
+        itemCount: CategoryProvider.categories.length,
+        itemBuilder: (context, index) {
+          final category = CategoryProvider.categories[index];
+          return Card(
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: GestureDetector(
+              onTap: () {
+                showCategoryDialog(category: category); // Editar categoría
+              },
+              onLongPress: () {
+                showDeleteConfirmationDialog(
+                    index); // Mostrar diálogo de confirmación de eliminación
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    category.icon,
+                    size: 40,
+                    color: Colors.blue,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    category.name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

@@ -43,6 +43,7 @@ class MoneyKpi extends StatelessWidget {
         FormattedNumber(
           number: amount,
           style: Theme.of(context).textTheme.displaySmall,
+          numberType: NumberType.currency
         ),
       ],
     );

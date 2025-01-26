@@ -43,10 +43,10 @@ class MyApp extends StatelessWidget {
             color: Colors.white,
           ),
           cardTheme: CardTheme(
-            margin: const EdgeInsets.symmetric(horizontal: 30),
+            margin: const EdgeInsets.all(0),
             color: const Color.fromARGB(255, 17, 48, 75),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
         ),

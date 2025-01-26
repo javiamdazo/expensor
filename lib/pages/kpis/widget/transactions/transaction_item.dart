@@ -1,4 +1,5 @@
 import 'package:expensor/model/transaction.dart';
+import 'package:expensor/widgets/formatted_number.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -53,9 +54,10 @@ class TransactionItem extends StatelessWidget {
       trailing: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text(
-            '${transaction.amount.toString()} €',
+          FormattedNumber(
+            number: transaction.amount,
             style: Theme.of(context).textTheme.labelMedium,
+            numberType: NumberType.currency
           ),
           Text(
             DateFormat('d MMM y').format(transaction.date),
