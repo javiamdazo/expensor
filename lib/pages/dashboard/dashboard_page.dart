@@ -59,9 +59,13 @@ class _DashboardPageState extends State<DashboardPage>
         backgroundColor: Theme.of(context).primaryColor,
         leading: IconButton(
           onPressed: () => {},
-          icon: const Icon(Icons.settings, color: Colors.white),
+          icon: Icon(Icons.settings, color: Theme.of(context).iconTheme.color),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: () => {}, 
+          icon: Icon(Icons.remove_red_eye, color: Theme.of(context).iconTheme.color))
+        ],
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,

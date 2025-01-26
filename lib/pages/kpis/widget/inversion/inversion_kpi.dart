@@ -1,5 +1,7 @@
-import 'package:expensor/widgets/formatted_number.dart';
-import 'package:expensor/widgets/profitability.dart';
+import 'package:expensor/pages/kpis/widget/inversion/inversion_accounts_provider.dart';
+import 'package:expensor/pages/kpis/widget/inversion/inversion_item.dart';
+import 'package:expensor/widgets/inversion_resume_data.dart';
+import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class InversionKpi extends StatefulWidget {
@@ -12,6 +14,8 @@ class InversionKpi extends StatefulWidget {
 class InversionKpiState extends State<InversionKpi> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return Column(
       children: <Widget>[
         Row(
@@ -32,52 +36,24 @@ class InversionKpiState extends State<InversionKpi> {
                 ),
               ],
             ),
-            Column(
-              children: [
-                FormattedNumber(
-                    number: 6898.89,
-                    style: Theme.of(context).textTheme.titleMedium,
-                    numberType: NumberType.currency),
-                Row(
-                  children: [
-                    FormattedNumber(
-                      number: 6400.00,
-                      style: Theme.of(context).textTheme.titleSmall,
-                      numberType: NumberType.currency,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Profitability(
-                        number: 9.56,
-                        style: Theme.of(context).textTheme.titleSmall)
-                  ],
-                )
-              ],
-            )
+            InversionResumeData(invested: 6800, pL: 6.59, balance: 7200)
           ],
         ),
-        const SizedBox(
-          height: 5,
-        ),
+        Space(),
         Card(
-          child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
-              child: ListView(
-                children: const [
-                  ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.red,
-                      child: Icon(
-                        Icons.abc,
-                        color: Colors.white,
-                      ),
-                    ),
-                    title: Text("Trade republic"),
-                  ),
-                ],
-              )),
-        ),
+            child: SizedBox(
+                height: height * 0.15,
+                child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 10),
+                    itemCount:
+                        InversionAccountsProvider.getInversionAccounts().length,
+                    itemBuilder: (context, index) {
+                      return InversionItem(
+                        inversionAccount: InversionAccountsProvider
+                            .getInversionAccounts()[index],
+                      );
+                    }))),
       ],
     );
   }

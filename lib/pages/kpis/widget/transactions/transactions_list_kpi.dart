@@ -14,55 +14,64 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    
     return SafeArea(
         child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Transactions",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(
-                      "View details",
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium
-                          ?.copyWith(color: const Color.fromRGBO(128, 168, 255, 1), fontSize: 15),
-                    ),
-                  ],
+                Text(
+                  "Transactions",
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-                Column(
-                  children: [
-                    Text(
-                      "20,89 €",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text("Spend today",
-                        style: Theme.of(context).textTheme.titleSmall),
-                  ],
-                )
+                Text(
+                  "View details",
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: const Color.fromRGBO(128, 168, 255, 1),
+                      fontSize: 15),
+                ),
               ],
             ),
-            const SizedBox(
-              height: 5,
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
-              child: Card(
-                child: Expanded(
-                  child: byCategory
-                      ? buildListTransactionsByCategories()
-                      : buildListTransactions(),
+            Column(
+              children: [
+                Text(
+                  "20,89 €",
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-              ),
+                Text("Spend today",
+                    style: Theme.of(context).textTheme.titleSmall),
+              ],
             )
           ],
-        ));
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        SizedBox(
+          height: height * 0.25,
+          child: Card(
+            child: Expanded(
+                child: ListView.builder(
+              padding: const EdgeInsets.all(10),
+              itemCount: TransactionProvider.transactions.length,
+              itemBuilder: (context, index) {
+                final String isIncome =
+                    TransactionProvider.transactions[index].type;
+
+                return TransactionItem(
+                    isIncome: isIncome.contains('income'),
+                    transaction: TransactionProvider.transactions[index]);
+              },
+            )),
+          ),
+        )
+      ],
+    ));
   }
 }
 

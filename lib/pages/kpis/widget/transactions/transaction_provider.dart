@@ -18,7 +18,7 @@ class TransactionProvider {
         amount: 1200.00,
         category:
             Category(name: 'Salario', icon: Icons.work, color: Colors.green),
-        account: Account(name: 'Globalcaja', balance: 250)),
+        account: Account(color: Colors.purple,name: 'Globalcaja', balance: 250, icon: Icons.wallet,)),
     Transaction(
         type: 'expense',
         description: 'Pago de factura',
@@ -26,7 +26,7 @@ class TransactionProvider {
         amount: -300.00,
         category:
             Category(name: 'Comida', icon: Icons.fastfood, color: Colors.red),
-        account: Account(name: 'Globalcaja', balance: 250)),
+        account: Account(color: Colors.purple,name: 'Globalcaja', balance: 250, icon: Icons.wallet,)),
     Transaction(
         type: 'income',
         description: 'Transferencia recibida',
@@ -34,7 +34,7 @@ class TransactionProvider {
         amount: 500.00,
         category: Category(
             name: 'Servicios', icon: Icons.lightbulb, color: Colors.blue),
-        account: Account(name: 'Globalcaja', balance: 250)),
+        account: Account(color: Colors.purple,name: 'Globalcaja', balance: 250, icon: Icons.wallet,)),
     Transaction(
         type: 'expense',
         description: 'Compra de comida',
@@ -42,7 +42,7 @@ class TransactionProvider {
         amount: -50.00,
         category: Category(
             name: 'Freelance', icon: Icons.person, color: Colors.purple),
-        account: Account(name: 'Globalcaja', balance: 250)),
+        account: Account(color: Colors.purple,name: 'Globalcaja', balance: 250, icon: Icons.wallet,)),
     Transaction(
         type: 'income',
         description: 'Pago por freelance',
@@ -50,7 +50,7 @@ class TransactionProvider {
         amount: 250.00,
         category: Category(
             name: 'Venta', icon: Icons.shopping_cart, color: Colors.orange),
-        account: Account(name: 'Globalcaja', balance: 250)),
+        account: Account(color: Colors.purple,name: 'Globalcaja', balance: 250, icon: Icons.wallet,)),
   ];
 
   // Get all transactions ordered by date (most recent first)

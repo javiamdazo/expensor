@@ -160,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                       date: date,
                       amount: type == 'income' ? amount : -amount,
                       category: selectedCategory,
-                      account: Account(name: 'Globalcaja', balance: 250)));
+                      account: Account(icon: Icons.abc, color: Colors.black, name: 'Globalcaja', balance: 250)));
                   Navigator.pop(context);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(

@@ -13,7 +13,7 @@ class Profitability extends StatelessWidget {
 
     return Row(
       children: [
-        Icon(Icons.arrow_upward, size: 15, color: color),
+        Icon(number > 0 ? Icons.arrow_upward : Icons.arrow_downward, size: 15, color: color),
         FormattedNumber(
             number: number,
             numberType: NumberType.percentage,

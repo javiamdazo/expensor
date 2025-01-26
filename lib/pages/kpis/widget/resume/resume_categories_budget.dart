@@ -11,6 +11,8 @@ class ResumeCategoriesBudget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -20,7 +22,7 @@ class ResumeCategoriesBudget extends StatelessWidget {
         ),
         Space(),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.07,
+          height: height * 0.07,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: CategoryProvider.categories.length,
