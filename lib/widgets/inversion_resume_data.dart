@@ -26,12 +26,12 @@ class InversionResumeData extends StatelessWidget {
           children: [
             FormattedNumber(
               number: invested,
-              style: Theme.of(context).textTheme.titleSmall,
+              style: Theme.of(context).textTheme.displaySmall,
               numberType: NumberType.currency,
             ),
             Space(spaceType: SpaceType.width,),
             Profitability(
-                number: pL, style: Theme.of(context).textTheme.titleSmall)
+                number: pL, style: Theme.of(context).textTheme.displaySmall)
           ],
         )
       ],

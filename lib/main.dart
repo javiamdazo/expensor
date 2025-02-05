@@ -17,19 +17,34 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.light,
         theme: ThemeData(
           brightness: Brightness.light, // Tema claro
-          primaryColor: UxColors.amethyst.value,
+          primaryColor: UxColors.asbestos.value,
           fontFamily: GoogleFonts.nunito().fontFamily,
           textTheme: const TextTheme(
-            displayLarge: TextStyle(
+            //Titulo
+            titleLarge: TextStyle(
                 fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
-            displaySmall: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
             titleMedium: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
             titleSmall: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+
+            //Subtitulo
+            displayLarge: TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+            displayMedium: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.normal,
+                color: Colors.grey),
+            displaySmall: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.normal,
                 color: Colors.grey),
+
+            //Texto
+            labelLarge: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.normal,
+                color: Colors.white),
             labelMedium: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.normal,

@@ -1,12 +1,10 @@
 import 'package:expensor/pages/kpis/resume/income_expense.dart';
 import 'package:expensor/pages/kpis/resume/left_to_spend.dart';
-import 'package:expensor/widgets/linear_chart.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class ResumeKpi extends StatefulWidget {
-  final double currentPosition;
-  const ResumeKpi({super.key, required this.currentPosition});
+  const ResumeKpi({super.key});
 
   @override
   ResumeKpiState createState() => ResumeKpiState();
@@ -15,11 +13,6 @@ class ResumeKpi extends StatefulWidget {
 class ResumeKpiState extends State<ResumeKpi> {
   @override
   Widget build(BuildContext context) {
-    print(widget.currentPosition);
-
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-
     return Container(
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -43,8 +36,7 @@ class ResumeKpiState extends State<ResumeKpi> {
                   label: Text("Globalcaja",
                       style: Theme.of(context)
                           .textTheme
-                          .titleSmall!
-                          .copyWith(color: Colors.grey[300])),
+                          .titleSmall),
                 ),
               ),
               IconButton(
@@ -60,16 +52,6 @@ class ResumeKpiState extends State<ResumeKpi> {
           const LeftToSpend(),
           Space(space: SpaceEnum.double),
           const IncomeExpense(),
-          Space(space: SpaceEnum.triple),
-          AnimatedOpacity(
-            opacity: widget.currentPosition < 0.73 ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 500),
-            child: SizedBox(
-              height: height * 0.2,
-              width: width,
-              child: const LinearChart(),
-            ),
-          )
         ],
       ),
     );

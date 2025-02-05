@@ -14,16 +14,12 @@ class LinearChart extends StatelessWidget {
           TooltipBehavior(enable: true),
       primaryXAxis: const DateTimeAxis(
         interval: 1,
-        majorGridLines: MajorGridLines(color: Colors.transparent),
+        isVisible: false,
       ),
-      primaryYAxis: NumericAxis(
-        axisLine: const AxisLine(width: 0),
+      primaryYAxis: const NumericAxis(
+        axisLine: AxisLine(width: 0),
         interval: 10,
-        majorTickLines: const MajorTickLines(color: Colors.transparent),
-        majorGridLines: MajorGridLines(
-              color: Theme.of(context).primaryColor.withAlpha(150),
-              width: 1
-            ),
+        isVisible: false,
       ),
       series: getDefaultData(context),
     );

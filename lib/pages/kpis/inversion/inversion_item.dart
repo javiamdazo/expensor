@@ -19,11 +19,11 @@ class InversionItem extends StatelessWidget {
           children: [
             Icon(
               inversionAccount.account.icon,
-              size: height * 0.025,
+              size: 30,
               color: inversionAccount.account.color,
             ),
             Space(
-              space: SpaceEnum.double,
+              space: SpaceEnum.triple,
               spaceType: SpaceType.width,
             ),
             Column(
@@ -35,7 +35,7 @@ class InversionItem extends StatelessWidget {
                 ),
                 FormattedNumber(
                   number: inversionAccount.account.balance,
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: Theme.of(context).textTheme.labelSmall,
                   numberType: NumberType.currency,
                 ),
               ],
@@ -47,12 +47,12 @@ class InversionItem extends StatelessWidget {
           children: [
             FormattedNumber(
               number: inversionAccount.totalBalance,
-              style: Theme.of(context).textTheme.labelMedium,
+              style: Theme.of(context).textTheme.labelLarge,
               numberType: NumberType.currency,
             ),
             Profitability(
                 number: inversionAccount.pL,
-                style: Theme.of(context).textTheme.titleSmall)
+                style: Theme.of(context).textTheme.labelSmall)
           ],
         )
       ]),

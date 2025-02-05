@@ -15,7 +15,7 @@ class DashboardBackground extends StatelessWidget {
                   end: Alignment.bottomRight,
                   colors: [
                 Theme.of(context).primaryColor,
-                Theme.of(context).primaryColor.withOpacity(0.2)
+                Theme.of(context).primaryColor.withOpacity(0.65)
               ])),
         ));
   }

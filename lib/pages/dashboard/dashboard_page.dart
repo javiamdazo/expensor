@@ -1,4 +1,3 @@
-import 'package:expensor/pages/dashboard/dashboard_background.dart';
 import 'package:expensor/pages/kpis/categories/categories_kpi.dart';
 import 'package:expensor/pages/kpis/inversion/inversion_kpi.dart';
 import 'package:expensor/pages/kpis/resume/resume_kpi.dart';
@@ -15,69 +14,44 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  final DraggableScrollableController _scrollController =
-      DraggableScrollableController();
-
-  double currentPosition = 0.75;
-
-  @override
-  void initState() {
-    super.initState();
-    // Escuchar los cambios en la posición del DraggableScrollableSheet
-    _scrollController.addListener(() {
-      setState(() {
-        currentPosition = _scrollController.size;
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColor,
-        onPressed: () => {},
-        child: Icon(
-          Icons.add,
-          color: Theme.of(context).iconTheme.color,
-        ),
-      ),
       body: Stack(
         children: [
-          const DashboardBackground(),
-          ResumeKpi(currentPosition: currentPosition),
-          Space(),
-          DraggableScrollableSheet(
-            controller: _scrollController,
-            initialChildSize: currentPosition,
-            minChildSize: 0.5,
-            maxChildSize: 1,
-            builder: (BuildContext context, ScrollController scrollController) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: UxColors.dark.value,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-                  child: ListView(
-                    controller: scrollController,
-                    children: [
-                      const Icon(Icons.remove),
-                      const CategoriesKpi(),
-                      Space(space: SpaceEnum.triple),
-                      const TransactionsListKpi(),
-                      Space(space: SpaceEnum.triple),
-                      const InversionKpi(),
-                    ],
-                  ),
-                ),
-              );
-            },
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            height: MediaQuery.of(context).size.height * 0.4,
+            child: Container(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 0.4,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              color: UxColors.darkLight.value,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.02,
+            ),
+            child: ListView(
+              children: [
+                const ResumeKpi(),
+                Space(space: SpaceEnum.simple),
+                const CategoriesKpi(),
+                Space(space: SpaceEnum.triple),
+                const TransactionsListKpi(),
+                Space(space: SpaceEnum.triple),
+                const InversionKpi(),
+              ],
+            ),
           ),
         ],
       ),

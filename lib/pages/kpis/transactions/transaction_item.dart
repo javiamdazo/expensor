@@ -13,7 +13,7 @@ class TransactionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: transaction.category?.color.withOpacity(0.3),
+        backgroundColor: transaction.category?.color.withAlpha(100),
         child: Icon(
           transaction.category?.icon,
           color: transaction.category?.color,
@@ -21,7 +21,7 @@ class TransactionItem extends StatelessWidget {
       ),
       title: Text(
         transaction.description,
-        style: Theme.of(context).textTheme.labelMedium,
+        style: Theme.of(context).textTheme.labelLarge,
       ),
       subtitle: transaction.category != null
           ? Column(
@@ -52,19 +52,19 @@ class TransactionItem extends StatelessWidget {
             )
           : null,
       trailing: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FormattedNumber(
             number: transaction.amount,
-            style: Theme.of(context).textTheme.labelMedium,
+            style: Theme.of(context).textTheme.labelLarge,
             numberType: NumberType.currency
           ),
           Text(
             DateFormat('d MMM y').format(transaction.date),
             style: Theme.of(context)
                 .textTheme
-                .labelSmall
-                ?.copyWith(color: Colors.white),
+                .labelSmall,
           )
         ],
       ),

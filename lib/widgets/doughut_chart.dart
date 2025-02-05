@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DoughutChart extends StatelessWidget {
-  const DoughutChart({super.key, required this.budget, required this.spent, required this.categoryColor});
+  const DoughutChart(
+      {super.key,
+      required this.budget,
+      required this.spent,
+      required this.categoryColor});
 
   final num budget;
   final double spent;
@@ -18,15 +22,16 @@ class DoughutChart extends StatelessWidget {
     ];
 
     return SfCircularChart(
-      margin: const EdgeInsets.all(0),
-      series: <DoughnutSeries<ChartData, String>>[
-      DoughnutSeries<ChartData, String>(
-          dataSource: data,
-          pointColorMapper: (datum, index) => datum.color,
-          xValueMapper: (ChartData data, _) => '',
-          yValueMapper: (ChartData data, _) => data.yData,
-          dataLabelMapper: (ChartData data, _) => data.label,
-          dataLabelSettings: const DataLabelSettings(isVisible: false)),
-    ]);
+        margin: const EdgeInsets.all(0),
+        series: <DoughnutSeries<ChartData, String>>[
+          DoughnutSeries<ChartData, String>(
+              innerRadius: '65%',
+              dataSource: data,
+              pointColorMapper: (datum, index) => datum.color?.withAlpha(100),
+              xValueMapper: (ChartData data, _) => '',
+              yValueMapper: (ChartData data, _) => data.yData,
+              dataLabelMapper: (ChartData data, _) => data.label,
+              dataLabelSettings: const DataLabelSettings(isVisible: false)),
+        ]);
   }
 }

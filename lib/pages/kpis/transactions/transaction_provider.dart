@@ -7,7 +7,7 @@ class TransactionProvider {
   static double totalMoney = 12345.67;
   static double totalExpense = 5000.67;
   static double totalIncome = 12345.67;
-  static double remainingMoney = 1000;
+  static double remainingMoney = 3247.41;
 
   // Replace raw list of maps with a list of Transaction objects
   static final List<Transaction> transactions = [

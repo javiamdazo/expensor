@@ -10,12 +10,12 @@ class LeftToSpend extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       FormattedNumber(
         number: TransactionProvider.remainingMoney,
-        style: Theme.of(context).textTheme.displayLarge,
+        style: Theme.of(context).textTheme.titleLarge,
         numberType: NumberType.currency
       ),
       Text(
-        "Cash flow",
-        style: Theme.of(context).textTheme.labelMedium,
+        "Cash Flow",
+        style: Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.grey[300]),
       )
     ]);
   }
