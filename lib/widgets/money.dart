@@ -26,9 +26,11 @@ enum MoneyKpiType {
 class MoneyKpi extends StatelessWidget {
   final MoneyKpiType type;
   final double amount;
+  final bool hideData;
 
   const MoneyKpi({
     super.key,
+    required this.hideData,
     required this.type,
     required this.amount,
   });
@@ -61,7 +63,8 @@ class MoneyKpi extends StatelessWidget {
                 FormattedNumber(
                     number: amount,
                     style: Theme.of(context).textTheme.titleSmall,
-                    numberType: NumberType.currency),
+                    numberType: NumberType.currency,
+                    hideData: hideData,),
                 Text(
                   type.name,
                   style: Theme.of(context)

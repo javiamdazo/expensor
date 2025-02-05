@@ -4,7 +4,8 @@ import 'package:expensor/widgets/space.dart';
 import 'package:flutter/cupertino.dart';
 
 class IncomeExpense extends StatelessWidget {
-  const IncomeExpense({super.key});
+  final bool hideData;
+  const IncomeExpense({super.key, required this.hideData});
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +13,11 @@ class IncomeExpense extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         MoneyKpi(
-            type: MoneyKpiType.income, amount: TransactionProvider.totalIncome),
+            type: MoneyKpiType.income, amount: TransactionProvider.totalIncome, hideData: hideData,),
         Space(space: SpaceEnum.triple),
         MoneyKpi(
             type: MoneyKpiType.expense,
-            amount: TransactionProvider.totalExpense)
+            amount: TransactionProvider.totalExpense, hideData: hideData,)
       ],
     );
   }

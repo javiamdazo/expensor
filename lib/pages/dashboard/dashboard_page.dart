@@ -1,5 +1,5 @@
 import 'package:expensor/pages/kpis/categories/categories_kpi.dart';
-import 'package:expensor/pages/kpis/inversion/inversion_kpi.dart';
+import 'package:expensor/pages/kpis/inversion/accounts_kpi.dart';
 import 'package:expensor/pages/kpis/resume/resume_kpi.dart';
 import 'package:expensor/pages/kpis/transactions/transactions_list_kpi.dart';
 import 'package:expensor/utils/ux_colors.dart';
@@ -14,6 +14,8 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  bool hideData = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,13 +45,44 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             child: ListView(
               children: [
-                const ResumeKpi(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: TextButton.icon(
+                        autofocus: true,
+                        icon: Icon(Icons.arrow_drop_down_sharp,
+                            color: Theme.of(context).iconTheme.color, size: 20),
+                        iconAlignment: IconAlignment.end,
+                        onPressed: () => {},
+                        label: Text("Globalcaja",
+                            style: Theme.of(context).textTheme.titleSmall),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () => {
+                        setState(() {
+                          hideData = !hideData;
+                        })
+                      },
+                      icon: Icon(
+                        Icons.remove_red_eye,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                    ),
+                  ],
+                ),
+                Space(),
+                ResumeKpi(
+                  hideData: hideData,
+                ),
                 Space(space: SpaceEnum.simple),
                 const CategoriesKpi(),
                 Space(space: SpaceEnum.triple),
                 const TransactionsListKpi(),
                 Space(space: SpaceEnum.triple),
-                const InversionKpi(),
+                const AccountsKpi(),
               ],
             ),
           ),

@@ -4,16 +4,14 @@ import 'package:expensor/widgets/profitability.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
-class InversionItem extends StatelessWidget {
+class AccountItem extends StatelessWidget {
   InversionAccount inversionAccount;
-  InversionItem({super.key, required this.inversionAccount});
+  AccountItem({super.key, required this.inversionAccount});
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Row(
           children: [
@@ -31,29 +29,20 @@ class InversionItem extends StatelessWidget {
               children: [
                 Text(
                   inversionAccount.account.name,
-                  style: Theme.of(context).textTheme.labelMedium,
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
-                FormattedNumber(
-                  number: inversionAccount.account.balance,
+                Text(
+                  'Last movement: 14.4 €',
                   style: Theme.of(context).textTheme.labelSmall,
-                  numberType: NumberType.currency,
                 ),
               ],
             )
           ],
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            FormattedNumber(
-              number: inversionAccount.totalBalance,
-              style: Theme.of(context).textTheme.labelLarge,
-              numberType: NumberType.currency,
-            ),
-            Profitability(
-                number: inversionAccount.pL,
-                style: Theme.of(context).textTheme.labelSmall)
-          ],
+        FormattedNumber(
+          number: inversionAccount.totalBalance,
+          style: Theme.of(context).textTheme.labelLarge,
+          numberType: NumberType.currency,
         )
       ]),
     );

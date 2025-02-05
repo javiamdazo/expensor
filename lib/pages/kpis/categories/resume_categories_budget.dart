@@ -72,7 +72,7 @@ class ResumeCategoriesItem extends StatelessWidget {
               CircleAvatar(
                 backgroundColor: category.color,
                 radius: height * 0.15,
-                child: Icon(category.icon, size: height * 0.1)
+                child: Icon(category.icon, size: height * 0.15, color: Theme.of(context).iconTheme.color,)
               ),
               SizedBox(
                 width: width * 0.30,

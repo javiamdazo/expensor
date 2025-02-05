@@ -2,7 +2,7 @@ import 'package:expensor/model/account.dart';
 import 'package:expensor/model/inversion_account.dart';
 import 'package:flutter/material.dart';
 
-class InversionAccountsProvider {
+class AccountsProvider {
   static final List<InversionAccount> inversionAccounts = [
     InversionAccount(
       account: Account(
