@@ -82,7 +82,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 Space(space: SpaceEnum.triple),
                 const TransactionsListKpi(),
                 Space(space: SpaceEnum.triple),
-                const AccountsKpi(),
+                AccountsKpi(
+                  hideData: hideData,
+                ),
               ],
             ),
           ),

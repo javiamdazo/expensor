@@ -7,7 +7,8 @@ import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class AccountsKpi extends StatelessWidget {
-  const AccountsKpi({super.key});
+  final bool hideData;
+  const AccountsKpi({super.key, required this.hideData});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,8 @@ class AccountsKpi extends StatelessWidget {
                     FormattedNumber(
                         number: 7200,
                         style: Theme.of(context).textTheme.titleMedium,
-                        numberType: NumberType.currency),
+                        numberType: NumberType.currency,
+                        hideData: hideData,),
                     Row(
                       children: [
                         Text(
@@ -72,6 +74,7 @@ class AccountsKpi extends StatelessWidget {
                                 .length,
                         itemBuilder: (context, index) {
                           return AccountItem(
+                            hideData: hideData,
                             inversionAccount: AccountsProvider
                                 .getInversionAccounts()[index],
                           );

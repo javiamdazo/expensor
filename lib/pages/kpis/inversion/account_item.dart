@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 
 class AccountItem extends StatelessWidget {
   InversionAccount inversionAccount;
-  AccountItem({super.key, required this.inversionAccount});
+  final bool hideData;
+  AccountItem({super.key, required this.inversionAccount, required this.hideData});
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +44,7 @@ class AccountItem extends StatelessWidget {
           number: inversionAccount.totalBalance,
           style: Theme.of(context).textTheme.labelLarge,
           numberType: NumberType.currency,
+          hideData: hideData,
         )
       ]),
     );
