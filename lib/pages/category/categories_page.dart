@@ -146,6 +146,7 @@ class CategoriesPageState extends State<CategoriesPage> {
         itemBuilder: (context, index) {
           final category = CategoryProvider.categories[index];
           return Card(
+            color: Theme.of(context).colorScheme.surface,
             elevation: 5,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),

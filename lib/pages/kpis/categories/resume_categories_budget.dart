@@ -62,6 +62,7 @@ class ResumeCategoriesItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      
       margin: EdgeInsets.symmetric(horizontal: width * 0.02),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

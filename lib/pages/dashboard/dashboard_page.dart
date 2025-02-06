@@ -2,8 +2,10 @@ import 'package:expensor/pages/kpis/categories/categories_kpi.dart';
 import 'package:expensor/pages/kpis/inversion/accounts_kpi.dart';
 import 'package:expensor/pages/kpis/resume/resume_kpi.dart';
 import 'package:expensor/pages/kpis/transactions/transactions_list_kpi.dart';
+import 'package:expensor/pages/transaction/transaction_page.dart';
 import 'package:expensor/utils/ux_colors.dart';
 import 'package:expensor/widgets/space.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -19,6 +21,18 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {
+          setState(() {
+            _showCustomModal(context, const TransactionPage());
+          })
+        },
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        child: Icon(
+          Icons.add,
+          color: UxColors.clouds.value,
+        ),
+      ),
       body: Stack(
         children: [
           Positioned(
@@ -90,6 +104,16 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ],
       ),
+    );
+  }
+
+  void _showCustomModal(BuildContext context, Widget customWidget) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true, // Allows full-screen modals<
+      builder: (context) {
+        return customWidget;
+      },
     );
   }
 }
