@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
         title: 'Expensor',
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.system,
         theme: ThemeData(
           fontFamily: GoogleFonts.nunito().fontFamily,
           colorScheme: lightTheme,

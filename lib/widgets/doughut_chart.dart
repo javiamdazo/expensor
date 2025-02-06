@@ -27,7 +27,7 @@ class DoughutChart extends StatelessWidget {
           DoughnutSeries<ChartData, String>(
               innerRadius: '65%',
               dataSource: data,
-              pointColorMapper: (datum, index) => datum.color?.withAlpha(100),
+              pointColorMapper: (datum, index) => datum.color?.withAlpha(120),
               xValueMapper: (ChartData data, _) => '',
               yValueMapper: (ChartData data, _) => data.yData,
               dataLabelMapper: (ChartData data, _) => data.label,
