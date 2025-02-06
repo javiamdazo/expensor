@@ -1,5 +1,6 @@
 import 'package:expensor/pages/dashboard/dashboard_background.dart';
 import 'package:expensor/pages/dashboard/dashboard_page.dart';
+import 'package:expensor/widgets/color_schema.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -20,10 +21,10 @@ class NavbarState extends State<Navbar> {
   final NavBarStyle _navBarStyle = NavBarStyle.style7;
 
   List<Widget> _buildScreens() {
-    return const [
+    return [
       DashboardPage(),
       DashboardBackground(),
-      Text("Add"),
+      ColorSchemeGrid(),
       Text("Inversion"),
       Text("Budget")
     ];
@@ -110,7 +111,7 @@ class NavbarState extends State<Navbar> {
       handleAndroidBackButtonPress: true,
       hideNavigationBarWhenKeyboardAppears: true,
       padding: const EdgeInsets.only(top: 8),
-      backgroundColor: const Color.fromARGB(255, 17, 48, 75),
+      backgroundColor: Theme.of(context).colorScheme.onSecondaryContainer,
       isVisible: true,
       animationSettings: const NavBarAnimationSettings(
         navBarItemAnimation: ItemAnimationSettings(

@@ -27,7 +27,7 @@ class _DashboardPageState extends State<DashboardPage> {
             right: 0,
             height: MediaQuery.of(context).size.height * 0.4,
             child: Container(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
           Positioned(
@@ -36,7 +36,7 @@ class _DashboardPageState extends State<DashboardPage> {
             right: 0,
             bottom: 0,
             child: Container(
-              color: UxColors.darkLight.value,
+              color: Theme.of(context).colorScheme.surface,
             ),
           ),
           Padding(

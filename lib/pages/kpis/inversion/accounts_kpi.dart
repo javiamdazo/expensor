@@ -31,10 +31,9 @@ class AccountsKpi extends StatelessWidget {
                     ),
                     Text(
                       "View details",
-                      style: Theme.of(context)
-                          .textTheme
-                          .displaySmall
-                          ?.copyWith(color: Theme.of(context).primaryColor),
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer),
                     ),
                   ],
                 ),
@@ -42,20 +41,28 @@ class AccountsKpi extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     FormattedNumber(
-                        number: 7200,
-                        style: Theme.of(context).textTheme.titleMedium,
-                        numberType: NumberType.currency,
-                        hideData: hideData,),
+                      number: 7200,
+                      style: Theme.of(context).textTheme.titleMedium,
+                      numberType: NumberType.currency,
+                      hideData: hideData,
+                    ),
                     Row(
                       children: [
                         Text(
                           "Last Month",
-                          style: Theme.of(context).textTheme.displaySmall,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall!
+                              .copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryContainer),
                         ),
                         Space(spaceType: SpaceType.width),
                         Profitability(
                             number: 6.9,
-                            style: Theme.of(context).textTheme.displaySmall),
+                            style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                          color: Theme.of(context).colorScheme.primaryContainer)),
                       ],
                     )
                   ],
@@ -70,13 +77,12 @@ class AccountsKpi extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 30, vertical: 10),
                         itemCount:
-                            AccountsProvider.getInversionAccounts()
-                                .length,
+                            AccountsProvider.getInversionAccounts().length,
                         itemBuilder: (context, index) {
                           return AccountItem(
                             hideData: hideData,
-                            inversionAccount: AccountsProvider
-                                .getInversionAccounts()[index],
+                            inversionAccount:
+                                AccountsProvider.getInversionAccounts()[index],
                           );
                         }))),
           ],
