@@ -1,13 +1,12 @@
-import 'package:expensor/model/inversion_account.dart';
+import 'package:expensor/model/account.dart';
 import 'package:expensor/widgets/formatted_number.dart';
-import 'package:expensor/widgets/profitability.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class AccountItem extends StatelessWidget {
-  InversionAccount inversionAccount;
+  Account account;
   final bool hideData;
-  AccountItem({super.key, required this.inversionAccount, required this.hideData});
+  AccountItem({super.key, required this.account, required this.hideData});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +16,9 @@ class AccountItem extends StatelessWidget {
         Row(
           children: [
             Icon(
-              inversionAccount.account.icon,
+              account.icon,
               size: 30,
-              color: inversionAccount.account.color,
+              color: account.color,
             ),
             Space(
               space: SpaceEnum.triple,
@@ -29,7 +28,7 @@ class AccountItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  inversionAccount.account.name,
+                  account.name,
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
                 Text(
@@ -41,7 +40,7 @@ class AccountItem extends StatelessWidget {
           ],
         ),
         FormattedNumber(
-          number: inversionAccount.totalBalance,
+          number: account.balance,
           style: Theme.of(context).textTheme.labelLarge,
           numberType: NumberType.currency,
           hideData: hideData,

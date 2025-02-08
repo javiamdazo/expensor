@@ -1,9 +1,11 @@
 import 'package:expensor/pages/kpis/kpi_builder.dart';
 import 'package:expensor/pages/kpis/transactions/transaction_item.dart';
 import 'package:expensor/pages/kpis/transactions/transaction_provider.dart';
+import 'package:expensor/services/database_service.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 
 class TransactionsListKpi extends StatefulWidget {
   const TransactionsListKpi({super.key});
@@ -17,6 +19,7 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
 
   @override
   Widget build(BuildContext context) {
+    final DatabaseService databaseService = DatabaseService.instance;
     double height = MediaQuery.of(context).size.height;
 
     return KpiBuilder(

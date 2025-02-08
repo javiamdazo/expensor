@@ -1,6 +1,7 @@
-import 'package:expensor/pages/kpis/inversion/accounts_provider.dart';
-import 'package:expensor/pages/kpis/inversion/account_item.dart';
+import 'package:expensor/pages/kpis/accounts/accounts_provider.dart';
+import 'package:expensor/pages/kpis/accounts/account_item.dart';
 import 'package:expensor/pages/kpis/kpi_builder.dart';
+import 'package:expensor/services/database_service.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/profitability.dart';
 import 'package:expensor/widgets/space.dart';
@@ -12,6 +13,7 @@ class AccountsKpi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DatabaseService _databaseService = DatabaseService.instance;
     double height = MediaQuery.of(context).size.height;
 
     return KpiBuilder(
@@ -61,8 +63,13 @@ class AccountsKpi extends StatelessWidget {
                         Space(spaceType: SpaceType.width),
                         Profitability(
                             number: 6.9,
-                            style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                          color: Theme.of(context).colorScheme.primaryContainer)),
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall!
+                                .copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .primaryContainer)),
                       ],
                     )
                   ],
@@ -73,16 +80,35 @@ class AccountsKpi extends StatelessWidget {
             Card(
                 child: SizedBox(
                     height: height * 0.20,
-                    child: ListView.builder(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 10),
-                        itemCount:
-                            AccountsProvider.getInversionAccounts().length,
-                        itemBuilder: (context, index) {
-                          return AccountItem(
-                            hideData: hideData,
-                            inversionAccount:
-                                AccountsProvider.getInversionAccounts()[index],
+                    child: FutureBuilder(
+                        future: _databaseService.getAccounts(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+
+                          if (snapshot.hasError) {
+                            return Center(
+                                child: Text('Error: ${snapshot.error}'));
+                          }
+
+                          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                            return const Center(
+                                child: Text("No hay cuentas disponibles."));
+                          }
+
+                          return ListView.builder(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 10),
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              return AccountItem(
+                                hideData: hideData,
+                                account: snapshot.data![index],
+                              );
+                            },
                           );
                         }))),
           ],
