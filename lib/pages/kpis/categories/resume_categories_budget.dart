@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:expensor/model/budget.dart';
-import 'package:expensor/model/category.dart';
+import 'package:expensor/data/entity/budget.dart';
+import 'package:expensor/data/entity/category_entity.dart';
 import 'package:expensor/pages/kpis/categories/budget_provider.dart';
 import 'package:expensor/widgets/doughut_chart.dart';
 import 'package:expensor/widgets/formatted_number.dart';
@@ -19,7 +19,7 @@ class ResumeCategoriesBudget extends StatelessWidget {
     final Budget budget = BudgetProvider.budgetOne;
 
     // Convert the Map<Category, num> into a list for ListView
-    final List<MapEntry<Category, num>> budgetEntries =
+    final List<MapEntry<CategoryEntity, num>> budgetEntries =
         budget.categoriesBudget.entries.toList();
 
     double height = MediaQuery.of(context).size.height * 0.20;
@@ -31,7 +31,7 @@ class ResumeCategoriesBudget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: budgetEntries.length,
         itemBuilder: (context, index) {
-          final Category category = budgetEntries[index].key;
+          final CategoryEntity category = budgetEntries[index].key;
           final num budgetAmount = budgetEntries[index].value;
 
           return ResumeCategoriesItem(
@@ -54,7 +54,7 @@ class ResumeCategoriesItem extends StatelessWidget {
       required this.width,
       required this.budget});
 
-  final Category category;
+  final CategoryEntity category;
   final num budget;
   final double height;
   final double width;

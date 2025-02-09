@@ -1,4 +1,4 @@
-import 'package:expensor/model/category.dart';
+import 'package:expensor/data/entity/category_entity.dart';
 import 'package:expensor/pages/category/category_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +11,7 @@ class CategoriesPage extends StatefulWidget {
 
 class CategoriesPageState extends State<CategoriesPage> {
   // Función para mostrar el modal de añadir o editar categoría
-  void showCategoryDialog({Category? category}) {
+  void showCategoryDialog({CategoryEntity? category}) {
     final TextEditingController nameController = TextEditingController();
     IconData selectedIcon = category?.icon ?? Icons.category;
 
@@ -74,7 +74,7 @@ class CategoriesPageState extends State<CategoriesPage> {
                   if (category == null) {
                     // Añadir nueva categoría
                     CategoryProvider.categories.add(
-                      Category(
+                      CategoryEntity(
                           name: nameController.text,
                           icon: selectedIcon,
                           color: Colors.blue),

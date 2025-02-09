@@ -1,11 +1,11 @@
 import 'package:expensor/pages/kpis/kpi_builder.dart';
 import 'package:expensor/pages/kpis/transactions/transaction_item.dart';
-import 'package:expensor/pages/kpis/transactions/transaction_provider.dart';
-import 'package:expensor/services/database_service.dart';
+import 'package:expensor/provider/model/transaction.dart';
+import 'package:expensor/provider/transactions_provider.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:provider/provider.dart';
 
 class TransactionsListKpi extends StatefulWidget {
   const TransactionsListKpi({super.key});
@@ -19,7 +19,8 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
 
   @override
   Widget build(BuildContext context) {
-    final DatabaseService databaseService = DatabaseService.instance;
+    final TransactionsProvider transactionsProvider =
+        Provider.of<TransactionsProvider>(context);
     double height = MediaQuery.of(context).size.height;
 
     return KpiBuilder(
@@ -40,39 +41,48 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
                   Text(
                     "View details",
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        color: Theme.of(context).colorScheme.onPrimaryContainer),
+                        color:
+                            Theme.of(context).colorScheme.onPrimaryContainer),
                   ),
                 ],
               ),
               Column(
                 children: [
                   FormattedNumber(
-                    number: 20.89,
+                    number: transactionsProvider.getTodayAmount(),
                     style: Theme.of(context).textTheme.titleMedium,
                     numberType: NumberType.currency,
                   ),
                   Text("Spend today",
                       style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                          color: Theme.of(context).colorScheme.onPrimaryContainer)),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onPrimaryContainer)),
                 ],
               )
             ],
           ),
           Space(),
+          TextButton(
+              onPressed: () {
+                transactionsProvider.add(1, "prueba", DateTime.now(), 154, 1, 1);
+              },
+              child: Text(
+                "CreateTransaction",
+                style: TextStyle(color: Colors.white),
+              )),
           SizedBox(
             height: height * 0.25,
             child: Card(
               child: Expanded(
                   child: ListView.builder(
                 padding: const EdgeInsets.all(10),
-                itemCount: TransactionProvider.transactions.length,
+                itemCount: transactionsProvider.transactionsList.length,
                 itemBuilder: (context, index) {
-                  final String isIncome =
-                      TransactionProvider.transactions[index].type;
+                  final Transaction transaction = transactionsProvider
+                      .transactionsList[index];
 
-                  return TransactionItem(
-                      isIncome: isIncome.contains('income'),
-                      transaction: TransactionProvider.transactions[index]);
+                  return TransactionItem(transaction: transaction);
                 },
               )),
             ),

@@ -39,6 +39,8 @@ dependencies:
   syncfusion_flutter_charts: ^28.1.41
   sqflite: ^2.4.1
   path: ^1.9.0
+  provider: ^6.1.2
+  animated_flip_counter: ^0.3.4
 
 dev_dependencies:
   flutter_test:

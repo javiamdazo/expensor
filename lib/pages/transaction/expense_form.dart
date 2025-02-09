@@ -1,12 +1,12 @@
-import 'package:expensor/model/account.dart';
-import 'package:expensor/model/category.dart';
+import 'package:expensor/data/entity/account_entity.dart';
+import 'package:expensor/data/entity/category_entity.dart';
 import 'package:expensor/pages/category/category_provider.dart';
 import 'package:expensor/services/database_service.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class ExpenseForm extends StatefulWidget {
-  final List<Account> accounts;
+  final List<AccountEntity> accounts;
   const ExpenseForm({Key? key, required this.accounts}) : super(key: key);
 
   @override
@@ -69,7 +69,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
   }
 }
 
-void _showCategoriesPicker(BuildContext context, List<Category> categories,
+void _showCategoriesPicker(BuildContext context, List<CategoryEntity> categories,
     TextEditingController controller) {
   showModalBottomSheet(
     context: context,
@@ -85,7 +85,7 @@ void _showCategoriesPicker(BuildContext context, List<Category> categories,
               ),
               itemCount: categories.length,
               itemBuilder: (context, index) {
-                Category category = categories[index];
+                CategoryEntity category = categories[index];
 
                 return GestureDetector(
                   onTap: () {
@@ -110,7 +110,7 @@ void _showCategoriesPicker(BuildContext context, List<Category> categories,
   );
 }
 
-void _showAccountsPicker(BuildContext context, List<Account> accounts,
+void _showAccountsPicker(BuildContext context, List<AccountEntity> accounts,
     TextEditingController controller) {
   showModalBottomSheet(
     context: context,
@@ -118,7 +118,7 @@ void _showAccountsPicker(BuildContext context, List<Account> accounts,
       return ListView.builder(
         itemCount: accounts.length,
         itemBuilder: (context, index) {
-          Account account = accounts[index];
+          AccountEntity account = accounts[index];
 
           return ListTile(
             leading: Icon(account.icon, color: account.color,),

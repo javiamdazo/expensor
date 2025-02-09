@@ -1,10 +1,7 @@
-import 'package:expensor/model/account.dart';
 import 'package:expensor/pages/kpis/categories/categories_kpi.dart';
 import 'package:expensor/pages/kpis/accounts/accounts_kpi.dart';
 import 'package:expensor/pages/kpis/resume/resume_kpi.dart';
 import 'package:expensor/pages/kpis/transactions/transactions_list_kpi.dart';
-import 'package:expensor/pages/transaction/transaction_page.dart';
-import 'package:expensor/services/database_service.dart';
 import 'package:expensor/utils/ux_colors.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
@@ -17,24 +14,13 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  final DatabaseService _databaseService = DatabaseService.instance;
   bool hideData = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {
-          setState(() {
-            _databaseService.addAccount(Account(
-              name: "Account 1",
-              balance: 0,
-              color: UxColors.alizarin.value, 
-              icon: Icons.account_balance_wallet,
-            ));
-            _showCustomModal(context, const TransactionPage());
-          })
-        },
+        onPressed: () => {},
         backgroundColor: Theme.of(context).colorScheme.primary,
         child: Icon(
           Icons.add,

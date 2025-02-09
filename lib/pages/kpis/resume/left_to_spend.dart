@@ -1,4 +1,3 @@
-import 'package:expensor/pages/kpis/transactions/transaction_provider.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/hidded_data.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +14,8 @@ class LeftToSpend extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       hideData
           ? HiddedData(style: style)
-          : FormattedNumber(
-              number: TransactionProvider.remainingMoney,
+          : FormattedNumber( //TODO cambiar a provider con objeto budget
+              number: 150,
               style: Theme.of(context).textTheme.titleLarge,
               numberType: NumberType.currency),
       Text(

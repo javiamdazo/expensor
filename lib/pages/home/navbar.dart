@@ -23,10 +23,12 @@ class NavbarState extends State<Navbar> {
   List<Widget> _buildScreens() {
     return [
       DashboardPage(),
-      DashboardBackground(),
-      ColorSchemeGrid(),
-      Text("Inversion"),
-      Text("Budget")
+      Center(
+        child: Text("Bugdet"),
+      ),
+      Center(
+        child: Text("settings"),
+      ),
     ];
   }
 
@@ -43,60 +45,19 @@ class NavbarState extends State<Navbar> {
           inactiveColorSecondary: CupertinoColors.systemGrey,
           scrollController: _scrollController1),
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.settings),
-        title: ("Settings"),
-        activeColorPrimary: CupertinoColors.white,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-        scrollController: _scrollController2,
-        routeAndNavigatorSettings: RouteAndNavigatorSettings(
-          initialRoute: "/",
-          routes: {
-            "/first": (final context) => const DashboardPage(),
-            "/second": (final context) => const Text("jose"),
-          },
-        ),
+        icon: const Icon(Icons.pie_chart_outline_rounded),
+        title: ("Budget"),
+        contentPadding: 5.0,
+        activeColorPrimary: Theme.of(context).primaryColor,
+        activeColorSecondary: Colors.white,
+        inactiveColorSecondary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.settings),
+        icon: const Icon(Icons.settings),
         title: ("Settings"),
-        activeColorPrimary: CupertinoColors.white,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-        scrollController: _scrollController2,
-        routeAndNavigatorSettings: RouteAndNavigatorSettings(
-          initialRoute: "/",
-          routes: {
-            "/first": (final context) => const DashboardPage(),
-            "/second": (final context) => const Text("jose"),
-          },
-        ),
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.settings),
-        title: ("Settings"),
-        activeColorPrimary: CupertinoColors.white,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-        scrollController: _scrollController2,
-        routeAndNavigatorSettings: RouteAndNavigatorSettings(
-          initialRoute: "/",
-          routes: {
-            "/first": (final context) => const DashboardPage(),
-            "/second": (final context) => const Text("jose"),
-          },
-        ),
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.settings),
-        title: ("Settings"),
-        activeColorPrimary: CupertinoColors.white,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-        scrollController: _scrollController2,
-        routeAndNavigatorSettings: RouteAndNavigatorSettings(
-          initialRoute: "/",
-          routes: {
-            "/first": (final context) => const DashboardPage(),
-            "/second": (final context) => const Text("jose"),
-          },
-        ),
+        activeColorPrimary: Theme.of(context).primaryColor,
+        activeColorSecondary: Colors.white,
+        inactiveColorSecondary: CupertinoColors.systemGrey,
       ),
     ];
   }

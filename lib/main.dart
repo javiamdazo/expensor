@@ -1,12 +1,31 @@
 import 'dart:math';
 
 import 'package:expensor/pages/home/home_page.dart';
+import 'package:expensor/provider/accounts_provider.dart';
+import 'package:expensor/provider/categories_provider.dart';
+import 'package:expensor/provider/transactions_provider.dart';
+import 'package:expensor/provider/transactions_type_provider.dart';
 import 'package:expensor/utils/ux_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AccountsProvider()),
+        ChangeNotifierProvider(create: (_) => CategoriesProvider()),
+        ChangeNotifierProvider(create: (_) => TransactionsTypeProvider()),
+        ChangeNotifierProvider(create: (context) => TransactionsProvider(
+          categoriesProvider: Provider.of<CategoriesProvider>(context, listen: false),
+          accountsProvider: Provider.of<AccountsProvider>(context, listen: false),
+          transactionsTypeProvider: Provider.of<TransactionsTypeProvider>(context, listen: false)
+        )),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +43,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
         title: 'Expensor',
-        themeMode: ThemeMode.light,
+        themeMode: ThemeMode.dark,
         theme: ThemeData(
           fontFamily: GoogleFonts.nunito().fontFamily,
           colorScheme: lightTheme,

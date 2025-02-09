@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:expensor/model/linear_data.dart';
+import 'package:expensor/data/entity/linear_data.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 

@@ -1,7 +1,8 @@
-import 'package:expensor/model/account.dart';
-import 'package:expensor/pages/kpis/transactions/transaction_provider.dart';
+import 'package:expensor/data/entity/account_entity.dart';
+import 'package:expensor/data/entity/transaction_entity.dart';
 import 'package:expensor/pages/transaction/expense_form.dart';
-import 'package:expensor/services/database_service.dart';
+import 'package:expensor/data/repositories/accounts_repository.dart';
+import 'package:expensor/data/repositories/transactions_repository.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,20 +16,10 @@ class TransactionPage extends StatefulWidget {
 }
 
 class _TransactionPageState extends State<TransactionPage> {
-  final DatabaseService _databaseService = DatabaseService.instance;
-  List<Account> accounts = [];
   int _selectedSegment = 0;
 
-  @override
-  void initState() {
-    super.initState();
-
-   _databaseService.getAccounts().then((value) => 
-      setState(() {
-        accounts = value ?? [];
-      })
-    );
-  }
+  List<TransactionEntity> transactions = [];
+  List<AccountEntity> accounts = [];
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +115,7 @@ class _TransactionPageState extends State<TransactionPage> {
               builder: (context) {
                 switch (_selectedSegment) {
                   case 0:
-                    return ExpenseForm(accounts: accounts,);
+                    return ExpenseForm(accounts: [],);
                   case 1:
                     return Text("Income",
                         style: Theme.of(context).textTheme.bodyLarge);

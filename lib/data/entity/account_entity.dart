@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Account {
+class AccountEntity {
   int? accountId;
   IconData icon;
   String name;
@@ -8,7 +8,7 @@ class Account {
   Color color;
   DateTime? lastUpdate;
 
-  Account({
+  AccountEntity({
     this.accountId,
     required this.name,
     required this.balance,
@@ -17,11 +17,11 @@ class Account {
     this.lastUpdate
   });
 
-  static Account fromMap(Map<String, dynamic> map) {
-    Color color = Color(int.parse(map['color']));
+  static AccountEntity fromMap(Map<String, dynamic> map) {
+    Color color = Color(map['color']);
     IconData icon = IconData(int.parse(map['icon']), fontFamily: 'MaterialIcons');
 
-    return Account(
+    return AccountEntity(
       accountId: map['account_id'],
       name: map['name'],
       balance: map['amount'],

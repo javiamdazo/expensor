@@ -1,4 +1,4 @@
-import 'package:expensor/model/chart_data.dart';
+import 'package:expensor/data/entity/chart_data.dart';
 import 'package:expensor/utils/ux_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';

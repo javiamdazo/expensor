@@ -1,11 +1,11 @@
-import 'package:expensor/pages/kpis/accounts/accounts_provider.dart';
 import 'package:expensor/pages/kpis/accounts/account_item.dart';
 import 'package:expensor/pages/kpis/kpi_builder.dart';
-import 'package:expensor/services/database_service.dart';
+import 'package:expensor/provider/accounts_provider.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/profitability.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AccountsKpi extends StatelessWidget {
   final bool hideData;
@@ -13,7 +13,9 @@ class AccountsKpi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DatabaseService _databaseService = DatabaseService.instance;
+    final AccountsProvider accountsProvider =
+        Provider.of<AccountsProvider>(context);
+
     double height = MediaQuery.of(context).size.height;
 
     return KpiBuilder(
@@ -43,7 +45,7 @@ class AccountsKpi extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     FormattedNumber(
-                      number: 7200,
+                      number: accountsProvider.totalAmount(),
                       style: Theme.of(context).textTheme.titleMedium,
                       numberType: NumberType.currency,
                       hideData: hideData,
@@ -77,40 +79,23 @@ class AccountsKpi extends StatelessWidget {
               ],
             ),
             Space(),
+            TextButton(onPressed: () {
+              accountsProvider.add("name", Icons.abc, 1520, Colors.black);
+            }, child: Text("CreateAccount", style: TextStyle(color: Colors.white),)),
             Card(
                 child: SizedBox(
                     height: height * 0.20,
-                    child: FutureBuilder(
-                        future: _databaseService.getAccounts(),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          }
-
-                          if (snapshot.hasError) {
-                            return Center(
-                                child: Text('Error: ${snapshot.error}'));
-                          }
-
-                          if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                            return const Center(
-                                child: Text("No hay cuentas disponibles."));
-                          }
-
-                          return ListView.builder(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 30, vertical: 10),
-                            itemCount: snapshot.data!.length,
-                            itemBuilder: (context, index) {
-                              return AccountItem(
-                                hideData: hideData,
-                                account: snapshot.data![index],
-                              );
-                            },
-                          );
-                        }))),
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 10),
+                      itemCount: accountsProvider.accountsList.length,
+                      itemBuilder: (context, index) {
+                        return AccountItem(
+                          hideData: hideData,
+                          account: accountsProvider.accountsList[index],
+                        );
+                      },
+                    ))),
           ],
         ),
       ),

@@ -1,8 +1,8 @@
 
-import 'package:expensor/model/account.dart';
+import 'package:expensor/data/entity/account_entity.dart';
 
 class InversionAccount {
-  Account account;
+  AccountEntity account;
   double pL;
   double totalBalance;
 
