@@ -45,7 +45,7 @@ class DatabaseService {
 
       await db.execute('''
   INSERT INTO categories (name, icon, color) 
-  VALUES ('Food', '984246', 16711680);
+  VALUES ('Food', '58026', 16711680);
 ''');
 
       await db.execute('''

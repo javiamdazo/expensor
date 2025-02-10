@@ -1,28 +1,35 @@
 import 'package:expensor/data/entity/account_entity.dart';
 import 'package:expensor/data/entity/transaction_entity.dart';
-import 'package:expensor/pages/transaction/expense_form.dart';
-import 'package:expensor/data/repositories/accounts_repository.dart';
-import 'package:expensor/data/repositories/transactions_repository.dart';
-import 'package:expensor/widgets/formatted_number.dart';
+import 'package:expensor/data/mock/accounts_mock.dart';
+import 'package:expensor/data/mock/categories_mock.dart';
+import 'package:expensor/pages/transaction/income_expense_form.dart';
+import 'package:expensor/pages/transaction/transfer_form.dart';
+import 'package:expensor/provider/accounts_provider.dart';
+import 'package:expensor/provider/categories_provider.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class TransactionPage extends StatefulWidget {
-  const TransactionPage({Key? key}) : super(key: key);
+  int tabIndex;
+  TransactionPage({Key? key, required this.tabIndex}) : super(key: key);
 
   @override
   State<TransactionPage> createState() => _TransactionPageState();
 }
 
 class _TransactionPageState extends State<TransactionPage> {
-  int _selectedSegment = 0;
-
-  List<TransactionEntity> transactions = [];
-  List<AccountEntity> accounts = [];
+  final TextEditingController _amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final AccountsProvider accountsProvider =
+        Provider.of<AccountsProvider>(context);
+    final CategoriesProvider categoriesProvider =
+        Provider.of<CategoriesProvider>(context);
+
     Color color = Theme.of(context).brightness == Brightness.dark
         ? Colors.white
         : Colors.black;
@@ -60,12 +67,24 @@ class _TransactionPageState extends State<TransactionPage> {
               )
             ],
           ),
-          FormattedNumber(
-              number: 0,
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                    color: color,
-                  ),
-              numberType: NumberType.currency),
+          TextFormField(
+            controller: _amountController,
+            keyboardType: TextInputType.number,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: color,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 32,
+                ),
+            inputFormatters: [
+              ThousandsFormatter()
+            ],
+            decoration: InputDecoration(
+              hintText: "€0.00",
+              hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 32),
+              border: InputBorder.none,
+            ),
+          ),
           Space(
             space: SpaceEnum.double,
           ),
@@ -73,12 +92,11 @@ class _TransactionPageState extends State<TransactionPage> {
             backgroundColor:
                 Theme.of(context).colorScheme.primary, // Background color
             thumbColor: Colors.white, // Thumb (slider) color
-            groupValue: _selectedSegment, // Current selected value
+            groupValue: widget.tabIndex, // Current selected value
             onValueChanged: (int? newValue) {
               if (newValue != null) {
                 setState(() {
-                  print(newValue);
-                  _selectedSegment = newValue;
+                  widget.tabIndex = newValue;
                 });
               }
             },
@@ -88,7 +106,7 @@ class _TransactionPageState extends State<TransactionPage> {
                 child: Text("EXPENSE",
                     style: TextStyle(
                         color:
-                            _selectedSegment == 0 ? Colors.black : Colors.white,
+                            widget.tabIndex == 0 ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold)),
               ),
               1: Padding(
@@ -96,7 +114,7 @@ class _TransactionPageState extends State<TransactionPage> {
                 child: Text("INCOME",
                     style: TextStyle(
                         color:
-                            _selectedSegment == 1 ? Colors.black : Colors.white,
+                            widget.tabIndex == 1 ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold)),
               ),
               2: Padding(
@@ -104,7 +122,7 @@ class _TransactionPageState extends State<TransactionPage> {
                 child: Text("TRANSFER",
                     style: TextStyle(
                         color:
-                            _selectedSegment == 2 ? Colors.black : Colors.white,
+                            widget.tabIndex == 2 ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold)),
               ),
             },
@@ -113,15 +131,22 @@ class _TransactionPageState extends State<TransactionPage> {
           Expanded(
             child: Builder(
               builder: (context) {
-                switch (_selectedSegment) {
+                switch (widget.tabIndex) {
                   case 0:
-                    return ExpenseForm(accounts: [],);
+                    return IncomeExpenseForm(
+                      accounts: AccountsMock.accounts,
+                      categories: CategoriesMock.categories,
+                    );
                   case 1:
-                    return Text("Income",
-                        style: Theme.of(context).textTheme.bodyLarge);
+                    return IncomeExpenseForm(
+                      accounts: AccountsMock.accounts,
+                      categories: CategoriesMock.categories,
+                    );
                   case 2:
-                    return Text("Transfer",
-                        style: Theme.of(context).textTheme.bodyLarge);
+                    return TransferForm(
+                      accounts: AccountsMock.accounts,
+                      categories: CategoriesMock.categories,
+                    );
                   default:
                     return SizedBox.shrink(); // Fallback empty widget
                 }
@@ -142,11 +167,30 @@ class _TransactionPageState extends State<TransactionPage> {
               onPressed: () => {},
               child: const Text("SAVE",
                   style: TextStyle(
-                      color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold)),
             ),
           )
         ],
       ),
+    );
+  }
+}
+
+class ThousandsFormatter extends TextInputFormatter {
+
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    String text = newValue.text;
+
+    if(text.contains("€")){
+      text = text.replaceAll(" €", '');
+    }
+
+    return newValue.copyWith(
+      text: text + " €",
+      selection: TextSelection.collapsed(offset: text.length),
     );
   }
 }

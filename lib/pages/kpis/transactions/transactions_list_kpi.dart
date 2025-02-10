@@ -1,3 +1,4 @@
+import 'package:expensor/data/mock/transactions_mock.dart';
 import 'package:expensor/pages/kpis/kpi_builder.dart';
 import 'package:expensor/pages/kpis/transactions/transaction_item.dart';
 import 'package:expensor/provider/model/transaction.dart';
@@ -49,7 +50,7 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
               Column(
                 children: [
                   FormattedNumber(
-                    number: transactionsProvider.getTodayAmount(),
+                    number: TransactionsMock.getTodayAmount(),
                     style: Theme.of(context).textTheme.titleMedium,
                     numberType: NumberType.currency,
                   ),
@@ -63,24 +64,15 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
             ],
           ),
           Space(),
-          TextButton(
-              onPressed: () {
-                transactionsProvider.add(1, "prueba", DateTime.now(), 154, 1, 1);
-              },
-              child: Text(
-                "CreateTransaction",
-                style: TextStyle(color: Colors.white),
-              )),
           SizedBox(
             height: height * 0.25,
             child: Card(
               child: Expanded(
                   child: ListView.builder(
                 padding: const EdgeInsets.all(10),
-                itemCount: transactionsProvider.transactionsList.length,
+                itemCount: TransactionsMock.transactions.length,
                 itemBuilder: (context, index) {
-                  final Transaction transaction = transactionsProvider
-                      .transactionsList[index];
+                  final Transaction transaction = TransactionsMock.transactions[index];
 
                   return TransactionItem(transaction: transaction);
                 },

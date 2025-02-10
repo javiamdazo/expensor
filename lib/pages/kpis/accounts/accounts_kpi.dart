@@ -1,3 +1,4 @@
+import 'package:expensor/data/mock/accounts_mock.dart';
 import 'package:expensor/pages/kpis/accounts/account_item.dart';
 import 'package:expensor/pages/kpis/kpi_builder.dart';
 import 'package:expensor/provider/accounts_provider.dart';
@@ -45,7 +46,7 @@ class AccountsKpi extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     FormattedNumber(
-                      number: accountsProvider.totalAmount(),
+                      number: AccountsMock.getTotalAmount(),
                       style: Theme.of(context).textTheme.titleMedium,
                       numberType: NumberType.currency,
                       hideData: hideData,
@@ -79,20 +80,17 @@ class AccountsKpi extends StatelessWidget {
               ],
             ),
             Space(),
-            TextButton(onPressed: () {
-              accountsProvider.add("name", Icons.abc, 1520, Colors.black);
-            }, child: Text("CreateAccount", style: TextStyle(color: Colors.white),)),
             Card(
                 child: SizedBox(
                     height: height * 0.20,
                     child: ListView.builder(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 30, vertical: 10),
-                      itemCount: accountsProvider.accountsList.length,
+                      itemCount: AccountsMock.accounts.length,
                       itemBuilder: (context, index) {
                         return AccountItem(
                           hideData: hideData,
-                          account: accountsProvider.accountsList[index],
+                          account: AccountsMock.accounts[index],
                         );
                       },
                     ))),

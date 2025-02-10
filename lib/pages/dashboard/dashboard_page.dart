@@ -2,7 +2,9 @@ import 'package:expensor/pages/kpis/categories/categories_kpi.dart';
 import 'package:expensor/pages/kpis/accounts/accounts_kpi.dart';
 import 'package:expensor/pages/kpis/resume/resume_kpi.dart';
 import 'package:expensor/pages/kpis/transactions/transactions_list_kpi.dart';
+import 'package:expensor/pages/transaction/transaction_page.dart';
 import 'package:expensor/utils/ux_colors.dart';
+import 'package:expensor/widgets/bottom_modal.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +22,12 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {},
+        onPressed: () => {
+          BottomModal.showBottomModal(
+            context,
+            TransactionPage(tabIndex: 1,)
+          )
+        },
         backgroundColor: Theme.of(context).colorScheme.primary,
         child: Icon(
           Icons.add,
@@ -98,16 +105,6 @@ class _DashboardPageState extends State<DashboardPage> {
           ),
         ],
       ),
-    );
-  }
-
-  void _showCustomModal(BuildContext context, Widget customWidget) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true, // Allows full-screen modals<
-      builder: (context) {
-        return customWidget;
-      },
     );
   }
 }

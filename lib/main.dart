@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = UxColors.values[Random().nextInt(10)].value;
+    Color color = UxColors.asbestos.value;
 
     ColorScheme darkTheme = ColorScheme.fromSeed(
         seedColor: color, brightness: Brightness.dark);
