@@ -1,3 +1,4 @@
+import 'package:expensor/pages/accounts/accounts.dart';
 import 'package:expensor/pages/dashboard/dashboard_background.dart';
 import 'package:expensor/pages/dashboard/dashboard_page.dart';
 import 'package:expensor/widgets/color_schema.dart';
@@ -26,6 +27,7 @@ class NavbarState extends State<Navbar> {
       Center(
         child: Text("Bugdet"),
       ),
+      const Accounts(),
       Center(
         child: Text("settings"),
       ),
@@ -42,7 +44,7 @@ class NavbarState extends State<Navbar> {
           contentPadding: 5.0,
           activeColorPrimary: Theme.of(context).primaryColor,
           activeColorSecondary: Colors.white,
-          inactiveColorSecondary: CupertinoColors.systemGrey,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
           scrollController: _scrollController1),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.pie_chart_outline_rounded),
@@ -50,14 +52,21 @@ class NavbarState extends State<Navbar> {
         contentPadding: 5.0,
         activeColorPrimary: Theme.of(context).primaryColor,
         activeColorSecondary: Colors.white,
-        inactiveColorSecondary: CupertinoColors.systemGrey,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.wallet),
+        title: ("Accounts"),
+        activeColorPrimary: Theme.of(context).primaryColor,
+        activeColorSecondary: Colors.white,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.settings),
         title: ("Settings"),
         activeColorPrimary: Theme.of(context).primaryColor,
         activeColorSecondary: Colors.white,
-        inactiveColorSecondary: CupertinoColors.systemGrey,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];
   }
