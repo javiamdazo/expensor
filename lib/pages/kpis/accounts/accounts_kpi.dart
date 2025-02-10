@@ -10,7 +10,8 @@ import 'package:provider/provider.dart';
 
 class AccountsKpi extends StatelessWidget {
   final bool hideData;
-  const AccountsKpi({super.key, required this.hideData});
+  final Function(int) changeTab; // Pass a function to change ta
+  AccountsKpi({super.key, required this.changeTab, required this.hideData});
 
   @override
   Widget build(BuildContext context) {
@@ -24,60 +25,69 @@ class AccountsKpi extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Accounts",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(
-                      "View details",
-                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                          color:
-                              Theme.of(context).colorScheme.onPrimaryContainer),
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    FormattedNumber(
-                      number: AccountsMock.getTotalAmount(),
-                      style: Theme.of(context).textTheme.titleMedium,
-                      numberType: NumberType.currency,
-                      hideData: hideData,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "Last Month",
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall!
-                              .copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onPrimaryContainer),
-                        ),
-                        Space(spaceType: SpaceType.width),
-                        Profitability(
-                            number: 6.9,
+            GestureDetector(
+              onTap: () => {
+                changeTab(2)
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Accounts",
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      Text(
+                        "View details",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall!
+                            .copyWith(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onPrimaryContainer),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      FormattedNumber(
+                        number: AccountsMock.getTotalAmount(),
+                        style: Theme.of(context).textTheme.titleMedium,
+                        numberType: NumberType.currency,
+                        hideData: hideData,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "Last Month",
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall!
                                 .copyWith(
                                     color: Theme.of(context)
                                         .colorScheme
-                                        .primaryContainer)),
-                      ],
-                    )
-                  ],
-                )
-              ],
+                                        .onPrimaryContainer),
+                          ),
+                          Space(spaceType: SpaceType.width),
+                          Profitability(
+                              number: 6.9,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall!
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primaryContainer)),
+                        ],
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
             Space(),
             Card(

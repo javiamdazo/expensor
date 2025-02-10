@@ -9,7 +9,8 @@ import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({super.key});
+  final Function(int) changeTab; // Pass a function to change tabs
+  const DashboardPage({Key? key, required this.changeTab});
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -99,6 +100,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 Space(space: SpaceEnum.triple),
                 AccountsKpi(
                   hideData: hideData,
+                  changeTab: widget.changeTab,
                 ),
               ],
             ),

@@ -16,18 +16,23 @@ class Navbar extends StatefulWidget {
 class NavbarState extends State<Navbar> {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
-  final ScrollController _scrollController1 = ScrollController();
-  final ScrollController _scrollController2 = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   final NavBarStyle _navBarStyle = NavBarStyle.style7;
 
+  void changeTab(int index) {
+    setState(() {
+      _controller.index = index; // Change the tab
+    });
+  }
+
   List<Widget> _buildScreens() {
     return [
-      DashboardPage(),
+      DashboardPage(changeTab: changeTab),
       Center(
         child: Text("Bugdet"),
       ),
-      const Accounts(),
+      Accounts(),
       Center(
         child: Text("settings"),
       ),
@@ -45,29 +50,29 @@ class NavbarState extends State<Navbar> {
           activeColorPrimary: Theme.of(context).primaryColor,
           activeColorSecondary: Colors.white,
           inactiveColorPrimary: CupertinoColors.systemGrey,
-          scrollController: _scrollController1),
+          scrollController: _scrollController),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.pie_chart_outline_rounded),
-        title: ("Budget"),
-        contentPadding: 5.0,
-        activeColorPrimary: Theme.of(context).primaryColor,
-        activeColorSecondary: Colors.white,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
+          icon: const Icon(Icons.pie_chart_outline_rounded),
+          title: ("Budget"),
+          contentPadding: 5.0,
+          activeColorPrimary: Theme.of(context).primaryColor,
+          activeColorSecondary: Colors.white,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+          scrollController: _scrollController),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.wallet),
-        title: ("Accounts"),
-        activeColorPrimary: Theme.of(context).primaryColor,
-        activeColorSecondary: Colors.white,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
+          icon: const Icon(Icons.wallet),
+          title: ("Accounts"),
+          activeColorPrimary: Theme.of(context).primaryColor,
+          activeColorSecondary: Colors.white,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+          scrollController: _scrollController),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.settings),
-        title: ("Settings"),
-        activeColorPrimary: Theme.of(context).primaryColor,
-        activeColorSecondary: Colors.white,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
+          icon: const Icon(Icons.settings),
+          title: ("Settings"),
+          activeColorPrimary: Theme.of(context).primaryColor,
+          activeColorSecondary: Colors.white,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+          scrollController: _scrollController),
     ];
   }
 
