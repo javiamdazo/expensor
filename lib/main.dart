@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:expensor/data/mock/accounts_mock.dart';
 import 'package:expensor/pages/home/home_page.dart';
 import 'package:expensor/provider/accounts_provider.dart';
 import 'package:expensor/provider/categories_provider.dart';
@@ -11,6 +12,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  AccountsMock.initData();
+  
   runApp(
     MultiProvider(
       providers: [
@@ -33,7 +36,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = UxColors.asbestos.value;
+    Color color = UxColors.emerald.value;
 
     ColorScheme darkTheme = ColorScheme.fromSeed(
         seedColor: color, brightness: Brightness.dark);

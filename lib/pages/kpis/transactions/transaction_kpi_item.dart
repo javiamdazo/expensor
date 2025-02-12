@@ -3,10 +3,10 @@ import 'package:expensor/widgets/formatted_number.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class TransactionItem extends StatelessWidget {
+class TransactionKpiItem extends StatelessWidget {
   final Transaction transaction;
 
-  const TransactionItem({super.key, required this.transaction});
+  const TransactionKpiItem({super.key, required this.transaction});
 
   @override
   Widget build(BuildContext context) {

@@ -1,22 +1,52 @@
+import 'package:expensor/data/mock/transactions_mock.dart';
 import 'package:expensor/provider/model/account.dart';
+import 'package:expensor/provider/model/transaction.dart';
 import 'package:flutter/material.dart';
 
 class AccountsMock {
+  
+  static void initData() {
+    for (var account in accounts) {
+      account.transactions = _groupTransactionsByDate(TransactionsMock.transactions);
+    }
+  }
+
+  /// Agrupa las transacciones por fecha en un Map<DateTime, List<Transaction>>
+  static Map<DateTime, List<Transaction>> _groupTransactionsByDate(List<Transaction> transactions) {
+    Map<DateTime, List<Transaction>> groupedTransactions = {};
+
+    for (var transaction in transactions) {
+      DateTime date = DateTime(
+        transaction.date.year,
+        transaction.date.month,
+        transaction.date.day,
+      ); // Normaliza la fecha sin hora
+
+      if (!groupedTransactions.containsKey(date)) {
+        groupedTransactions[date] = [];
+      }
+      groupedTransactions[date]!.add(transaction);
+    }
+
+    return groupedTransactions;
+  }
+
   static final List<Account> accounts = [
     Account(
-      accountId: 1,
-      name: "Cash",
-      balance: 500.0,
-      icon: Icons.money,
-      color: Colors.green,
-      lastUpdate: DateTime.now(),
-    ),
+        accountId: 1,
+        name: "Cash",
+        balance: 500.0,
+        icon: Icons.money,
+        color: Colors.green,
+        profitability: 0.34,
+        lastUpdate: DateTime.now()),
     Account(
       accountId: 2,
       name: "Bank Account",
       balance: 3500.0,
       icon: Icons.account_balance,
       color: Colors.blue,
+      profitability: 6.56,
       lastUpdate: DateTime.now(),
     ),
     Account(
@@ -25,6 +55,7 @@ class AccountsMock {
       balance: -1200.0,
       icon: Icons.credit_card,
       color: Colors.red,
+      profitability: -0.12,
       lastUpdate: DateTime.now(),
     ),
     Account(
@@ -33,6 +64,7 @@ class AccountsMock {
       balance: 8000.0,
       icon: Icons.savings,
       color: Colors.orange,
+      profitability: 0.34,
       lastUpdate: DateTime.now(),
     ),
     Account(
@@ -41,6 +73,7 @@ class AccountsMock {
       balance: 15000.0,
       icon: Icons.trending_up,
       color: Colors.purple,
+      profitability: 0.45,
       lastUpdate: DateTime.now(),
     ),
     Account(
@@ -49,6 +82,7 @@ class AccountsMock {
       balance: 200.0,
       icon: Icons.account_balance_wallet,
       color: Colors.teal,
+      profitability: 1.23,
       lastUpdate: DateTime.now(),
     ),
     Account(
@@ -57,6 +91,7 @@ class AccountsMock {
       balance: 12000.0,
       icon: Icons.business,
       color: Colors.brown,
+      profitability: 4.34,
       lastUpdate: DateTime.now(),
     ),
     Account(
@@ -65,6 +100,7 @@ class AccountsMock {
       balance: 0.5, // En BTC u otra moneda
       icon: Icons.currency_bitcoin,
       color: Colors.yellow,
+      profitability: -4.21,
       lastUpdate: DateTime.now(),
     ),
     Account(
@@ -73,6 +109,7 @@ class AccountsMock {
       balance: 5000.0,
       icon: Icons.health_and_safety,
       color: Colors.indigo,
+      profitability: -0.3,
       lastUpdate: DateTime.now(),
     ),
     Account(
@@ -81,6 +118,7 @@ class AccountsMock {
       balance: 100.0,
       icon: Icons.more_horiz,
       color: Colors.grey,
+      profitability: 2.45,
       lastUpdate: DateTime.now(),
     ),
   ];
@@ -100,6 +138,7 @@ class AccountsMock {
         icon: icon,
         color: color,
         lastUpdate: DateTime.now(),
+        profitability: 0
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:expensor/data/entity/account_entity.dart';
+import 'package:expensor/provider/model/transaction.dart';
 import 'package:flutter/material.dart';
 
 class Account {
@@ -8,6 +9,8 @@ class Account {
   double balance;
   Color color;
   DateTime lastUpdate;
+  Map<DateTime, List<Transaction>>? transactions;
+  double profitability;
 
   Account({
     required this.accountId,
@@ -15,8 +18,11 @@ class Account {
     required this.balance,
     required this.icon,
     required this.color,
-    required this.lastUpdate
+    required this.lastUpdate,
+    required this.profitability,
+    this.transactions
   });
+  
 
   static Account fromMap(AccountEntity account) {
     return Account(
@@ -25,7 +31,8 @@ class Account {
       balance: account.balance,
       icon: account.icon,
       color: account.color,
-      lastUpdate: account.lastUpdate!
+      lastUpdate: account.lastUpdate!,
+      profitability: account.profitability
     );
   }
 }

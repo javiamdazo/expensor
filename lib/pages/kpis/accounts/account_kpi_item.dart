@@ -3,10 +3,10 @@ import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
-class AccountItem extends StatelessWidget {
+class AccountKpiItem extends StatelessWidget {
   Account account;
   final bool hideData;
-  AccountItem({super.key, required this.account, required this.hideData});
+  AccountKpiItem({super.key, required this.account, required this.hideData});
 
   @override
   Widget build(BuildContext context) {

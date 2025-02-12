@@ -1,6 +1,6 @@
 import 'package:expensor/data/mock/transactions_mock.dart';
 import 'package:expensor/pages/kpis/kpi_builder.dart';
-import 'package:expensor/pages/kpis/transactions/transaction_item.dart';
+import 'package:expensor/pages/kpis/transactions/transaction_kpi_item.dart';
 import 'package:expensor/provider/model/transaction.dart';
 import 'package:expensor/provider/transactions_provider.dart';
 import 'package:expensor/widgets/formatted_number.dart';
@@ -74,7 +74,7 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
                 itemBuilder: (context, index) {
                   final Transaction transaction = TransactionsMock.transactions[index];
 
-                  return TransactionItem(transaction: transaction);
+                  return TransactionKpiItem(transaction: transaction);
                 },
               )),
             ),

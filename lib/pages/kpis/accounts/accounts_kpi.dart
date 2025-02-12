@@ -1,5 +1,5 @@
 import 'package:expensor/data/mock/accounts_mock.dart';
-import 'package:expensor/pages/kpis/accounts/account_item.dart';
+import 'package:expensor/pages/kpis/accounts/account_kpi_item.dart';
 import 'package:expensor/pages/kpis/kpi_builder.dart';
 import 'package:expensor/provider/accounts_provider.dart';
 import 'package:expensor/widgets/formatted_number.dart';
@@ -98,7 +98,7 @@ class AccountsKpi extends StatelessWidget {
                           horizontal: 30, vertical: 10),
                       itemCount: AccountsMock.accounts.length,
                       itemBuilder: (context, index) {
-                        return AccountItem(
+                        return AccountKpiItem(
                           hideData: hideData,
                           account: AccountsMock.accounts[index],
                         );

@@ -1,7 +1,6 @@
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:expensor/widgets/hidded_data.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 enum NumberType { currency, percentage }
 
@@ -19,13 +18,16 @@ class FormattedNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final String label = numberType == NumberType.currency ? ' €' : ' %';
+
     return hideData
         ? HiddedData(
             style: style,
           )
         : AnimatedFlipCounter(
               value: number,
-              suffix: ' €',
+              suffix: label,
+              duration: const Duration(milliseconds: 500),
               fractionDigits: 2,
               wholeDigits: 8,
               hideLeadingZeroes: true,

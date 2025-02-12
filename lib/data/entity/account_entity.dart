@@ -1,3 +1,4 @@
+import 'package:expensor/widgets/profitability.dart';
 import 'package:flutter/material.dart';
 
 class AccountEntity {
@@ -7,6 +8,7 @@ class AccountEntity {
   double balance;
   Color color;
   DateTime? lastUpdate;
+  double profitability;
 
   AccountEntity({
     this.accountId,
@@ -14,6 +16,7 @@ class AccountEntity {
     required this.balance,
     required this.icon,
     required this.color,
+    required this.profitability,
     this.lastUpdate
   });
 
@@ -27,7 +30,8 @@ class AccountEntity {
       balance: map['amount'],
       icon: icon,
       color: Colors.red,
-      lastUpdate: DateTime.parse(map['last_update'])
+      lastUpdate: DateTime.parse(map['last_update']),
+      profitability: 0
     );
   }
 }

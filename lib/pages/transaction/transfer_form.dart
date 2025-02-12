@@ -1,4 +1,4 @@
-import 'package:expensor/pages/kpis/accounts/account_item.dart';
+import 'package:expensor/pages/kpis/accounts/account_kpi_item.dart';
 import 'package:expensor/provider/model/account.dart';
 import 'package:expensor/provider/model/category.dart';
 import 'package:expensor/widgets/space.dart';
@@ -162,7 +162,7 @@ class _TransferFormState extends State<TransferForm> {
                     });
                     Navigator.of(context).pop();
                   },
-                  child: AccountItem(account: account, hideData: false));
+                  child: AccountKpiItem(account: account, hideData: false));
             },
           ),
         );
