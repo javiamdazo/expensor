@@ -1,6 +1,6 @@
 import 'package:expensor/data/mock/accounts_mock.dart';
+import 'package:expensor/pages/accounts/account_form.dart';
 import 'package:expensor/pages/accounts/account_item.dart';
-import 'package:expensor/pages/transaction/transaction_page.dart';
 import 'package:expensor/provider/model/account.dart';
 import 'package:expensor/utils/ux_colors.dart';
 import 'package:expensor/widgets/bottom_modal.dart';
@@ -29,6 +29,8 @@ class _AccountsState extends State<Accounts> {
   String? _accountName;
   int? _expandedIndex;
   final List<Account> accounts = AccountsMock.accounts;
+
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +110,12 @@ class _AccountsState extends State<Accounts> {
                                     _expandedIndex == index ? null : index;
                                 _current = index;
                                 _accountName = account.name;
+                                _scrollController.animateTo(
+                                  index *
+                                      100.0, // Ajusta la posición en la lista
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut,
+                                );
                               })
                             },
                             index: index,
@@ -157,13 +165,8 @@ class AccountsFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () => {
-        BottomModal.showBottomModal(
-            context,
-            TransactionPage(
-              tabIndex: 1,
-            ))
-      },
+      onPressed: () =>
+          {BottomModal.showBottomModal(context, const AccountForm())},
       backgroundColor: Theme.of(context).colorScheme.primary,
       child: Icon(
         Icons.add,

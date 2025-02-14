@@ -24,6 +24,7 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () => {
+          //TODO cuando saco el teclado del iphone no se ve bien
           BottomModal.showBottomModal(
             context,
             TransactionPage(tabIndex: 1,)

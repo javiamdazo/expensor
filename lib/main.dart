@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:expensor/data/mock/accounts_mock.dart';
 import 'package:expensor/pages/home/home_page.dart';
 import 'package:expensor/provider/accounts_provider.dart';

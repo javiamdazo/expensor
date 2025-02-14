@@ -23,6 +23,7 @@ class _IncomeExpenseFormState extends State<IncomeExpenseForm> {
   Icon? _selectedCategoryIcon;
   Icon? _selectedAccountIcon;
 
+//TODO las categorias y cuentas deben tener un titulo
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -1,4 +1,3 @@
-import 'package:expensor/widgets/profitability.dart';
 import 'package:flutter/material.dart';
 
 class AccountEntity {
