@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:expensor/data/entity/budget.dart';
 import 'package:expensor/data/entity/category_entity.dart';
 import 'package:expensor/pages/kpis/categories/budget_provider.dart';
-import 'package:expensor/widgets/doughut_chart.dart';
+import 'package:expensor/widgets/category_doughut_chart.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,6 @@ class ResumeCategoriesItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      
       margin: EdgeInsets.symmetric(horizontal: width * 0.02),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,14 +70,17 @@ class ResumeCategoriesItem extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               CircleAvatar(
-                backgroundColor: category.color,
-                radius: height * 0.15,
-                child: Icon(category.icon, size: height * 0.15, color: Theme.of(context).iconTheme.color,)
-              ),
+                  backgroundColor: category.color,
+                  radius: height * 0.15,
+                  child: Icon(
+                    category.icon,
+                    size: height * 0.15,
+                    color: Theme.of(context).iconTheme.color,
+                  )),
               SizedBox(
                 width: width * 0.30,
                 height: height * 0.6,
-                child: DoughutChart(
+                child: CategoryDoughutChart(
                     categoryColor: category.color,
                     budget: budget,
                     spent: budget / Random().nextDouble()),

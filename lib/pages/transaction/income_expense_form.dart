@@ -8,8 +8,7 @@ class IncomeExpenseForm extends StatefulWidget {
   final List<Account> accounts;
   final List<Category> categories;
   const IncomeExpenseForm(
-      {Key? key, required this.accounts, required this.categories})
-      : super(key: key);
+      {super.key, required this.accounts, required this.categories});
 
   @override
   _IncomeExpenseFormState createState() => _IncomeExpenseFormState();
@@ -35,7 +34,7 @@ class _IncomeExpenseFormState extends State<IncomeExpenseForm> {
             icon: const Icon(Icons.description),
           ),
         ),
-        Space(),
+        const Space(),
         GestureDetector(
           onTap: () =>
               _showAccountsPicker(context, widget.accounts, _accountController),
@@ -51,7 +50,7 @@ class _IncomeExpenseFormState extends State<IncomeExpenseForm> {
             ),
           ),
         ),
-        Space(),
+        const Space(),
         GestureDetector(
           onTap: () => _showCategoriesPicker(context, widget.categories),
           child: AbsorbPointer(
@@ -90,7 +89,7 @@ class _IncomeExpenseFormState extends State<IncomeExpenseForm> {
                 "Categories",
                 style: Theme.of(context).textTheme.displayMedium,
               ),
-              Space(
+              const Space(
                 space: SpaceEnum.double,
               ),
               Expanded(
@@ -116,8 +115,11 @@ class _IncomeExpenseFormState extends State<IncomeExpenseForm> {
                       //TODO Group by theme
                       child: Column(
                         children: [
-                          Icon(category.icon, color: category.color, size: MediaQuery.of(context).size.aspectRatio * 80),
-                          Space(),
+                          Icon(category.icon,
+                              color: category.color,
+                              size:
+                                  MediaQuery.of(context).size.aspectRatio * 80),
+                          const Space(),
                           Text(category.name),
                         ],
                       ),

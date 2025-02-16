@@ -1,16 +1,19 @@
+import 'package:expensor/data/mock/budget_mock.dart';
 import 'package:expensor/pages/kpis/categories/categories_kpi.dart';
 import 'package:expensor/pages/kpis/accounts/accounts_kpi.dart';
 import 'package:expensor/pages/kpis/resume/resume_kpi.dart';
 import 'package:expensor/pages/kpis/transactions/transactions_list_kpi.dart';
 import 'package:expensor/pages/transaction/transaction_page.dart';
+import 'package:expensor/provider/model/budget.dart';
 import 'package:expensor/utils/ux_colors.dart';
 import 'package:expensor/widgets/bottom_modal.dart';
+import 'package:expensor/widgets/budget_dropdown_selector.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatefulWidget {
   final Function(int) changeTab; // Pass a function to change tabs
-  const DashboardPage({Key? key, required this.changeTab});
+  const DashboardPage({super.key, required this.changeTab});
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();
@@ -18,6 +21,13 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   bool hideData = false;
+  Budget _selectedBudget = BudgetMock.budgets[0];
+
+  void onBudgetSelector(final Budget newBudget) {
+    setState(() {
+      _selectedBudget = newBudget;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +35,9 @@ class _DashboardPageState extends State<DashboardPage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         leadingWidth: MediaQuery.of(context).size.width * 0.4,
-        leading: TextButton.icon(
-          autofocus: true,
-          icon: Icon(Icons.arrow_drop_down_sharp,
-              color: Theme.of(context).iconTheme.color, size: 20),
-          iconAlignment: IconAlignment.end,
-          onPressed: () => {},
-          label:
-              Text("Globalcaja", style: Theme.of(context).textTheme.titleSmall),
+        title: BudgetDropdownWidget(
+          selectedBudget: _selectedBudget,
+          onBudgetSelector: onBudgetSelector,
         ),
         actions: [
           IconButton(
@@ -89,15 +94,15 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             child: ListView(
               children: [
-                Space(),
+                const Space(),
                 ResumeKpi(
                   hideData: hideData,
                 ),
-                Space(space: SpaceEnum.simple),
+                const Space(space: SpaceEnum.simple),
                 const CategoriesKpi(),
-                Space(space: SpaceEnum.triple),
+                const Space(space: SpaceEnum.triple),
                 const TransactionsListKpi(),
-                Space(space: SpaceEnum.triple),
+                const Space(space: SpaceEnum.triple),
                 AccountsKpi(
                   hideData: hideData,
                   changeTab: widget.changeTab,

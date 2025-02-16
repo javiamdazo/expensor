@@ -11,7 +11,7 @@ import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class Accounts extends StatefulWidget {
-  const Accounts({Key? key}) : super(key: key);
+  const Accounts({super.key});
 
   @override
   _AccountsState createState() => _AccountsState();
@@ -96,7 +96,7 @@ class AccountBalance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double totalBalance = AccountsMock.getTotalBalance();
-    final double totalProfitability = 4.56;
+    const double totalProfitability = 4.56;
 
     return Container(
       decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary),
@@ -121,7 +121,8 @@ class AccountBalance extends StatelessWidget {
                       : 'Total balance',
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
-                Space(space: SpaceEnum.double, spaceType: SpaceType.width),
+                const Space(
+                    space: SpaceEnum.double, spaceType: SpaceType.width),
                 Profitability(
                     number: selectedAccount != null
                         ? selectedAccount!.profitability

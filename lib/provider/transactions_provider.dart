@@ -1,74 +1,74 @@
-import 'package:expensor/data/entity/transaction_entity.dart';
-import 'package:expensor/data/repositories/transactions_repository.dart';
-import 'package:expensor/provider/accounts_provider.dart';
-import 'package:expensor/provider/categories_provider.dart';
-import 'package:expensor/provider/model/transaction.dart';
-import 'package:expensor/provider/transactions_type_provider.dart';
-import 'package:flutter/material.dart';
+// import 'package:expensor/data/entity/transaction_entity.dart';
+// import 'package:expensor/data/repositories/transactions_repository.dart';
+// import 'package:expensor/provider/accounts_provider.dart';
+// import 'package:expensor/provider/categories_provider.dart';
+// import 'package:expensor/provider/model/transaction.dart';
+// import 'package:expensor/provider/transactions_type_provider.dart';
+// import 'package:flutter/material.dart';
 
-class TransactionsProvider extends ChangeNotifier {
-  final TransactionsRepository _transactionsRepository =
-      TransactionsRepository.instance;
+// class TransactionsProvider extends ChangeNotifier {
+//   final TransactionsRepository _transactionsRepository =
+//       TransactionsRepository.instance;
 
-  final CategoriesProvider categoriesProvider;
-  final AccountsProvider accountsProvider;
-  final TransactionsTypeProvider transactionsTypeProvider;
+//   final CategoriesProvider categoriesProvider;
+//   final AccountsProvider accountsProvider;
+//   final TransactionsTypeProvider transactionsTypeProvider;
 
-  TransactionsProvider(
-      {required this.categoriesProvider,
-      required this.accountsProvider,
-      required this.transactionsTypeProvider}) {
-    loadTransactions();
-  }
+//   TransactionsProvider(
+//       {required this.categoriesProvider,
+//       required this.accountsProvider,
+//       required this.transactionsTypeProvider}) {
+//     loadTransactions();
+//   }
 
-  List<Transaction> _transactions = [];
+//   List<Transaction> _transactions = [];
 
-  List<Transaction> get transactionsList => _transactions;
+//   List<Transaction> get transactionsList => _transactions;
 
-  double getTodayAmount(){
-    return _transactions.fold(0, (sum, account) => sum + account.amount);
-  }
+//   double getTodayAmount(){
+//     return _transactions.fold(0, (sum, account) => sum + account.amount);
+//   }
 
-  Future<void> loadTransactions() async {
-    final transactions = await _transactionsRepository.list();
+//   Future<void> loadTransactions() async {
+//     final transactions = await _transactionsRepository.list();
 
-    _transactions = [];
+//     _transactions = [];
 
-    for (var transaction in transactions) {
-      final category = await categoriesProvider.read(transaction.categoryId);
-      final account = await accountsProvider.read(transaction.accountId);
-      final transactionType =
-          await transactionsTypeProvider.read(transaction.transactionTypeId);
+//     for (var transaction in transactions) {
+//       final category = await categoriesProvider.read(transaction.categoryId);
+//       final account = await accountsProvider.read(transaction.accountId);
+//       final transactionType =
+//           await transactionsTypeProvider.read(transaction.transactionTypeId);
 
-        accountsProvider.update(account.accountId, account.name, account.icon, account.balance - transaction.amount, account.color);
+//         accountsProvider.update(account.accountId, account.name, account.icon, account.balance - transaction.amount, account.color);
 
-      _transactions.add(
-          Transaction.fromMap(transaction, category, account, transactionType));
-    }
+//       _transactions.add(
+//           Transaction.fromMap(transaction, category, account, transactionType));
+//     }
 
-    notifyListeners();
-  }
+//     notifyListeners();
+//   }
 
-  void add(int transactionTypeId, String description, DateTime date,
-      double amount, int accountId, int categoryId) {
-    _transactionsRepository.add(
-        transactionTypeId, description, date, amount, accountId, categoryId);
-    loadTransactions();
-  }
+//   void add(int transactionTypeId, String description, DateTime date,
+//       double amount, int accountId, int categoryId) {
+//     _transactionsRepository.add(
+//         transactionTypeId, description, date, amount, accountId, categoryId);
+//     loadTransactions();
+//   }
 
-  void delete(int transactionId) {
-    _transactionsRepository.delete(transactionId);
-    loadTransactions();
-  }
+//   void delete(int transactionId) {
+//     _transactionsRepository.delete(transactionId);
+//     loadTransactions();
+//   }
 
-  void update(int transactionId, int transactionTypeId, String description,
-      DateTime date, double amount, int accountId, int categoryId) {
-    _transactionsRepository.update(transactionId, transactionTypeId,
-        description, date, amount, accountId, categoryId);
-    loadTransactions();
-  }
+//   void update(int transactionId, int transactionTypeId, String description,
+//       DateTime date, double amount, int accountId, int categoryId) {
+//     _transactionsRepository.update(transactionId, transactionTypeId,
+//         description, date, amount, accountId, categoryId);
+//     loadTransactions();
+//   }
 
-  Future<TransactionEntity?> read(int transactionId) async {
-    return await _transactionsRepository.get(transactionId);
-  }
-}
+//   Future<TransactionEntity?> read(int transactionId) async {
+//     return await _transactionsRepository.get(transactionId);
+//   }
+// }

@@ -1,4 +1,5 @@
 import 'package:expensor/pages/accounts/accounts.dart';
+import 'package:expensor/pages/budget/budget_page.dart';
 import 'package:expensor/pages/dashboard/dashboard_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,9 +28,7 @@ class NavbarState extends State<Navbar> {
   List<Widget> _buildScreens() {
     return [
       DashboardPage(changeTab: changeTab),
-      const Center(
-        child: Text("Bugdet"),
-      ),
+      const BudgetPage(),
       const Accounts(),
       const Center(
         child: Text("settings"),
