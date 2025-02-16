@@ -2,11 +2,9 @@ import 'package:expensor/data/mock/transactions_mock.dart';
 import 'package:expensor/pages/kpis/kpi_builder.dart';
 import 'package:expensor/pages/kpis/transactions/transaction_kpi_item.dart';
 import 'package:expensor/provider/model/transaction.dart';
-import 'package:expensor/provider/transactions_provider.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class TransactionsListKpi extends StatefulWidget {
   const TransactionsListKpi({super.key});

@@ -4,9 +4,9 @@ import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class AccountKpiItem extends StatelessWidget {
-  Account account;
+  final Account account;
   final bool hideData;
-  AccountKpiItem({super.key, required this.account, required this.hideData});
+  const AccountKpiItem({super.key, required this.account, required this.hideData});
 
   @override
   Widget build(BuildContext context) {

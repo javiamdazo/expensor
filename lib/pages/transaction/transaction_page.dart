@@ -1,20 +1,15 @@
-import 'package:expensor/data/entity/account_entity.dart';
-import 'package:expensor/data/entity/transaction_entity.dart';
 import 'package:expensor/data/mock/accounts_mock.dart';
 import 'package:expensor/data/mock/categories_mock.dart';
 import 'package:expensor/pages/transaction/income_expense_form.dart';
 import 'package:expensor/pages/transaction/transfer_form.dart';
-import 'package:expensor/provider/accounts_provider.dart';
-import 'package:expensor/provider/categories_provider.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 
 class TransactionPage extends StatefulWidget {
-  int tabIndex;
-  TransactionPage({Key? key, required this.tabIndex}) : super(key: key);
+  final int firstIndex;
+  const TransactionPage({Key? key, required this.firstIndex}) : super(key: key);
 
   @override
   State<TransactionPage> createState() => _TransactionPageState();
@@ -25,6 +20,8 @@ class _TransactionPageState extends State<TransactionPage> {
 
   @override
   Widget build(BuildContext context) {
+    int tabIndex = widget.firstIndex;
+
     Color color = Theme.of(context).brightness == Brightness.dark
         ? Colors.white
         : Colors.black;
@@ -87,37 +84,37 @@ class _TransactionPageState extends State<TransactionPage> {
             backgroundColor:
                 Theme.of(context).colorScheme.primary, // Background color
             thumbColor: Colors.white, // Thumb (slider) color
-            groupValue: widget.tabIndex, // Current selected value
+            groupValue: tabIndex, // Current selected value
             onValueChanged: (int? newValue) {
               if (newValue != null) {
                 setState(() {
-                  widget.tabIndex = newValue;
+                  tabIndex = newValue;
                 });
               }
             },
             children: {
               0: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Text("EXPENSE",
                     style: TextStyle(
                         color:
-                            widget.tabIndex == 0 ? Colors.black : Colors.white,
+                            tabIndex == 0 ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold)),
               ),
               1: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Text("INCOME",
                     style: TextStyle(
                         color:
-                            widget.tabIndex == 1 ? Colors.black : Colors.white,
+                            tabIndex == 1 ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold)),
               ),
               2: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Text("TRANSFER",
                     style: TextStyle(
                         color:
-                            widget.tabIndex == 2 ? Colors.black : Colors.white,
+                            tabIndex == 2 ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold)),
               ),
             },
@@ -126,7 +123,7 @@ class _TransactionPageState extends State<TransactionPage> {
           Expanded(
             child: Builder(
               builder: (context) {
-                switch (widget.tabIndex) {
+                switch (tabIndex) {
                   case 0:
                     return IncomeExpenseForm(
                       accounts: AccountsMock.accounts,

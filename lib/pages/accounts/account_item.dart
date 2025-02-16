@@ -1,9 +1,6 @@
-import 'package:expensor/pages/accounts/transaction_item.dart';
 import 'package:expensor/provider/model/account.dart';
-import 'package:expensor/provider/model/transaction.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class AccountItem extends StatelessWidget {
   const AccountItem(
@@ -16,7 +13,7 @@ class AccountItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<DateTime, List<Transaction>> transactions = account.transactions ?? {};
+    //Map<DateTime, List<Transaction>> transactions = account.transactions ?? {};
 
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),

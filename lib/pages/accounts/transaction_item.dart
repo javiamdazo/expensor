@@ -2,7 +2,6 @@ import 'package:expensor/provider/model/transaction.dart';
 import 'package:expensor/provider/model/transaction_type.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class TransactionItem extends StatelessWidget {
   final Transaction transaction;

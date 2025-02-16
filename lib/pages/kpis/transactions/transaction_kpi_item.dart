@@ -12,7 +12,7 @@ class TransactionKpiItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final account = transaction.account;
     final category = transaction.category;
-    final transactionType = transaction.transactionType;
+    //final transactionType = transaction.transactionType;
 
     return ListTile(
       leading: CircleAvatar(

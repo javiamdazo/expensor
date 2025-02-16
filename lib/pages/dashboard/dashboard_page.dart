@@ -53,8 +53,8 @@ class _DashboardPageState extends State<DashboardPage> {
           //TODO overflows con el teclado sacado
           BottomModal.showBottomModal(
               context,
-              TransactionPage(
-                tabIndex: 1,
+              const TransactionPage(
+                firstIndex: 1,
               ))
         },
         backgroundColor: Theme.of(context).colorScheme.primary,

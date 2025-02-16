@@ -20,7 +20,7 @@ class AccountEntity {
   });
 
   static AccountEntity fromMap(Map<String, dynamic> map) {
-    Color color = Color(map['color']);
+    //Color color = Color(map['color']);
     IconData icon = IconData(int.parse(map['icon']), fontFamily: 'MaterialIcons');
 
     return AccountEntity(

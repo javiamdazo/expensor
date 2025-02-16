@@ -1,7 +1,5 @@
 import 'package:expensor/pages/accounts/accounts.dart';
-import 'package:expensor/pages/dashboard/dashboard_background.dart';
 import 'package:expensor/pages/dashboard/dashboard_page.dart';
-import 'package:expensor/widgets/color_schema.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -29,11 +27,11 @@ class NavbarState extends State<Navbar> {
   List<Widget> _buildScreens() {
     return [
       DashboardPage(changeTab: changeTab),
-      Center(
+      const Center(
         child: Text("Bugdet"),
       ),
-      Accounts(),
-      Center(
+      const Accounts(),
+      const Center(
         child: Text("settings"),
       ),
     ];
