@@ -43,7 +43,7 @@ class MoneyKpi extends StatelessWidget {
       onTap: () => {
         BottomModal.showBottomModal(
             context,
-            TransactionPage(tabIndex: type == MoneyKpiType.income ? 1 : 0)
+            TransactionPage(firstIndex: type == MoneyKpiType.income ? 1 : 0)
           )
       },
       child: Container(
