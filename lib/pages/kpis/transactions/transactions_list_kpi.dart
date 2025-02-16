@@ -59,7 +59,7 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
               )
             ],
           ),
-          Space(),
+          const Space(),
           SizedBox(
             height: height * 0.25,
             child: Card(
@@ -68,7 +68,8 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
                 padding: const EdgeInsets.all(10),
                 itemCount: TransactionsMock.transactions.length,
                 itemBuilder: (context, index) {
-                  final Transaction transaction = TransactionsMock.transactions[index];
+                  final Transaction transaction =
+                      TransactionsMock.transactions[index];
 
                   return TransactionKpiItem(transaction: transaction);
                 },
