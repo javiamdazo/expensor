@@ -1,31 +1,14 @@
 import 'package:expensor/data/mock/accounts_mock.dart';
 import 'package:expensor/pages/home/home_page.dart';
-import 'package:expensor/provider/accounts_provider.dart';
-import 'package:expensor/provider/categories_provider.dart';
-import 'package:expensor/provider/transactions_provider.dart';
-import 'package:expensor/provider/transactions_type_provider.dart';
 import 'package:expensor/utils/ux_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   AccountsMock.initData();
   
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AccountsProvider()),
-        ChangeNotifierProvider(create: (_) => CategoriesProvider()),
-        ChangeNotifierProvider(create: (_) => TransactionsTypeProvider()),
-        ChangeNotifierProvider(create: (context) => TransactionsProvider(
-          categoriesProvider: Provider.of<CategoriesProvider>(context, listen: false),
-          accountsProvider: Provider.of<AccountsProvider>(context, listen: false),
-          transactionsTypeProvider: Provider.of<TransactionsTypeProvider>(context, listen: false)
-        )),
-      ],
-      child: const MyApp(),
-    ),
+    const MyApp()
   );
 }
 
@@ -34,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = UxColors.emerald.value;
+    Color color = UxColors.peterRiver.value;
 
     ColorScheme darkTheme = ColorScheme.fromSeed(
         seedColor: color, brightness: Brightness.dark);

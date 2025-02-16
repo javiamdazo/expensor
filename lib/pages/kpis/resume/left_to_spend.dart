@@ -14,7 +14,7 @@ class LeftToSpend extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       hideData
           ? HiddedData(style: style)
-          : FormattedNumber( //TODO cambiar a provider con objeto budget
+          : FormattedNumber(
               number: 150,
               style: Theme.of(context).textTheme.titleLarge,
               numberType: NumberType.currency),

@@ -22,13 +22,40 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        leadingWidth: MediaQuery.of(context).size.width * 0.4,
+        leading: TextButton.icon(
+          autofocus: true,
+          icon: Icon(Icons.arrow_drop_down_sharp,
+              color: Theme.of(context).iconTheme.color, size: 20),
+          iconAlignment: IconAlignment.end,
+          onPressed: () => {},
+          label:
+              Text("Globalcaja", style: Theme.of(context).textTheme.titleSmall),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () => {
+              setState(() {
+                hideData = !hideData;
+              })
+            },
+            icon: Icon(
+              Icons.remove_red_eye,
+              color: Theme.of(context).iconTheme.color,
+            ),
+          )
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {
-          //TODO cuando saco el teclado del iphone no se ve bien
+          //TODO overflows con el teclado sacado
           BottomModal.showBottomModal(
-            context,
-            TransactionPage(tabIndex: 1,)
-          )
+              context,
+              TransactionPage(
+                tabIndex: 1,
+              ))
         },
         backgroundColor: Theme.of(context).colorScheme.primary,
         child: Icon(
@@ -62,34 +89,6 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             child: ListView(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: TextButton.icon(
-                        autofocus: true,
-                        icon: Icon(Icons.arrow_drop_down_sharp,
-                            color: Theme.of(context).iconTheme.color, size: 20),
-                        iconAlignment: IconAlignment.end,
-                        onPressed: () => {},
-                        label: Text("Globalcaja",
-                            style: Theme.of(context).textTheme.titleSmall),
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () => {
-                        setState(() {
-                          hideData = !hideData;
-                        })
-                      },
-                      icon: Icon(
-                        Icons.remove_red_eye,
-                        color: Theme.of(context).iconTheme.color,
-                      ),
-                    ),
-                  ],
-                ),
                 Space(),
                 ResumeKpi(
                   hideData: hideData,

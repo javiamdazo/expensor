@@ -20,8 +20,6 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
 
   @override
   Widget build(BuildContext context) {
-    final TransactionsProvider transactionsProvider =
-        Provider.of<TransactionsProvider>(context);
     double height = MediaQuery.of(context).size.height;
 
     return KpiBuilder(

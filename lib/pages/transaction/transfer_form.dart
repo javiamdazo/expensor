@@ -96,38 +96,61 @@ class _TransferFormState extends State<TransferForm> {
     super.dispose();
   }
 
-  // Método mejorado para mostrar el selector de categorías y actualizar el estado
   void _showCategoriesPicker(BuildContext context, List<Category> categories) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
         return Padding(
           padding: const EdgeInsets.all(10),
-          child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 5,
-            ),
-            itemCount: categories.length,
-            itemBuilder: (context, index) {
-              Category category = categories[index];
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Categories",
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
+              Space(
+                space: SpaceEnum.double,
+              ),
+              Expanded(
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                  ),
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) {
+                    Category category = categories[index];
 
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _categoryController.text = "Category: ${category.name}";
-                    _selectedCategoryIcon =
-                        Icon(category.icon, color: category.color);
-                  });
-                  Navigator.of(context).pop();
-                },
-                child: Column(
-                  children: [
-                    Icon(category.icon, color: category.color),
-                    Text(category.name),
-                  ],
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _categoryController.text =
+                              "Category: ${category.name}";
+                          _selectedCategoryIcon =
+                              Icon(category.icon, color: category.color);
+                        });
+                        Navigator.of(context).pop();
+                      },
+
+                      //TODO Group by theme
+                      child: Column(
+                        children: [
+                          Icon(category.icon, color: category.color, size: MediaQuery.of(context).size.aspectRatio * 80),
+                          Space(),
+                          Text(category.name),
+                        ],
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
+              ),
+              TextButton(
+                  onPressed: () => {},
+                  child: Text(
+                    "New category",
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ))
+            ],
           ),
         );
       },

@@ -25,11 +25,6 @@ class _TransactionPageState extends State<TransactionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final AccountsProvider accountsProvider =
-        Provider.of<AccountsProvider>(context);
-    final CategoriesProvider categoriesProvider =
-        Provider.of<CategoriesProvider>(context);
-
     Color color = Theme.of(context).brightness == Brightness.dark
         ? Colors.white
         : Colors.black;
@@ -148,7 +143,7 @@ class _TransactionPageState extends State<TransactionPage> {
                       categories: CategoriesMock.categories,
                     );
                   default:
-                    return SizedBox.shrink(); // Fallback empty widget
+                    return const SizedBox.shrink();
                 }
               },
             ),

@@ -15,8 +15,6 @@ class AccountsKpi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AccountsProvider accountsProvider =
-        Provider.of<AccountsProvider>(context);
 
     double height = MediaQuery.of(context).size.height;
 
