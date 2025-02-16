@@ -1,5 +1,4 @@
 import 'package:expensor/pages/transaction/transaction_page.dart';
-import 'package:expensor/utils/ux_colors.dart';
 import 'package:expensor/widgets/bottom_modal.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/space.dart';

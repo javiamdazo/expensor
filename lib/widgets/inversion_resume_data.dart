@@ -4,11 +4,11 @@ import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class InversionResumeData extends StatelessWidget {
-  double invested;
-  double pL;
-  double balance;
+  final double invested;
+  final double pL;
+  final double balance;
 
-  InversionResumeData(
+  const InversionResumeData(
       {super.key,
       required this.invested,
       required this.pL,

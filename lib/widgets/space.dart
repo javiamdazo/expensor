@@ -13,8 +13,6 @@ enum SpaceEnum {
         return 2;
       case SpaceEnum.triple:
         return 3;
-      default:
-        return 0;
     }
   }
 }
@@ -22,10 +20,10 @@ enum SpaceEnum {
 enum SpaceType { width, height }
 
 class Space extends StatelessWidget {
-  SpaceEnum? space;
-  SpaceType? spaceType;
+  final SpaceEnum? space;
+  final SpaceType? spaceType;
 
-  Space({super.key, this.space, this.spaceType});
+  const Space({super.key, this.space, this.spaceType});
 
   @override
   Widget build(BuildContext context) {
