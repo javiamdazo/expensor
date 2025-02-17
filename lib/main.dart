@@ -6,10 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   AccountsMock.initData();
-  
-  runApp(
-    const MyApp()
-  );
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,11 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Color color = UxColors.peterRiver.value;
 
-    ColorScheme darkTheme = ColorScheme.fromSeed(
-        seedColor: color, brightness: Brightness.dark);
+    ColorScheme darkTheme =
+        ColorScheme.fromSeed(seedColor: color, brightness: Brightness.dark);
 
-    ColorScheme lightTheme = ColorScheme.fromSeed(
-        seedColor: color, brightness: Brightness.light);
+    ColorScheme lightTheme =
+        ColorScheme.fromSeed(seedColor: color, brightness: Brightness.light);
 
     return MaterialApp(
         title: 'Expensor',
@@ -49,7 +47,8 @@ class MyApp extends StatelessWidget {
               seedColor: UxColors.belizeHole.value,
               primary: darkTheme.onPrimary,
               secondary: darkTheme.onSecondary,
-              onSecondaryContainer: Theme.of(context).colorScheme.secondary.withAlpha(60),
+              onSecondaryContainer:
+                  Theme.of(context).colorScheme.secondary.withAlpha(60),
               brightness: Brightness.dark),
           textTheme: textThemeData(),
           iconTheme: IconThemeData(
@@ -69,39 +68,29 @@ class MyApp extends StatelessWidget {
 
   TextTheme textThemeData() {
     return const TextTheme(
-          //Titulo
-          titleLarge: TextStyle(
-              fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
-          titleMedium: TextStyle(
-              fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
-          titleSmall: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+      //Titulo
+      titleLarge: TextStyle(
+          fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
+      titleMedium: TextStyle(
+          fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+      titleSmall: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
 
-          //Subtitulo
-          displayLarge: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-          displayMedium: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.normal,
-              color: Colors.grey),
-          displaySmall: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.normal,
-              color: Colors.grey),
+      //Subtitulo
+      displayLarge: TextStyle(
+          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+      displayMedium: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.normal, color: Colors.grey),
+      displaySmall: TextStyle(
+          fontSize: 15, fontWeight: FontWeight.normal, color: Colors.grey),
 
-          //Texto
-          labelLarge: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.normal,
-              color: Colors.white),
-          labelMedium: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.normal,
-              color: Colors.white),
-          labelSmall: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.normal,
-              color: Colors.grey),
-        );
+      //Texto
+      labelLarge: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.normal, color: Colors.white),
+      labelMedium: TextStyle(
+          fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white),
+      labelSmall: TextStyle(
+          fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey),
+    );
   }
 }

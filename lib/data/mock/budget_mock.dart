@@ -17,7 +17,19 @@ class BudgetMock {
               CategoryBudget(
                   category: CategoriesMock.categories[1],
                   budget: 500.0,
-                  spent: 200.0)
+                  spent: 234.0),
+              CategoryBudget(
+                  category: CategoriesMock.categories[3],
+                  budget: 957.0,
+                  spent: 33.0),
+              CategoryBudget(
+                  category: CategoriesMock.categories[6],
+                  budget: 567.0,
+                  spent: 200.0),
+              CategoryBudget(
+                  category: CategoriesMock.categories[2],
+                  budget: 899.0,
+                  spent: 554.0)
             ],
             CategoryBudgetType.housing: [
               CategoryBudget(

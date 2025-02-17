@@ -7,6 +7,7 @@ import 'package:expensor/widgets/budget_dropdown_selector.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class BudgetPage extends StatefulWidget {
   const BudgetPage({super.key});
@@ -22,6 +23,11 @@ class _BudgetPageState extends State<BudgetPage> {
     setState(() {
       _selectedBudget = newBudget;
     });
+  }
+
+  String capitalizeFirstLetter(String text) {
+    if (text.isEmpty) return text;
+    return text[0].toUpperCase() + text.substring(1).toLowerCase();
   }
 
   @override
@@ -45,8 +51,10 @@ class _BudgetPageState extends State<BudgetPage> {
               backgroundColor: Theme.of(context).colorScheme.primary,
               expandedHeight: MediaQuery.of(context).size.height * 0.25,
               flexibleSpace: FlexibleSpaceBar(
-                background: SizedBox(
-                    child: BudgetChart(selectedBudget: _selectedBudget)),
+                background: Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: BudgetChart(selectedBudget: _selectedBudget),
+                ),
               )),
           SliverList(
             delegate: SliverChildBuilderDelegate(
@@ -57,31 +65,164 @@ class _BudgetPageState extends State<BudgetPage> {
                     _selectedBudget.budgets[entry]!;
 
                 return Card(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  margin: const EdgeInsets.all(10),
+                  color: Theme.of(context).colorScheme.secondary,
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.all(20),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          entry.name
-                              .toString()
-                              .toUpperCase(), // Ensure `entry` is convertible to String
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ), // Replace Expanded
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                capitalizeFirstLetter(entry.name.toString()),
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                            ),
+                            FormattedNumber(
+                              number: 200,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(
+                                    color: Colors.white,
+                                  ),
+                              numberType: NumberType.currency,
+                            ),
+                            const Space(
+                              spaceType: SpaceType.width,
+                            ),
+                            Text(
+                              "/",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(
+                                    color: Colors.white,
+                                  ),
+                            ),
+                            const Space(
+                              spaceType: SpaceType.width,
+                              space: SpaceEnum.double,
+                            ),
+                            FormattedNumber(
+                              number: 2345,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall!
+                                  .copyWith(
+                                    color: Colors.white,
+                                  ),
+                              numberType: NumberType.currency,
+                            ),
+                          ],
+                        ),
+                        const Divider(
+                          color: Colors.white,
+                          thickness: 0.2,
+                        ),
+                        const Space(),
                         ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: categories.length,
                           itemBuilder: (context, catIndex) {
-                            return Row(
-                              children: [
-                                Text(categories[catIndex].category.name),
-                                Text(categories[catIndex].budget.toString()),
-                                Text(categories[catIndex].spent.toString())
-                              ],
+                            final CategoryBudget category =
+                                categories[catIndex];
+
+                            final double budget = category.budget;
+                            final double spent = category.spent;
+
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 15),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor: category.category.color
+                                            .withAlpha(150),
+                                        child: Icon(category.category.icon),
+                                      ),
+                                      const Space(
+                                        spaceType: SpaceType.width,
+                                        space: SpaceEnum.double,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              category.category.name,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .displayMedium!
+                                                  .copyWith(
+                                                      color: Colors.white),
+                                            ),
+                                            Text(
+                                              'View details',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .displaySmall,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: category.category.color
+                                              .withAlpha(100),
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: const Icon(Icons.add, size: 25),
+                                      ),
+                                    ],
+                                  ),
+                                  const Space(
+                                    space: SpaceEnum.double,
+                                  ),
+                                  StepProgressIndicator(
+                                    totalSteps: budget.toInt(),
+                                    currentStep: spent.toInt(),
+                                    selectedColor: category.category.color,
+                                    size: 8,
+                                    padding: 0,
+                                    unselectedColor:
+                                        category.category.color.withAlpha(70),
+                                    roundedEdges: const Radius.circular(10),
+                                  ),
+                                  const Space(),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      FormattedNumber(
+                                          number: spent,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .displayMedium!
+                                              .copyWith(color: Colors.white),
+                                          numberType: NumberType.currency),
+                                      FormattedNumber(
+                                          number: budget,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .displayMedium!
+                                              .copyWith(color: Colors.white),
+                                          numberType: NumberType.currency)
+                                    ],
+                                  )
+                                ],
+                              ),
                             );
                           },
                         ),

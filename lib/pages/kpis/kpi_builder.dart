@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class KpiBuilder extends StatelessWidget {
   final Widget child;
-  KpiBuilder({Key? key, required this.child}) : super(key: key);
+  const KpiBuilder({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class KpiBuilder extends StatelessWidget {
             color: Colors.black.withAlpha(80),
             offset: const Offset(0, 6),
             blurRadius: 8,
-            spreadRadius: 0, 
+            spreadRadius: 0,
           ),
         ],
       ),
