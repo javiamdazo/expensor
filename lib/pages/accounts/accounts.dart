@@ -68,12 +68,10 @@ class _AccountsState extends State<Accounts> {
                       itemCount: accounts.length,
                       itemBuilder: (context, index) {
                         Account account = accounts[index];
-                        return Hero(
-                          tag: 'accountTitle-${account.accountId}',
-                          child: AccountItem(
-                            account: account,
-                            onTap: () => _selectAccount(index),
-                          ),
+                        return AccountItem(
+                          account: account,
+                          onTap: () => _selectAccount(index),
+                          selected: false,
                         );
                       },
                     ))

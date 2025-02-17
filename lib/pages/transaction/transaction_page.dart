@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 
 class TransactionPage extends StatefulWidget {
   final int firstIndex;
-  const TransactionPage({Key? key, required this.firstIndex}) : super(key: key);
+  const TransactionPage({super.key, required this.firstIndex});
 
   @override
   State<TransactionPage> createState() => _TransactionPageState();
@@ -17,11 +17,10 @@ class TransactionPage extends StatefulWidget {
 
 class _TransactionPageState extends State<TransactionPage> {
   final TextEditingController _amountController = TextEditingController();
+  int tabIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    int tabIndex = widget.firstIndex;
-
     Color color = Theme.of(context).brightness == Brightness.dark
         ? Colors.white
         : Colors.black;
@@ -29,7 +28,7 @@ class _TransactionPageState extends State<TransactionPage> {
     double height = MediaQuery.of(context).size.height;
     return Container(
       width: double.infinity,
-      height: height * 0.8,
+      height: height * 0.60,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
         borderRadius: const BorderRadius.only(
@@ -63,21 +62,20 @@ class _TransactionPageState extends State<TransactionPage> {
             controller: _amountController,
             keyboardType: TextInputType.number,
             textAlign: TextAlign.center,
+            autofocus: true,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   color: color,
                   fontWeight: FontWeight.bold,
                   fontSize: 32,
                 ),
-            inputFormatters: [
-              ThousandsFormatter()
-            ],
+            inputFormatters: [ThousandsFormatter()],
             decoration: InputDecoration(
               hintText: "€0.00",
               hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 32),
               border: InputBorder.none,
             ),
           ),
-          Space(
+          const Space(
             space: SpaceEnum.double,
           ),
           CupertinoSlidingSegmentedControl<int>(
@@ -97,29 +95,26 @@ class _TransactionPageState extends State<TransactionPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Text("EXPENSE",
                     style: TextStyle(
-                        color:
-                            tabIndex == 0 ? Colors.black : Colors.white,
+                        color: tabIndex == 0 ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold)),
               ),
               1: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Text("INCOME",
                     style: TextStyle(
-                        color:
-                            tabIndex == 1 ? Colors.black : Colors.white,
+                        color: tabIndex == 1 ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold)),
               ),
               2: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Text("TRANSFER",
                     style: TextStyle(
-                        color:
-                            tabIndex == 2 ? Colors.black : Colors.white,
+                        color: tabIndex == 2 ? Colors.black : Colors.white,
                         fontWeight: FontWeight.bold)),
               ),
             },
           ),
-          Space(space: SpaceEnum.double),
+          const Space(space: SpaceEnum.double),
           Expanded(
             child: Builder(
               builder: (context) {
@@ -171,17 +166,17 @@ class _TransactionPageState extends State<TransactionPage> {
 }
 
 class ThousandsFormatter extends TextInputFormatter {
-
   @override
-  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
     String text = newValue.text;
 
-    if(text.contains("€")){
+    if (text.contains("€")) {
       text = text.replaceAll(" €", '');
     }
 
     return newValue.copyWith(
-      text: text + " €",
+      text: "$text €",
       selection: TextSelection.collapsed(offset: text.length),
     );
   }

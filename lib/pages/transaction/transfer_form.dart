@@ -8,18 +8,19 @@ class TransferForm extends StatefulWidget {
   final List<Account> accounts;
   final List<Category> categories;
   const TransferForm(
-      {Key? key, required this.accounts, required this.categories})
-      : super(key: key);
+      {super.key, required this.accounts, required this.categories});
 
   @override
-  _TransferFormState createState() => _TransferFormState();
+  TransferFormState createState() => TransferFormState();
 }
 
-class _TransferFormState extends State<TransferForm> {
+class TransferFormState extends State<TransferForm> {
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _categoryController = TextEditingController();
-  final TextEditingController _originAccountController = TextEditingController();
-  final TextEditingController _destinyAccountController = TextEditingController();
+  final TextEditingController _originAccountController =
+      TextEditingController();
+  final TextEditingController _destinyAccountController =
+      TextEditingController();
 
   Icon? _selectedCategoryIcon;
   Icon? _selectedOriginAccountIcon;
@@ -37,10 +38,10 @@ class _TransferFormState extends State<TransferForm> {
             icon: const Icon(Icons.description),
           ),
         ),
-        Space(),
+        const Space(),
         GestureDetector(
-          onTap: () =>
-              _showAccountsPicker(context, widget.accounts, _originAccountController, true),
+          onTap: () => _showAccountsPicker(
+              context, widget.accounts, _originAccountController, true),
           child: AbsorbPointer(
             child: TextFormField(
               controller: _originAccountController,
@@ -53,10 +54,10 @@ class _TransferFormState extends State<TransferForm> {
             ),
           ),
         ),
-        Space(),
+        const Space(),
         GestureDetector(
-          onTap: () =>
-              _showAccountsPicker(context, widget.accounts, _destinyAccountController, false),
+          onTap: () => _showAccountsPicker(
+              context, widget.accounts, _destinyAccountController, false),
           child: AbsorbPointer(
             child: TextFormField(
               controller: _destinyAccountController,
@@ -69,7 +70,7 @@ class _TransferFormState extends State<TransferForm> {
             ),
           ),
         ),
-        Space(),
+        const Space(),
         GestureDetector(
           onTap: () => _showCategoriesPicker(context, widget.categories),
           child: AbsorbPointer(
@@ -109,7 +110,7 @@ class _TransferFormState extends State<TransferForm> {
                 "Categories",
                 style: Theme.of(context).textTheme.displayMedium,
               ),
-              Space(
+              const Space(
                 space: SpaceEnum.double,
               ),
               Expanded(
@@ -135,8 +136,11 @@ class _TransferFormState extends State<TransferForm> {
                       //TODO Group by theme
                       child: Column(
                         children: [
-                          Icon(category.icon, color: category.color, size: MediaQuery.of(context).size.aspectRatio * 80),
-                          Space(),
+                          Icon(category.icon,
+                              color: category.color,
+                              size:
+                                  MediaQuery.of(context).size.aspectRatio * 80),
+                          const Space(),
                           Text(category.name),
                         ],
                       ),
@@ -172,12 +176,12 @@ class _TransferFormState extends State<TransferForm> {
               return GestureDetector(
                   onTap: () {
                     setState(() {
-                      if(isOrigin) {
+                      if (isOrigin) {
                         _selectedOriginAccountIcon =
-                          Icon(account.icon, color: account.color);
-                      }else{
-                         _selectedDestinyAccountIcon =
-                          Icon(account.icon, color: account.color);
+                            Icon(account.icon, color: account.color);
+                      } else {
+                        _selectedDestinyAccountIcon =
+                            Icon(account.icon, color: account.color);
                       }
                       controller.value = TextEditingValue(
                         text: "From: ${account.name}",

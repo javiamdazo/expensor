@@ -27,6 +27,7 @@ class BudgetDoughutChart extends StatelessWidget {
       margin: const EdgeInsets.all(0),
       series: <DoughnutSeries<BudgetChartData, String>>[
         DoughnutSeries<BudgetChartData, String>(
+            animationDuration: 1000,
             explode: true,
             innerRadius: '85%',
             dataSource: data,

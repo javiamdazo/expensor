@@ -11,10 +11,10 @@ class IncomeExpenseForm extends StatefulWidget {
       {super.key, required this.accounts, required this.categories});
 
   @override
-  _IncomeExpenseFormState createState() => _IncomeExpenseFormState();
+  IncomeExpenseFormState createState() => IncomeExpenseFormState();
 }
 
-class _IncomeExpenseFormState extends State<IncomeExpenseForm> {
+class IncomeExpenseFormState extends State<IncomeExpenseForm> {
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _categoryController = TextEditingController();
   final TextEditingController _accountController = TextEditingController();
@@ -85,46 +85,50 @@ class _IncomeExpenseFormState extends State<IncomeExpenseForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const Icon(Icons.remove),
               Text(
                 "Categories",
-                style: Theme.of(context).textTheme.displayMedium,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
-              const Space(
-                space: SpaceEnum.double,
-              ),
+              const Space(),
+              const Divider(),
               Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                    ),
+                    itemCount: categories.length,
+                    itemBuilder: (context, index) {
+                      Category category = categories[index];
+
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _categoryController.text =
+                                "Category: ${category.name}";
+                            _selectedCategoryIcon =
+                                Icon(category.icon, color: category.color);
+                          });
+                          Navigator.of(context).pop();
+                        },
+
+                        //TODO Group by theme
+                        child: Column(
+                          children: [
+                            Icon(category.icon,
+                                color: category.color,
+                                size: MediaQuery.of(context).size.aspectRatio *
+                                    80),
+                            const Space(),
+                            Text(category.name),
+                          ],
+                        ),
+                      );
+                    },
                   ),
-                  itemCount: categories.length,
-                  itemBuilder: (context, index) {
-                    Category category = categories[index];
-
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _categoryController.text =
-                              "Category: ${category.name}";
-                          _selectedCategoryIcon =
-                              Icon(category.icon, color: category.color);
-                        });
-                        Navigator.of(context).pop();
-                      },
-
-                      //TODO Group by theme
-                      child: Column(
-                        children: [
-                          Icon(category.icon,
-                              color: category.color,
-                              size:
-                                  MediaQuery.of(context).size.aspectRatio * 80),
-                          const Space(),
-                          Text(category.name),
-                        ],
-                      ),
-                    );
-                  },
                 ),
               ),
               TextButton(
@@ -150,30 +154,36 @@ class _IncomeExpenseFormState extends State<IncomeExpenseForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const Icon(Icons.remove),
               Text(
                 "Accounts",
-                style: Theme.of(context).textTheme.displayMedium,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
+              const Space(),
+              const Divider(),
               Expanded(
-                child: ListView.builder(
-                  itemCount: accounts.length,
-                  itemBuilder: (context, index) {
-                    Account account = accounts[index];
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ListView.builder(
+                    itemCount: accounts.length,
+                    itemBuilder: (context, index) {
+                      Account account = accounts[index];
 
-                    return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _selectedAccountIcon =
-                                Icon(account.icon, color: account.color);
-                            controller.value = TextEditingValue(
-                              text: "From: ${account.name}",
-                            );
-                          });
-                          Navigator.of(context).pop();
-                        },
-                        child:
-                            AccountKpiItem(account: account, hideData: false));
-                  },
+                      return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _selectedAccountIcon =
+                                  Icon(account.icon, color: account.color);
+                              controller.value = TextEditingValue(
+                                text: "From: ${account.name}",
+                              );
+                            });
+                            Navigator.of(context).pop();
+                          },
+                          child: AccountKpiItem(
+                              account: account, hideData: false));
+                    },
+                  ),
                 ),
               ),
             ],

@@ -1,15 +1,18 @@
 import 'package:expensor/provider/model/account.dart';
 import 'package:expensor/widgets/formatted_number.dart';
+import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class AccountItem extends StatelessWidget {
   const AccountItem(
-      {Key? key,
+      {super.key,
       required this.account,
-      required this.onTap});
+      required this.onTap,
+      required this.selected});
 
   final Account account;
   final Function onTap;
+  final bool selected;
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +22,25 @@ class AccountItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: ListTile(
           onTap: () => {onTap()},
-          leading: Container(
-            decoration: BoxDecoration(
-                color: account.color.withAlpha(50),
-                borderRadius: const BorderRadius.all(Radius.circular(10))),
-            width: 40,
-            height: 40,
-            child: Icon(
-              account.icon,
-              color: account.color,
-            ),
+          leading: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (selected) const Icon(Icons.arrow_back),
+              if (selected)
+                const Space(
+                  space: SpaceEnum.double,
+                  spaceType: SpaceType.width,
+                ),
+              Container(
+                decoration: BoxDecoration(
+                    color: account.color.withAlpha(50),
+                    borderRadius: const BorderRadius.all(Radius.circular(10))),
+                child: Icon(
+                  account.icon,
+                  color: account.color,
+                ),
+              ),
+            ],
           ),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,10 +61,12 @@ class AccountItem extends StatelessWidget {
                   numberType: NumberType.currency)
             ],
           ),
-          trailing: Icon(
-            Icons.keyboard_arrow_down_sharp,
-            color: Theme.of(context).iconTheme.color,
-          ),
+          trailing: !selected
+              ? Icon(
+                  Icons.keyboard_arrow_down_sharp,
+                  color: Theme.of(context).iconTheme.color,
+                )
+              : const SizedBox(),
         ));
   }
 }
