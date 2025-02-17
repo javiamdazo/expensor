@@ -24,47 +24,65 @@ class IncomeExpenseFormState extends State<IncomeExpenseForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFormField(
-          controller: _descriptionController,
-          decoration: InputDecoration(
-            labelText: "Description",
-            labelStyle: Theme.of(context).textTheme.labelSmall,
-            icon: const Icon(Icons.description),
-          ),
-        ),
-        const Space(),
-        GestureDetector(
-          onTap: () =>
-              _showAccountsPicker(context, widget.accounts, _accountController),
-          child: AbsorbPointer(
-            child: TextFormField(
-              controller: _accountController,
-              decoration: InputDecoration(
-                labelText: "Select an account",
-                labelStyle: Theme.of(context).textTheme.labelSmall,
-                icon: _selectedAccountIcon ??
-                    const Icon(Icons.account_balance_wallet),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return Container(
+            constraints: BoxConstraints(
+              maxHeight: constraints.maxHeight * 0.6,
+            ),
+            child: SingleChildScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextFormField(
+                    controller: _descriptionController,
+                    decoration: InputDecoration(
+                      labelText: "Description",
+                      labelStyle: Theme.of(context).textTheme.labelSmall,
+                      icon: const Icon(Icons.description),
+                    ),
+                  ),
+                  const Space(),
+                  GestureDetector(
+                    onTap: () => _showAccountsPicker(
+                        context, widget.accounts, _accountController),
+                    child: AbsorbPointer(
+                      child: TextFormField(
+                        controller: _accountController,
+                        decoration: InputDecoration(
+                          labelText: "Select an account",
+                          labelStyle: Theme.of(context).textTheme.labelSmall,
+                          icon: _selectedAccountIcon ??
+                              const Icon(Icons.account_balance_wallet),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Space(),
+                  GestureDetector(
+                    onTap: () =>
+                        _showCategoriesPicker(context, widget.categories),
+                    child: AbsorbPointer(
+                      child: TextFormField(
+                        controller: _categoryController,
+                        decoration: InputDecoration(
+                          labelText: "Select a category",
+                          labelStyle: Theme.of(context).textTheme.labelSmall,
+                          icon: _selectedCategoryIcon ??
+                              const Icon(Icons.category),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ),
-        const Space(),
-        GestureDetector(
-          onTap: () => _showCategoriesPicker(context, widget.categories),
-          child: AbsorbPointer(
-            child: TextFormField(
-              controller: _categoryController,
-              decoration: InputDecoration(
-                labelText: "Select a category",
-                labelStyle: Theme.of(context).textTheme.labelSmall,
-                icon: _selectedCategoryIcon ?? const Icon(Icons.category),
-              ),
-            ),
-          ),
-        ),
-      ],
+          );
+        },
+      ),
     );
   }
 

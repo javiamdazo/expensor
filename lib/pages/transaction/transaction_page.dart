@@ -58,6 +58,7 @@ class _TransactionPageState extends State<TransactionPage> {
               )
             ],
           ),
+          const Divider(),
           TextFormField(
             controller: _amountController,
             keyboardType: TextInputType.number,
