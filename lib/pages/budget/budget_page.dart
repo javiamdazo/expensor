@@ -212,6 +212,7 @@ class _BudgetPageState extends State<BudgetPage> {
                                               .displayMedium!
                                               .copyWith(color: Colors.white),
                                           numberType: NumberType.currency),
+                                      //TODO probar a hacer mas pequeño como arriba en la imagen
                                       FormattedNumber(
                                           number: budget,
                                           style: Theme.of(context)

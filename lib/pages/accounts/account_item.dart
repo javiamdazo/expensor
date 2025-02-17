@@ -14,6 +14,7 @@ class AccountItem extends StatelessWidget {
   final Function onTap;
   final bool selected;
 
+//TODO si es selected el dinero debe ir en trailing
   @override
   Widget build(BuildContext context) {
     //Map<DateTime, List<Transaction>> transactions = account.transactions ?? {};
