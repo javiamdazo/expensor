@@ -4,7 +4,8 @@ import 'package:expensor/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesKpi extends StatefulWidget {
-  const CategoriesKpi({super.key});
+  final Function(int) changeTab;
+  const CategoriesKpi({super.key, required this.changeTab});
 
   @override
   CategoriesKpiState createState() => CategoriesKpiState();
@@ -19,17 +20,23 @@ class CategoriesKpiState extends State<CategoriesKpi> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Spend analisys",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const Icon(Icons.arrow_right, size: 30,)
-              ],
+            GestureDetector(
+              onTap: () => {widget.changeTab(1)},
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Spend analisys",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  const Icon(
+                    Icons.keyboard_arrow_right_rounded,
+                    size: 30,
+                  )
+                ],
+              ),
             ),
-            Space(),
+            const Space(),
             const ResumeCategoriesBudget()
           ],
         ),

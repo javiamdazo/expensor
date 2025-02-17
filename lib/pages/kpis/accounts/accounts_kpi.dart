@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 
 class AccountsKpi extends StatelessWidget {
   final bool hideData;
-  final Function(int) changeTab; // Pass a function to change ta
-  AccountsKpi({super.key, required this.changeTab, required this.hideData});
+  final Function(int) changeTab;
+  const AccountsKpi(
+      {super.key, required this.changeTab, required this.hideData});
 
   @override
   Widget build(BuildContext context) {
-
     double height = MediaQuery.of(context).size.height;
 
     return KpiBuilder(
@@ -22,9 +22,7 @@ class AccountsKpi extends StatelessWidget {
         child: Column(
           children: <Widget>[
             GestureDetector(
-              onTap: () => {
-                changeTab(2)
-              },
+              onTap: () => {changeTab(2)},
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -68,7 +66,7 @@ class AccountsKpi extends StatelessWidget {
                                         .colorScheme
                                         .onPrimaryContainer),
                           ),
-                          Space(spaceType: SpaceType.width),
+                          const Space(spaceType: SpaceType.width),
                           Profitability(
                               number: 6.9,
                               style: Theme.of(context)
@@ -85,7 +83,7 @@ class AccountsKpi extends StatelessWidget {
                 ],
               ),
             ),
-            Space(),
+            const Space(),
             Card(
                 child: SizedBox(
                     height: height * 0.20,

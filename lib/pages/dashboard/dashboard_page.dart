@@ -34,7 +34,9 @@ class _DashboardPageState extends State<DashboardPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        leadingWidth: MediaQuery.of(context).size.width * 0.4,
+        scrolledUnderElevation: 0,
+        leading:
+            IconButton(onPressed: () => {}, icon: const Icon(Icons.settings)),
         title: BudgetDropdownWidget(
           selectedBudget: _selectedBudget,
           onBudgetSelector: onBudgetSelector,
@@ -99,7 +101,9 @@ class _DashboardPageState extends State<DashboardPage> {
                   hideData: hideData,
                 ),
                 const Space(space: SpaceEnum.simple),
-                const CategoriesKpi(),
+                CategoriesKpi(
+                  changeTab: widget.changeTab,
+                ),
                 const Space(space: SpaceEnum.triple),
                 const TransactionsListKpi(),
                 const Space(space: SpaceEnum.triple),
