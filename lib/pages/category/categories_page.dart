@@ -136,11 +136,10 @@ class CategoriesPageState extends State<CategoriesPage> {
       ),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Número de columnas
-          crossAxisSpacing: 8.0, // Espacio entre columnas
-          mainAxisSpacing: 8.0, // Espacio entre filas
-          childAspectRatio:
-              1.2, // Relación de aspecto para los ítems (ajustable)
+          crossAxisCount: 2,
+          crossAxisSpacing: 8.0,
+          mainAxisSpacing: 8.0,
+          childAspectRatio: 1.2,
         ),
         itemCount: CategoryProvider.categories.length,
         itemBuilder: (context, index) {

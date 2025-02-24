@@ -1,6 +1,7 @@
 import 'package:expensor/pages/accounts/accounts.dart';
 import 'package:expensor/pages/budget/budget_page.dart';
 import 'package:expensor/pages/dashboard/dashboard_page.dart';
+import 'package:expensor/pages/settings/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
@@ -30,9 +31,7 @@ class NavbarState extends State<Navbar> {
       DashboardPage(changeTab: changeTab),
       const BudgetPage(),
       const Accounts(),
-      const Center(
-        child: Text("settings"),
-      ),
+      SettingsPage(),
     ];
   }
 

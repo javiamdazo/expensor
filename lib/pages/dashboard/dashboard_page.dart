@@ -57,7 +57,6 @@ class _DashboardPageState extends State<DashboardPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {
-          //TODO overflows con el teclado sacado
           BottomModal.showBottomModal(
               context,
               const TransactionPage(

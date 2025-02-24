@@ -14,7 +14,6 @@ class AccountItem extends StatelessWidget {
   final Function onTap;
   final bool selected;
 
-//TODO si es selected el dinero debe ir en trailing
   @override
   Widget build(BuildContext context) {
     //Map<DateTime, List<Transaction>> transactions = account.transactions ?? {};
@@ -53,13 +52,14 @@ class AccountItem extends StatelessWidget {
                     .displayMedium!
                     .copyWith(color: Colors.white),
               ),
-              FormattedNumber(
-                  number: account.balance,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
-                      .copyWith(color: Colors.grey),
-                  numberType: NumberType.currency)
+              if (!selected)
+                FormattedNumber(
+                    number: account.balance,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(color: Colors.grey),
+                    numberType: NumberType.currency)
             ],
           ),
           trailing: !selected
@@ -67,7 +67,13 @@ class AccountItem extends StatelessWidget {
                   Icons.keyboard_arrow_down_sharp,
                   color: Theme.of(context).iconTheme.color,
                 )
-              : const SizedBox(),
+              : FormattedNumber(
+                  number: account.balance,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall!
+                      .copyWith(color: Colors.grey),
+                  numberType: NumberType.currency),
         ));
   }
 }

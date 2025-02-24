@@ -28,11 +28,11 @@ class BudgetDoughutChart extends StatelessWidget {
       series: <DoughnutSeries<BudgetChartData, String>>[
         DoughnutSeries<BudgetChartData, String>(
             animationDuration: 1000,
-            explode: true,
-            innerRadius: '85%',
+            explode: false,
+            innerRadius: '90%',
             dataSource: data,
             enableTooltip: true,
-            pointColorMapper: (datum, index) => datum.color?.withAlpha(120),
+            pointColorMapper: (datum, index) => datum.color?.withAlpha(180),
             xValueMapper: (BudgetChartData data, _) =>
                 data.category.categoryId.toString(),
             yValueMapper: (BudgetChartData data, _) => data.yData,
@@ -51,15 +51,15 @@ class BudgetDoughutChart extends StatelessWidget {
                       number: data.yData,
                       style: Theme.of(context)
                           .textTheme
-                          .labelSmall!
-                          .copyWith(color: Colors.grey[300]),
+                          .displaySmall!
+                          .copyWith(color: Colors.white),
                       numberType: NumberType.currency,
                     ),
                     Text(data.category.name,
                         style: Theme.of(context)
                             .textTheme
                             .labelSmall!
-                            .copyWith(color: Colors.grey[500])),
+                            .copyWith(color: Colors.grey[300])),
                   ],
                 );
               },
