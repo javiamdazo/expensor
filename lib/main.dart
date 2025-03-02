@@ -1,4 +1,4 @@
-import 'package:expensor/data/mock/accounts_mock.dart';
+import 'package:expensor/accounts/mock/accounts_mock.dart';
 import 'package:expensor/pages/home/home_page.dart';
 import 'package:expensor/utils/ux_colors.dart';
 import 'package:flutter/material.dart';

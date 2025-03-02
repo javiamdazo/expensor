@@ -1,7 +1,7 @@
 import 'package:expensor/pages/transaction/transaction_page.dart';
 import 'package:expensor/widgets/bottom_modal.dart';
 import 'package:expensor/widgets/formatted_number.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 enum MoneyKpiType {
@@ -40,10 +40,8 @@ class MoneyKpi extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => {
-        BottomModal.showBottomModal(
-            context,
-            TransactionPage(firstIndex: type == MoneyKpiType.income ? 1 : 0)
-          )
+        BottomModal.showBottomModal(context,
+            TransactionPage(firstIndex: type == MoneyKpiType.income ? 1 : 0))
       },
       child: Container(
         decoration: BoxDecoration(
@@ -69,10 +67,11 @@ class MoneyKpi extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   FormattedNumber(
-                      number: amount,
-                      style: Theme.of(context).textTheme.titleSmall,
-                      numberType: NumberType.currency,
-                      hideData: hideData,),
+                    number: amount,
+                    style: Theme.of(context).textTheme.titleSmall,
+                    numberType: NumberType.currency,
+                    hideData: hideData,
+                  ),
                   Text(
                     type.name,
                     style: Theme.of(context)
@@ -82,10 +81,12 @@ class MoneyKpi extends StatelessWidget {
                   ),
                 ],
               ),
-              Space(spaceType: SpaceType.width, space: SpaceEnum.triple),
+              const Space(
+                  spaceType: SpaceType.width, spaceSize: SpaceSize.triple),
               CircleAvatar(
                   maxRadius: 15,
-                  backgroundColor: Theme.of(context).iconTheme.color!.withAlpha(150),
+                  backgroundColor:
+                      Theme.of(context).iconTheme.color!.withAlpha(150),
                   child: Icon(
                     type == MoneyKpiType.income ? Icons.add : Icons.remove,
                     size: 20,

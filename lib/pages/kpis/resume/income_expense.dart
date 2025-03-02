@@ -1,5 +1,5 @@
 import 'package:expensor/widgets/money.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/cupertino.dart';
 
 class IncomeExpense extends StatelessWidget {
@@ -12,11 +12,16 @@ class IncomeExpense extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         MoneyKpi(
-            type: MoneyKpiType.income, amount: 890, hideData: hideData,),
-        Space(space: SpaceEnum.triple),
+          type: MoneyKpiType.income,
+          amount: 890,
+          hideData: hideData,
+        ),
+        Space(spaceSize: SpaceSize.triple),
         MoneyKpi(
-            type: MoneyKpiType.expense,
-            amount: 240, hideData: hideData,)
+          type: MoneyKpiType.expense,
+          amount: 240,
+          hideData: hideData,
+        )
       ],
     );
   }

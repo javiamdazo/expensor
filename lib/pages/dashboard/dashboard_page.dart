@@ -8,7 +8,7 @@ import 'package:expensor/provider/model/budget.dart';
 import 'package:expensor/utils/ux_colors.dart';
 import 'package:expensor/widgets/bottom_modal.dart';
 import 'package:expensor/widgets/budget_dropdown_selector.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -103,13 +103,13 @@ class _DashboardPageState extends State<DashboardPage> {
                 ResumeKpi(
                   hideData: hideData,
                 ),
-                const Space(space: SpaceEnum.simple),
+                const Space(spaceSize: SpaceSize.simple),
                 CategoriesKpi(
                   changeTab: widget.changeTab,
                 ),
-                const Space(space: SpaceEnum.triple),
+                const Space(spaceSize: SpaceSize.triple),
                 const TransactionsListKpi(),
-                const Space(space: SpaceEnum.triple),
+                const Space(spaceSize: SpaceSize.triple),
                 AccountsKpi(
                   hideData: hideData,
                   changeTab: widget.changeTab,

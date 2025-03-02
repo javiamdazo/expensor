@@ -1,18 +1,19 @@
 import 'package:expensor/data/mock/transactions_mock.dart';
-import 'package:expensor/provider/model/account.dart';
+import 'package:expensor/accounts/model/account.dart';
 import 'package:expensor/provider/model/transaction.dart';
 import 'package:flutter/material.dart';
 
 class AccountsMock {
-  
   static void initData() {
     for (var account in accounts) {
-      account.transactions = _groupTransactionsByDate(TransactionsMock.transactions);
+      account.transactions =
+          _groupTransactionsByDate(TransactionsMock.transactions);
     }
   }
 
   /// Agrupa las transacciones por fecha en un Map<DateTime, List<Transaction>>
-  static Map<DateTime, List<Transaction>> _groupTransactionsByDate(List<Transaction> transactions) {
+  static Map<DateTime, List<Transaction>> _groupTransactionsByDate(
+      List<Transaction> transactions) {
     Map<DateTime, List<Transaction>> groupedTransactions = {};
 
     for (var transaction in transactions) {
@@ -132,14 +133,13 @@ class AccountsMock {
     int newId = accounts.isNotEmpty ? accounts.last.accountId + 1 : 1;
     accounts.add(
       Account(
-        accountId: newId,
-        name: name,
-        balance: balance,
-        icon: icon,
-        color: color,
-        lastUpdate: DateTime.now(),
-        profitability: 0
-      ),
+          accountId: newId,
+          name: name,
+          balance: balance,
+          icon: icon,
+          color: color,
+          lastUpdate: DateTime.now(),
+          profitability: 0),
     );
   }
 

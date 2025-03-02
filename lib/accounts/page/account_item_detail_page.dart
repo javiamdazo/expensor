@@ -1,12 +1,14 @@
-import 'package:expensor/pages/accounts/account_item.dart';
+import 'package:expensor/accounts/page/account_item_page.dart';
+import 'package:expensor/accounts/widgets/account_fast_filter.dart';
+import 'package:expensor/common/theme_data.dart';
 import 'package:expensor/pages/accounts/transaction_item.dart';
-import 'package:expensor/provider/model/account.dart';
+import 'package:expensor/accounts/model/account.dart';
 import 'package:expensor/provider/model/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class AccountItemDetail extends StatelessWidget {
-  const AccountItemDetail(
+class AccountItemDetailPage extends StatelessWidget {
+  const AccountItemDetailPage(
       {super.key, required this.account, required this.onTap});
 
   final Account account;
@@ -14,14 +16,11 @@ class AccountItemDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Brightness brightness = Theme.of(context).brightness;
-    final Color textColor =
-        brightness == Brightness.dark ? Colors.white : Colors.black;
     Map<DateTime, List<Transaction>> transactions = account.transactions ?? {};
 
     return Column(
       children: [
-        AccountItem(account: account, onTap: onTap, selected: true),
+        AccountItemPage(account: account, onTap: onTap, selected: true),
         Expanded(
           child: AnimatedSize(
             duration: const Duration(milliseconds: 300),
@@ -64,10 +63,10 @@ class AccountItemDetail extends StatelessWidget {
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 DateFormat('dd/MM/yyyy').format(date),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall!
-                                    .copyWith(color: textColor),
+                                style: AppThemeData.appTextTheme.labelSmall!
+                                    .copyWith(
+                                        color:
+                                            AppThemeData.textColorByBrightness),
                               ),
                             ),
                             ...transactionList.map(

@@ -1,6 +1,6 @@
-import 'package:expensor/data/entity/account_entity.dart';
+import 'package:expensor/accounts/entity/account_entity.dart';
 import 'package:expensor/data/repositories/accounts_repository.dart';
-import 'package:expensor/provider/model/account.dart';
+import 'package:expensor/accounts/model/account.dart';
 import 'package:flutter/material.dart';
 
 class AccountsProvider extends ChangeNotifier {
@@ -22,9 +22,9 @@ class AccountsProvider extends ChangeNotifier {
     final accounts = await _accountsRepository.list();
 
     _accounts = [];
-    accounts.forEach((account) {
+    for (var account in accounts) {
       _accounts.add(Account.fromMap(account));
-    });
+    }
 
     notifyListeners();
   }

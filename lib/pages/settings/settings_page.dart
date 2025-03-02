@@ -1,6 +1,6 @@
 import 'package:expensor/utils/ux_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:expensor/main.dart';
 
 class SettingData {

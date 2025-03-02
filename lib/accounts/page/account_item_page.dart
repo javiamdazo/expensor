@@ -1,10 +1,11 @@
-import 'package:expensor/provider/model/account.dart';
+import 'package:expensor/accounts/model/account.dart';
+import 'package:expensor/common/theme_data.dart';
 import 'package:expensor/widgets/formatted_number.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 
-class AccountItem extends StatelessWidget {
-  const AccountItem(
+class AccountItemPage extends StatelessWidget {
+  const AccountItemPage(
       {super.key,
       required this.account,
       required this.onTap,
@@ -16,10 +17,6 @@ class AccountItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Brightness brightness = Theme.of(context).brightness;
-    final Color textColor =
-        brightness == Brightness.dark ? Colors.white : Colors.black;
-
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: ListTile(
@@ -30,7 +27,7 @@ class AccountItem extends StatelessWidget {
               if (selected) const Icon(Icons.arrow_back),
               if (selected)
                 const Space(
-                  space: SpaceEnum.double,
+                  spaceSize: SpaceSize.double,
                   spaceType: SpaceType.width,
                 ),
               Container(
@@ -52,17 +49,13 @@ class AccountItem extends StatelessWidget {
             children: [
               Text(
                 account.name,
-                style: Theme.of(context)
-                    .textTheme
-                    .displayMedium!
-                    .copyWith(color: textColor),
+                style: AppThemeData.appTextTheme.displayMedium!
+                    .copyWith(color: AppThemeData.textColorByBrightness),
               ),
               if (!selected)
                 FormattedNumber(
                     number: account.balance,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
+                    style: AppThemeData.appTextTheme.titleSmall!
                         .copyWith(color: Colors.grey),
                     numberType: NumberType.currency)
             ],
@@ -74,43 +67,9 @@ class AccountItem extends StatelessWidget {
                 )
               : FormattedNumber(
                   number: account.balance,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
+                  style: AppThemeData.appTextTheme.titleSmall!
                       .copyWith(color: Colors.grey),
                   numberType: NumberType.currency),
         ));
-  }
-}
-
-class AccountFastFilter extends StatelessWidget {
-  const AccountFastFilter(
-      {super.key, required this.text, required this.applied});
-
-  final String text;
-  final bool applied;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 2),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-      decoration: BoxDecoration(
-          color: applied
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.primary.withAlpha(150),
-          border: applied
-              ? Border.all()
-              : Border.all(
-                  color: Theme.of(context).colorScheme.primary, width: 3),
-          borderRadius: const BorderRadius.all(Radius.circular(20))),
-      child: Text(
-        text,
-        style: Theme.of(context)
-            .textTheme
-            .labelMedium!
-            .copyWith(color: Colors.white),
-      ),
-    );
   }
 }

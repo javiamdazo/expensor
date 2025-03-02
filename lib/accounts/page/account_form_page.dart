@@ -1,19 +1,19 @@
 import 'package:expensor/data/mock/categories_mock.dart';
 import 'package:expensor/pages/transaction/transaction_page.dart';
 import 'package:expensor/provider/model/category.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter/services.dart';
 
-class AccountForm extends StatefulWidget {
-  const AccountForm({super.key});
+class AccountFormPage extends StatefulWidget {
+  const AccountFormPage({super.key});
 
   @override
-  State<AccountForm> createState() => _AccountFormState();
+  State<AccountFormPage> createState() => _AccountFormPageState();
 }
 
-class _AccountFormState extends State<AccountForm> {
+class _AccountFormPageState extends State<AccountFormPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _iconController = TextEditingController();
   final TextEditingController _balanceController = TextEditingController();
@@ -84,7 +84,7 @@ class _AccountFormState extends State<AccountForm> {
                       ),
                     ),
                   ),
-                  const Space(space: SpaceEnum.triple),
+                  const Space(spaceSize: SpaceSize.triple),
                   Row(
                     children: [
                       Text(

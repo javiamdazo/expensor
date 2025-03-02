@@ -1,5 +1,5 @@
 import 'package:expensor/data/entity/transaction_entity.dart';
-import 'package:expensor/provider/model/account.dart';
+import 'package:expensor/accounts/model/account.dart';
 import 'package:expensor/provider/model/category.dart';
 import 'package:expensor/provider/model/transaction_type.dart';
 
@@ -22,7 +22,8 @@ class Transaction {
     required this.account,
   });
 
-  factory Transaction.fromMap(TransactionEntity transaction, Category category, Account account, TransactionType transactionType) {
+  factory Transaction.fromMap(TransactionEntity transaction, Category category,
+      Account account, TransactionType transactionType) {
     return Transaction(
       transactionId: transaction.transactionId!,
       transactionType: transactionType,

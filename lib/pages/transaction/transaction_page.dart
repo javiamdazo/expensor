@@ -1,8 +1,8 @@
-import 'package:expensor/data/mock/accounts_mock.dart';
+import 'package:expensor/accounts/mock/accounts_mock.dart';
 import 'package:expensor/data/mock/categories_mock.dart';
 import 'package:expensor/pages/transaction/income_expense_form.dart';
 import 'package:expensor/pages/transaction/transfer_form.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -77,7 +77,7 @@ class _TransactionPageState extends State<TransactionPage> {
             ),
           ),
           const Space(
-            space: SpaceEnum.double,
+            spaceSize: SpaceSize.double,
           ),
           CupertinoSlidingSegmentedControl<int>(
             backgroundColor:
@@ -115,7 +115,7 @@ class _TransactionPageState extends State<TransactionPage> {
               ),
             },
           ),
-          const Space(space: SpaceEnum.double),
+          const Space(spaceSize: SpaceSize.double),
           Expanded(
             child: Builder(
               builder: (context) {

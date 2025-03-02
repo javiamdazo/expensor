@@ -1,10 +1,10 @@
-import 'package:expensor/data/mock/accounts_mock.dart';
+import 'package:expensor/accounts/mock/accounts_mock.dart';
 import 'package:expensor/data/mock/categories_mock.dart';
 import 'package:expensor/data/mock/transaction_types.dart';
 import 'package:expensor/provider/model/transaction.dart';
 import 'package:expensor/provider/model/transaction_type.dart';
 import 'package:expensor/provider/model/category.dart';
-import 'package:expensor/provider/model/account.dart';
+import 'package:expensor/accounts/model/account.dart';
 
 class TransactionsMock {
   static final List<Transaction> transactions = [
@@ -21,7 +21,7 @@ class TransactionsMock {
       transactionId: 2,
       transactionType: TransactionTypesMock.transactionTypes[0],
       description: "Bus ticket",
-      date: DateTime.now().subtract(Duration(days: 2)),
+      date: DateTime.now().subtract(const Duration(days: 2)),
       amount: 3.5,
       category: CategoriesMock.categories[1], // Transport
       account: AccountsMock.accounts[1], // Bank Account
@@ -30,7 +30,7 @@ class TransactionsMock {
       transactionId: 3,
       transactionType: TransactionTypesMock.transactionTypes[1],
       description: "Salary deposit",
-      date: DateTime.now().subtract(Duration(days: 5)),
+      date: DateTime.now().subtract(const Duration(days: 5)),
       amount: 3500.0,
       category: CategoriesMock.categories[6], // Salary
       account: AccountsMock.accounts[1], // Bank Account
@@ -39,7 +39,7 @@ class TransactionsMock {
       transactionId: 4,
       transactionType: TransactionTypesMock.transactionTypes[0],
       description: "Movie night",
-      date: DateTime.now().subtract(Duration(days: 3)),
+      date: DateTime.now().subtract(const Duration(days: 3)),
       amount: 15.0,
       category: CategoriesMock.categories[4], // Entertainment
       account: AccountsMock.accounts[0], // Cash

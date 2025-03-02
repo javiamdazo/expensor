@@ -1,6 +1,6 @@
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/profitability.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class InversionResumeData extends StatelessWidget {
@@ -29,7 +29,9 @@ class InversionResumeData extends StatelessWidget {
               style: Theme.of(context).textTheme.displaySmall,
               numberType: NumberType.currency,
             ),
-            Space(spaceType: SpaceType.width,),
+            const Space(
+              spaceType: SpaceType.width,
+            ),
             Profitability(
                 number: pL, style: Theme.of(context).textTheme.displaySmall)
           ],

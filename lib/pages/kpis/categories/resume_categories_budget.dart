@@ -5,7 +5,7 @@ import 'package:expensor/data/entity/category_entity.dart';
 import 'package:expensor/pages/kpis/categories/budget_provider.dart';
 import 'package:expensor/widgets/category_doughut_chart.dart';
 import 'package:expensor/widgets/formatted_number.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class ResumeCategoriesBudget extends StatelessWidget {
@@ -87,7 +87,7 @@ class ResumeCategoriesItem extends StatelessWidget {
               )
             ],
           ),
-          Space(),
+          const Space(),
           FormattedNumber(
               number: 15,
               style: Theme.of(context).textTheme.labelLarge,

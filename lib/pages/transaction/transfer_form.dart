@@ -1,7 +1,7 @@
 import 'package:expensor/pages/kpis/accounts/account_kpi_item.dart';
-import 'package:expensor/provider/model/account.dart';
+import 'package:expensor/accounts/model/account.dart';
 import 'package:expensor/provider/model/category.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class TransferForm extends StatefulWidget {
@@ -111,7 +111,7 @@ class TransferFormState extends State<TransferForm> {
                 style: Theme.of(context).textTheme.displayMedium,
               ),
               const Space(
-                space: SpaceEnum.double,
+                spaceSize: SpaceSize.double,
               ),
               Expanded(
                 child: GridView.builder(

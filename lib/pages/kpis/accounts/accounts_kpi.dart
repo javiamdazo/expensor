@@ -1,9 +1,9 @@
-import 'package:expensor/data/mock/accounts_mock.dart';
+import 'package:expensor/accounts/mock/accounts_mock.dart';
 import 'package:expensor/pages/kpis/accounts/account_kpi_item.dart';
 import 'package:expensor/pages/kpis/kpi_builder.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/profitability.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class AccountsKpi extends StatelessWidget {

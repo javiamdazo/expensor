@@ -1,4 +1,4 @@
-import 'package:expensor/data/entity/account_entity.dart';
+import 'package:expensor/accounts/entity/account_entity.dart';
 import 'package:expensor/services/database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
@@ -32,20 +32,26 @@ class AccountsRepository {
     db.delete(_tableName, where: 'account_id = ?', whereArgs: [accountId]);
   }
 
-  void update(int accountId, String name, IconData icon, double balance, Color color) async {
+  void update(int accountId, String name, IconData icon, double balance,
+      Color color) async {
     final Database db = await DatabaseService.instance.getDatabase();
-    db.update(_tableName, {
-      'name': name,
-      'amount': balance,
-      'icon': icon.codePoint.toString(),
-      'color': color.value,
-      'last_update': DateTime.now().toIso8601String()
-    }, where: 'account_id = ?', whereArgs: [accountId]);
+    db.update(
+        _tableName,
+        {
+          'name': name,
+          'amount': balance,
+          'icon': icon.codePoint.toString(),
+          'color': color.value,
+          'last_update': DateTime.now().toIso8601String()
+        },
+        where: 'account_id = ?',
+        whereArgs: [accountId]);
   }
 
   Future<AccountEntity?> get(int accountId) async {
     final Database db = await DatabaseService.instance.getDatabase();
-    final accounts = await db.query(_tableName, where: 'account_id = ?', whereArgs: [accountId]);
+    final accounts = await db
+        .query(_tableName, where: 'account_id = ?', whereArgs: [accountId]);
     if (accounts.isEmpty) {
       return null;
     }

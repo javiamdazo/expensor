@@ -5,7 +5,7 @@ import 'package:expensor/provider/model/category_budget_type.dart';
 import 'package:expensor/widgets/budget_doughut_chart.dart';
 import 'package:expensor/widgets/budget_dropdown_selector.dart';
 import 'package:expensor/widgets/formatted_number.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
@@ -183,7 +183,7 @@ class BudgetListCategories extends StatelessWidget {
               ),
               const Space(
                 spaceType: SpaceType.width,
-                space: SpaceEnum.double,
+                spaceSize: SpaceSize.double,
               ),
               Expanded(
                 child: Column(
@@ -220,7 +220,7 @@ class BudgetListCategories extends StatelessWidget {
             ],
           ),
           const Space(
-            space: SpaceEnum.double,
+            spaceSize: SpaceSize.double,
           ),
           StepProgressIndicator(
             totalSteps: budget.toInt(),
@@ -292,7 +292,7 @@ class BudgetTitle extends StatelessWidget {
         ),
         const Space(
           spaceType: SpaceType.width,
-          space: SpaceEnum.double,
+          spaceSize: SpaceSize.double,
         ),
         FormattedNumber(
           number: 2345,

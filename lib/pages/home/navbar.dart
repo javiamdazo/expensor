@@ -1,4 +1,4 @@
-import 'package:expensor/pages/accounts/accounts.dart';
+import 'package:expensor/accounts/page/accounts_page.dart';
 import 'package:expensor/pages/budget/budget_page.dart';
 import 'package:expensor/pages/dashboard/dashboard_page.dart';
 import 'package:expensor/pages/settings/settings_page.dart';
@@ -31,7 +31,7 @@ class NavbarState extends State<Navbar> {
     return [
       DashboardPage(changeTab: changeTab),
       const BudgetPage(),
-      const Accounts(),
+      const AccountsPage(),
       SettingsPage(
         changeColorTheme: widget.changeColorTheme,
       ),

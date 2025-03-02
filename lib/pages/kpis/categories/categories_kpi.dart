@@ -1,6 +1,6 @@
 import 'package:expensor/pages/kpis/categories/resume_categories_budget.dart';
 import 'package:expensor/pages/kpis/kpi_builder.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesKpi extends StatefulWidget {

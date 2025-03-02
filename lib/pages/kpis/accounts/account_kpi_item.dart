@@ -1,6 +1,6 @@
-import 'package:expensor/provider/model/account.dart';
+import 'package:expensor/accounts/model/account.dart';
 import 'package:expensor/widgets/formatted_number.dart';
-import 'package:expensor/widgets/space.dart';
+import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 class AccountKpiItem extends StatelessWidget {
@@ -26,7 +26,7 @@ class AccountKpiItem extends StatelessWidget {
               color: account.color,
             ),
             const Space(
-              space: SpaceEnum.triple,
+              spaceSize: SpaceSize.triple,
               spaceType: SpaceType.width,
             ),
             Column(
