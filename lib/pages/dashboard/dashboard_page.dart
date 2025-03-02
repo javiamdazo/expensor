@@ -1,10 +1,10 @@
-import 'package:expensor/data/mock/budget_mock.dart';
+import 'package:expensor/budgets/mock/budget_mock.dart';
 import 'package:expensor/pages/kpis/categories/categories_kpi.dart';
-import 'package:expensor/pages/kpis/accounts/accounts_kpi.dart';
+import 'package:expensor/accounts/kpi/account_kpi.dart';
 import 'package:expensor/pages/kpis/resume/resume_kpi.dart';
 import 'package:expensor/pages/kpis/transactions/transactions_list_kpi.dart';
 import 'package:expensor/pages/transaction/transaction_page.dart';
-import 'package:expensor/provider/model/budget.dart';
+import 'package:expensor/budgets/model/budget.dart';
 import 'package:expensor/utils/ux_colors.dart';
 import 'package:expensor/widgets/bottom_modal.dart';
 import 'package:expensor/widgets/budget_dropdown_selector.dart';

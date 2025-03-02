@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:expensor/data/entity/budget.dart';
+import 'package:expensor/budgets/entity/budget_entity.dart';
 import 'package:expensor/data/entity/category_entity.dart';
 import 'package:expensor/pages/kpis/categories/budget_provider.dart';
 import 'package:expensor/widgets/category_doughut_chart.dart';
@@ -16,7 +16,7 @@ class ResumeCategoriesBudget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Access the budget and categories from the BudgetProvider
-    final Budget budget = BudgetProvider.budgetOne;
+    final BudgetEntity budget = BudgetProvider.budgetOne;
 
     // Convert the Map<Category, num> into a list for ListView
     final List<MapEntry<CategoryEntity, num>> budgetEntries =

@@ -1,8 +1,8 @@
 import 'package:expensor/data/mock/categories_mock.dart';
-import 'package:expensor/provider/model/budget.dart';
-import 'package:expensor/provider/model/budget_type.dart';
-import 'package:expensor/provider/model/category_budget.dart';
-import 'package:expensor/provider/model/category_budget_type.dart';
+import 'package:expensor/budgets/model/budget.dart';
+import 'package:expensor/budgets/model/enum/budget_type.dart';
+import 'package:expensor/budgets/model/category_budget.dart';
+import 'package:expensor/budgets/model/enum/category_budget_type.dart';
 import 'package:flutter/material.dart';
 
 class BudgetMock {

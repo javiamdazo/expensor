@@ -1,5 +1,5 @@
-import 'package:expensor/pages/budget/budget_selector.dart';
-import 'package:expensor/provider/model/budget.dart';
+import 'package:expensor/budgets/page/budget_selector.dart';
+import 'package:expensor/budgets/model/budget.dart';
 import 'package:expensor/widgets/bottom_modal.dart';
 import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';

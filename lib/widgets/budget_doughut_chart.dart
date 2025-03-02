@@ -1,6 +1,6 @@
-import 'package:expensor/data/entity/budget_chart_data.dart';
-import 'package:expensor/provider/model/budget.dart';
-import 'package:expensor/provider/model/category_budget.dart';
+import 'package:expensor/budgets/model/budget_chart_data.dart';
+import 'package:expensor/budgets/model/budget.dart';
+import 'package:expensor/budgets/model/category_budget.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';

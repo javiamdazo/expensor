@@ -5,8 +5,8 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:expensor/provider/model/category_budget.dart';
-import 'package:expensor/provider/model/category_budget_type.dart';
+import 'package:expensor/budgets/model/category_budget.dart';
+import 'package:expensor/budgets/model/enum/category_budget_type.dart';
 
 class Budget {
   String name;

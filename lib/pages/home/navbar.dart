@@ -1,5 +1,5 @@
 import 'package:expensor/accounts/page/accounts_page.dart';
-import 'package:expensor/pages/budget/budget_page.dart';
+import 'package:expensor/budgets/page/budgets_page.dart';
 import 'package:expensor/pages/dashboard/dashboard_page.dart';
 import 'package:expensor/pages/settings/settings_page.dart';
 import 'package:flutter/cupertino.dart';

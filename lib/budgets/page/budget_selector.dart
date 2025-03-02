@@ -1,6 +1,6 @@
-import 'package:expensor/data/mock/budget_mock.dart';
-import 'package:expensor/pages/budget/budget_selector_item.dart';
-import 'package:expensor/provider/model/budget.dart';
+import 'package:expensor/budgets/mock/budget_mock.dart';
+import 'package:expensor/budgets/page/budget_selector_item.dart';
+import 'package:expensor/budgets/model/budget.dart';
 import 'package:expensor/common/widgets/space.dart';
 import 'package:flutter/material.dart';
 

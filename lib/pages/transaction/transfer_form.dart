@@ -1,4 +1,4 @@
-import 'package:expensor/pages/kpis/accounts/account_kpi_item.dart';
+import 'package:expensor/accounts/kpi/account_kpi_item.dart';
 import 'package:expensor/accounts/model/account.dart';
 import 'package:expensor/provider/model/category.dart';
 import 'package:expensor/common/widgets/space.dart';

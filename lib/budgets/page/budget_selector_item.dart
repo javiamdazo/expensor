@@ -1,4 +1,4 @@
-import 'package:expensor/provider/model/budget.dart';
+import 'package:expensor/budgets/model/budget.dart';
 import 'package:flutter/material.dart';
 
 class BudgetSelectorItem extends StatelessWidget {

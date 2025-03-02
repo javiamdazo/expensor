@@ -1,5 +1,5 @@
 import 'package:expensor/accounts/mock/accounts_mock.dart';
-import 'package:expensor/pages/kpis/accounts/account_kpi_item.dart';
+import 'package:expensor/accounts/kpi/account_kpi_item.dart';
 import 'package:expensor/pages/kpis/kpi_builder.dart';
 import 'package:expensor/widgets/formatted_number.dart';
 import 'package:expensor/widgets/profitability.dart';
