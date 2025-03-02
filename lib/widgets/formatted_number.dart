@@ -25,15 +25,15 @@ class FormattedNumber extends StatelessWidget {
             style: style,
           )
         : AnimatedFlipCounter(
-              value: number,
-              suffix: label,
-              duration: const Duration(milliseconds: 500),
-              fractionDigits: 2,
-              wholeDigits: 8,
-              hideLeadingZeroes: true,
-              decimalSeparator: ',',
-              thousandSeparator: '.',
-              textStyle: style,
-            );
+            value: number,
+            suffix: label,
+            duration: const Duration(milliseconds: 700),
+            fractionDigits: 2,
+            wholeDigits: 8,
+            hideLeadingZeroes: true,
+            decimalSeparator: ',',
+            thousandSeparator: '.',
+            textStyle: style,
+          );
   }
 }

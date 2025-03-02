@@ -10,102 +10,104 @@ void main() {
   runApp(const MyApp());
 }
 
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-ValueNotifier<Color> themeColorNotifier =
-    ValueNotifier<Color>(UxColors.values.first.value);
-
-// 🔹 Widget que puede reiniciarse
-class AppWrapper extends StatefulWidget {
-  const AppWrapper({super.key});
-
-  static void restartApp(BuildContext context) {
-    context.findAncestorStateOfType<_AppWrapperState>()?.restartApp();
-  }
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
   @override
-  _AppWrapperState createState() => _AppWrapperState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _AppWrapperState extends State<AppWrapper> {
-  Key key = UniqueKey();
+class _MyAppState extends State<MyApp> {
+  Color _color = UxColors.emerald.value;
 
-  void restartApp() {
+  void _changeTheme(Color color) {
     setState(() {
-      key = UniqueKey();
+      _color = color;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: navigatorKey,
-      home: MyApp(key: key),
-    );
-  }
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    Color color = UxColors.peterRiver.value;
-
     ColorScheme darkTheme =
-        ColorScheme.fromSeed(seedColor: color, brightness: Brightness.dark);
+        ColorScheme.fromSeed(seedColor: _color, brightness: Brightness.dark);
 
     ColorScheme lightTheme =
-        ColorScheme.fromSeed(seedColor: color, brightness: Brightness.light);
+        ColorScheme.fromSeed(seedColor: _color, brightness: Brightness.light);
 
-    return ValueListenableBuilder<Color>(
-      valueListenable: themeColorNotifier,
-      builder: (context, themeColor, child) {
-        return MaterialApp(
-            title: 'Expensor',
-            themeMode: ThemeMode.dark,
-            theme: ThemeData(
-              fontFamily: GoogleFonts.nunito().fontFamily,
-              colorScheme: lightTheme,
-              textTheme: textThemeData(),
-              iconTheme: IconThemeData(
-                color: UxColors.clouds.value,
-              ),
-              cardTheme: CardTheme(
-                margin: const EdgeInsets.all(0),
-                color: Theme.of(context).colorScheme.secondary.withAlpha(50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
+    return MaterialApp(
+        title: 'Expensor',
+        themeMode: ThemeMode.dark,
+        theme: ThemeData(
+          fontFamily: GoogleFonts.nunito().fontFamily,
+          colorScheme: lightTheme,
+          textTheme: textThemeData(),
+          iconTheme: IconThemeData(
+            color: UxColors.clouds.value,
+          ),
+          cardTheme: CardTheme(
+            margin: const EdgeInsets.all(0),
+            color: Theme.of(context).colorScheme.secondary.withAlpha(50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
             ),
-            darkTheme: ThemeData(
-              fontFamily: GoogleFonts.nunito().fontFamily,
-              colorScheme: ColorScheme.fromSeed(
-                  seedColor: UxColors.belizeHole.value,
-                  primary: darkTheme.onPrimary,
-                  secondary: darkTheme.onSecondary,
-                  onSecondaryContainer:
-                      Theme.of(context).colorScheme.secondary.withAlpha(60),
-                  brightness: Brightness.dark),
-              textTheme: textThemeData(),
-              iconTheme: IconThemeData(
-                color: UxColors.clouds.value,
-              ),
-              cardTheme: CardTheme(
-                margin: const EdgeInsets.all(0),
-                color: Theme.of(context).colorScheme.secondary.withAlpha(0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
+          ),
+        ),
+        darkTheme: ThemeData(
+          fontFamily: GoogleFonts.nunito().fontFamily,
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: UxColors.belizeHole.value,
+              primary: darkTheme.onPrimary,
+              secondary: darkTheme.onSecondary,
+              onSecondaryContainer:
+                  Theme.of(context).colorScheme.secondary.withAlpha(60),
+              brightness: Brightness.dark),
+          textTheme: darkTextThemeData(),
+          iconTheme: IconThemeData(
+            color: UxColors.clouds.value,
+          ),
+          cardTheme: CardTheme(
+            margin: const EdgeInsets.all(0),
+            color: Theme.of(context).colorScheme.secondary.withAlpha(0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
             ),
-            debugShowCheckedModeBanner: false,
-            home: const HomePage());
-      },
-    );
+          ),
+        ),
+        debugShowCheckedModeBanner: false,
+        home: HomePage(
+          changeColorTheme: _changeTheme,
+        ));
   }
 
   TextTheme textThemeData() {
+    return const TextTheme(
+      //Titulo
+      titleLarge: TextStyle(
+          fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
+      titleMedium: TextStyle(
+          fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+      titleSmall: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+
+      //Subtitulo
+      displayLarge: TextStyle(
+          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+      displayMedium: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.normal, color: Colors.grey),
+      displaySmall: TextStyle(
+          fontSize: 15, fontWeight: FontWeight.normal, color: Colors.grey),
+
+      //Texto
+      labelLarge: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.normal, color: Colors.white),
+      labelMedium: TextStyle(
+          fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white),
+      labelSmall: TextStyle(
+          fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey),
+    );
+  }
+
+  TextTheme darkTextThemeData() {
     return const TextTheme(
       //Titulo
       titleLarge: TextStyle(

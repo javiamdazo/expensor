@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class Navbar extends StatefulWidget {
-  const Navbar({super.key});
+  final Function changeColorTheme;
+  const Navbar({super.key, required this.changeColorTheme});
 
   @override
   NavbarState createState() => NavbarState();
@@ -31,7 +32,9 @@ class NavbarState extends State<Navbar> {
       DashboardPage(changeTab: changeTab),
       const BudgetPage(),
       const Accounts(),
-      SettingsPage(),
+      SettingsPage(
+        changeColorTheme: widget.changeColorTheme,
+      ),
     ];
   }
 

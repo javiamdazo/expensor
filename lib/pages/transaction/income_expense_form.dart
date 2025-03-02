@@ -98,15 +98,25 @@ class IncomeExpenseFormState extends State<IncomeExpenseForm> {
     showModalBottomSheet(
       context: context,
       builder: (context) {
+        Color color = Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black;
+
         return Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Icon(Icons.remove),
+              Icon(
+                Icons.remove,
+                color: color,
+              ),
               Text(
                 "Categories",
-                style: Theme.of(context).textTheme.displayLarge,
+                style: Theme.of(context)
+                    .textTheme
+                    .displayLarge!
+                    .copyWith(color: color),
               ),
               const Space(),
               const Divider(),
@@ -149,12 +159,25 @@ class IncomeExpenseFormState extends State<IncomeExpenseForm> {
                   ),
                 ),
               ),
-              TextButton(
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
                   onPressed: () => {},
-                  child: Text(
-                    "New category",
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ))
+                  child: const Text("SAVE",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold)),
+                ),
+              )
             ],
           ),
         );
@@ -167,15 +190,25 @@ class IncomeExpenseFormState extends State<IncomeExpenseForm> {
     showModalBottomSheet(
       context: context,
       builder: (context) {
+        Color color = Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black;
+
         return Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Icon(Icons.remove),
+              Icon(
+                Icons.remove,
+                color: color,
+              ),
               Text(
                 "Accounts",
-                style: Theme.of(context).textTheme.displayLarge,
+                style: Theme.of(context)
+                    .textTheme
+                    .displayLarge!
+                    .copyWith(color: color),
               ),
               const Space(),
               const Divider(),

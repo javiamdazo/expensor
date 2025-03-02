@@ -6,10 +6,15 @@ import 'package:flutter/material.dart';
 class AccountKpiItem extends StatelessWidget {
   final Account account;
   final bool hideData;
-  const AccountKpiItem({super.key, required this.account, required this.hideData});
+  const AccountKpiItem(
+      {super.key, required this.account, required this.hideData});
 
   @override
   Widget build(BuildContext context) {
+    Color color = Theme.of(context).brightness == Brightness.dark
+        ? Colors.white
+        : Colors.black;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -20,7 +25,7 @@ class AccountKpiItem extends StatelessWidget {
               size: 30,
               color: account.color,
             ),
-            Space(
+            const Space(
               space: SpaceEnum.triple,
               spaceType: SpaceType.width,
             ),
@@ -29,11 +34,17 @@ class AccountKpiItem extends StatelessWidget {
               children: [
                 Text(
                   account.name,
-                  style: Theme.of(context).textTheme.labelLarge,
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelLarge!
+                      .copyWith(color: Colors.grey[300]),
                 ),
                 Text(
                   'Last movement: 14.4 €',
-                  style: Theme.of(context).textTheme.labelSmall,
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelSmall!
+                      .copyWith(color: Colors.grey[500]),
                 ),
               ],
             )
@@ -41,7 +52,10 @@ class AccountKpiItem extends StatelessWidget {
         ),
         FormattedNumber(
           number: account.balance,
-          style: Theme.of(context).textTheme.labelLarge,
+          style: Theme.of(context)
+              .textTheme
+              .labelLarge!
+              .copyWith(color: Colors.grey[300]),
           numberType: NumberType.currency,
           hideData: hideData,
         )

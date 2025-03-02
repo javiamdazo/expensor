@@ -31,33 +31,40 @@ class SettingData {
 }
 
 class SettingsPage extends StatelessWidget {
-  SettingsPage({super.key});
-
-  final List<SettingData> settingsMap = [
-    SettingData(
-      description: "Change color palette of the whole application",
-      title: "Theme color",
-      icon: Icons.palette_outlined,
-      widget: const ThemeColorSettingPage(),
-    ),
-    SettingData(
-      description: "Manage your scheduled transactions",
-      title: "Recurring",
-      icon: Icons.loop,
-      widget: const Text("Recurring"),
-    ),
-  ];
+  final Function changeColorTheme;
+  const SettingsPage({super.key, required this.changeColorTheme});
 
   @override
   Widget build(BuildContext context) {
+    final List<SettingData> settingsMap = [
+      SettingData(
+        description: "Change color palette of the whole application",
+        title: "Theme color",
+        icon: Icons.palette_outlined,
+        widget: ThemeColorSettingPage(
+          changeColorTheme: changeColorTheme,
+        ),
+      ),
+      SettingData(
+        description: "Manage your scheduled transactions",
+        title: "Recurring",
+        icon: Icons.loop,
+        widget: const Text("Recurring"),
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
         toolbarHeight: MediaQuery.of(context).size.height * 0.2,
         leading: Align(
           alignment: Alignment.topLeft,
           child: IconButton(
             onPressed: () {}, // Se eliminó el uso innecesario de => {}
-            icon: const Icon(Icons.settings),
+            icon: Icon(
+              Icons.settings,
+              color: Theme.of(context).iconTheme.color,
+            ),
           ),
         ),
         title: Column(
@@ -76,7 +83,10 @@ class SettingsPage extends StatelessWidget {
             ),
             Text(
               "BASIC ACCOUNT",
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context)
+                  .textTheme
+                  .displaySmall!
+                  .copyWith(color: Colors.grey[300]),
             ),
           ],
         ),
@@ -101,6 +111,7 @@ class SettingsPage extends StatelessWidget {
               );
             },
             child: Card(
+              color: Theme.of(context).colorScheme.primary.withAlpha(150),
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(
@@ -110,6 +121,7 @@ class SettingsPage extends StatelessWidget {
                     Icon(
                       settingsMap[index].icon,
                       size: 50,
+                      color: Colors.white,
                     ),
                     const Space(),
                     Text(
@@ -122,7 +134,10 @@ class SettingsPage extends StatelessWidget {
                     const Space(),
                     Text(
                       settingsMap[index].description,
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displaySmall!
+                          .copyWith(color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -137,38 +152,50 @@ class SettingsPage extends StatelessWidget {
 }
 
 class ThemeColorSettingPage extends StatelessWidget {
-  const ThemeColorSettingPage({super.key});
+  final Function changeColorTheme;
+  const ThemeColorSettingPage({super.key, required this.changeColorTheme});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
         leading: IconButton(
-          onPressed: () =>
-              Navigator.pop(context), // Corrección en el botón de retroceso
-          icon: const Icon(Icons.arrow_back),
+          onPressed: () => {Navigator.pop(context)},
+          icon: Icon(
+            Icons.arrow_back,
+            color: Theme.of(context).iconTheme.color,
+          ),
         ),
       ),
       body: Column(
         children: [
-          const Icon(
-            Icons.palette_outlined,
-            size: 120,
-          ),
-          Text(
-            "Theme color",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const Space(),
-          Text(
-            "Select a color pallete for whole application",
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall!
-                .copyWith(color: Colors.grey),
-          ),
-          const Space(
-            space: SpaceEnum.double,
+          Container(
+            color: Theme.of(context).colorScheme.primary,
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Column(
+                children: [
+                  const Icon(
+                    Icons.palette_outlined,
+                    size: 120,
+                  ),
+                  Text(
+                    "Theme color",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const Space(),
+                  Text(
+                    "Select a color pallete for whole application",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
           ),
           Expanded(
             child: GridView.builder(
@@ -184,8 +211,8 @@ class ThemeColorSettingPage extends StatelessWidget {
                 final entry = UxColors.values[index];
                 return GestureDetector(
                   onTap: () {
-                    themeColorNotifier.value = entry.value;
-                    AppWrapper.restartApp(context);
+                    changeColorTheme(entry.value);
+                    Navigator.pop(context);
                   },
                   child: Container(
                     decoration: BoxDecoration(

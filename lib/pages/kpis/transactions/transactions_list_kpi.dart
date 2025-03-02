@@ -37,9 +37,10 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
                   ),
                   Text(
                     "View details",
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        color:
-                            Theme.of(context).colorScheme.onPrimaryContainer),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall
+                        ?.copyWith(color: Colors.grey[300]),
                   ),
                 ],
               ),
@@ -50,11 +51,13 @@ class TransactionsListKpiState extends State<TransactionsListKpi> {
                     style: Theme.of(context).textTheme.titleMedium,
                     numberType: NumberType.currency,
                   ),
-                  Text("Spend today",
-                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .onPrimaryContainer)),
+                  Text(
+                    "Spend today",
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall!
+                        .copyWith(color: Colors.grey[300]),
+                  ),
                 ],
               )
             ],

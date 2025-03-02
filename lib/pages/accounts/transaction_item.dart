@@ -5,12 +5,16 @@ import 'package:flutter/material.dart';
 
 class TransactionItem extends StatelessWidget {
   final Transaction transaction;
-  TransactionItem({Key? key, required this.transaction}) : super(key: key);
+  const TransactionItem({super.key, required this.transaction});
 
   @override
   Widget build(BuildContext context) {
     final category = transaction.category;
     final transactionType = transaction.transactionType;
+
+    final Brightness brightness = Theme.of(context).brightness;
+    final Color textColor =
+        brightness == Brightness.dark ? Colors.white : Colors.black;
 
     return ListTile(
       leading: CircleAvatar(
@@ -22,22 +26,25 @@ class TransactionItem extends StatelessWidget {
       ),
       title: Text(
         transaction.description,
-        style: Theme.of(context).textTheme.labelLarge,
+        style:
+            Theme.of(context).textTheme.labelLarge!.copyWith(color: textColor),
       ),
       subtitle: Text(
         category.name,
-        style: Theme.of(context).textTheme.labelSmall,
+        style:
+            Theme.of(context).textTheme.labelSmall!.copyWith(color: textColor),
       ),
       trailing: FormattedNumber(
-            number: getNumber(transaction.amount, transactionType),
-            style: Theme.of(context).textTheme.labelMedium,
-            numberType: NumberType.currency),
+          number: getNumber(transaction.amount, transactionType),
+          style: Theme.of(context)
+              .textTheme
+              .labelMedium!
+              .copyWith(color: textColor),
+          numberType: NumberType.currency),
     );
   }
 
-  double getNumber(double amount, TransactionType transactionType){
-    return transactionType.transactionTypeId == 0
-            ? amount
-            : amount * -1;
+  double getNumber(double amount, TransactionType transactionType) {
+    return transactionType.transactionTypeId == 0 ? amount : amount * -1;
   }
 }

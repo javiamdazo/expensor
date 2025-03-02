@@ -16,7 +16,9 @@ class AccountItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Map<DateTime, List<Transaction>> transactions = account.transactions ?? {};
+    final Brightness brightness = Theme.of(context).brightness;
+    final Color textColor =
+        brightness == Brightness.dark ? Colors.white : Colors.black;
 
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -35,9 +37,12 @@ class AccountItem extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: account.color.withAlpha(50),
                     borderRadius: const BorderRadius.all(Radius.circular(10))),
-                child: Icon(
-                  account.icon,
-                  color: account.color,
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Icon(
+                    account.icon,
+                    color: account.color,
+                  ),
                 ),
               ),
             ],
@@ -50,7 +55,7 @@ class AccountItem extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .displayMedium!
-                    .copyWith(color: Colors.white),
+                    .copyWith(color: textColor),
               ),
               if (!selected)
                 FormattedNumber(
@@ -63,9 +68,9 @@ class AccountItem extends StatelessWidget {
             ],
           ),
           trailing: !selected
-              ? Icon(
+              ? const Icon(
                   Icons.keyboard_arrow_down_sharp,
-                  color: Theme.of(context).iconTheme.color,
+                  color: Colors.grey,
                 )
               : FormattedNumber(
                   number: account.balance,
@@ -92,8 +97,8 @@ class AccountFastFilter extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
           color: applied
-              ? Theme.of(context).colorScheme.primary.withAlpha(200)
-              : null,
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.primary.withAlpha(150),
           border: applied
               ? Border.all()
               : Border.all(
@@ -101,7 +106,10 @@ class AccountFastFilter extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(20))),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.labelMedium,
+        style: Theme.of(context)
+            .textTheme
+            .labelMedium!
+            .copyWith(color: Colors.white),
       ),
     );
   }

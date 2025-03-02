@@ -41,12 +41,18 @@ class _AccountsState extends State<Accounts> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         leading: IconButton(
           onPressed: () => {},
-          icon: const Icon(Icons.settings),
+          icon: Icon(
+            Icons.settings,
+            color: Theme.of(context).iconTheme.color,
+          ),
         ),
         actions: [
           IconButton(
             onPressed: () => {},
-            icon: const Icon(Icons.search),
+            icon: Icon(
+              Icons.search,
+              color: Theme.of(context).iconTheme.color,
+            ),
           ),
         ],
       ),

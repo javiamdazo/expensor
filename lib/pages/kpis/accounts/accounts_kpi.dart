@@ -38,10 +38,7 @@ class AccountsKpi extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall!
-                            .copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onPrimaryContainer),
+                            .copyWith(color: Colors.grey[300]),
                       ),
                     ],
                   ),
@@ -61,10 +58,7 @@ class AccountsKpi extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .displaySmall!
-                                .copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .onPrimaryContainer),
+                                .copyWith(color: Colors.grey[300]),
                           ),
                           const Space(spaceType: SpaceType.width),
                           Profitability(

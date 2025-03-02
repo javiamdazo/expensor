@@ -18,6 +18,10 @@ class BudgetSelector extends StatefulWidget {
 class _BudgetSelectorState extends State<BudgetSelector> {
   @override
   Widget build(BuildContext context) {
+    Color color = Theme.of(context).brightness == Brightness.dark
+        ? Colors.white
+        : Colors.black;
+
     List<Budget> budgets = BudgetMock.budgets;
     int? currentIndex = budgets.indexOf(widget.currentBudget);
 
@@ -31,9 +35,23 @@ class _BudgetSelectorState extends State<BudgetSelector> {
         child: Column(
           children: [
             const Icon(Icons.remove),
-            Text(
-              "Budgets",
-              style: Theme.of(context).textTheme.displayLarge,
+            Stack(
+              alignment: Alignment.centerLeft,
+              children: [
+                Center(
+                  child: Text(
+                    "BUDGETS",
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayLarge!
+                        .copyWith(color: color),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  icon: Icon(Icons.arrow_back, color: color),
+                )
+              ],
             ),
             const Space(),
             const Divider(),
@@ -64,17 +82,19 @@ class _BudgetSelectorState extends State<BudgetSelector> {
                           horizontal: 20, vertical: 12), // Adjust padding
                       shape: RoundedRectangleBorder(
                         borderRadius:
-                            BorderRadius.circular(20), // Rounded corners
+                            BorderRadius.circular(10), // Rounded corners
                       ),
                       backgroundColor: Theme.of(context)
                           .colorScheme
-                          .primary
-                          .withAlpha(50), // Optional background
+                          .primary, // Optional background
                     ),
                     onPressed: () => {},
                     child: Text(
                       "New Budget",
-                      style: Theme.of(context).textTheme.displayMedium,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium!
+                          .copyWith(color: color),
                     )),
               ),
             )

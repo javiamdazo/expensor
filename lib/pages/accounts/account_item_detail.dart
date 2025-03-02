@@ -14,6 +14,9 @@ class AccountItemDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Brightness brightness = Theme.of(context).brightness;
+    final Color textColor =
+        brightness == Brightness.dark ? Colors.white : Colors.black;
     Map<DateTime, List<Transaction>> transactions = account.transactions ?? {};
 
     return Column(
@@ -38,7 +41,7 @@ class AccountItemDetail extends StatelessWidget {
                       IconButton(
                         onPressed: () => {},
                         icon: const Icon(Icons.calendar_month),
-                        color: Theme.of(context).iconTheme.color,
+                        color: Colors.grey,
                       ),
                     ],
                   ),
@@ -61,7 +64,10 @@ class AccountItemDetail extends StatelessWidget {
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 DateFormat('dd/MM/yyyy').format(date),
-                                style: Theme.of(context).textTheme.labelSmall,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall!
+                                    .copyWith(color: textColor),
                               ),
                             ),
                             ...transactionList.map(

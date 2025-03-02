@@ -35,8 +35,12 @@ class _DashboardPageState extends State<DashboardPage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         scrolledUnderElevation: 0,
-        leading:
-            IconButton(onPressed: () => {}, icon: const Icon(Icons.settings)),
+        leading: IconButton(
+            onPressed: () => {},
+            icon: Icon(
+              Icons.settings,
+              color: Theme.of(context).iconTheme.color,
+            )),
         title: BudgetDropdownWidget(
           selectedBudget: _selectedBudget,
           onBudgetSelector: onBudgetSelector,

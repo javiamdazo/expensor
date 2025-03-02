@@ -33,7 +33,10 @@ class _BudgetPageState extends State<BudgetPage> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.settings),
+          icon: Icon(
+            Icons.settings,
+            color: Theme.of(context).iconTheme.color,
+          ),
         ),
         title: BudgetDropdownWidget(
           selectedBudget: _selectedBudget,
@@ -51,23 +54,30 @@ class _BudgetPageState extends State<BudgetPage> {
                   child: BudgetChart(selectedBudget: _selectedBudget),
                 ),
               )),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                      onPressed: () => {},
-                      icon: const Icon(Icons.keyboard_arrow_left_outlined)),
-                  Text(
-                    "January",
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
-                  IconButton(
-                      onPressed: () => {},
-                      icon: const Icon(Icons.keyboard_arrow_right_outlined))
-                ],
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: _FixedHeaderDelegate(
+              child: Container(
+                color: Theme.of(context).colorScheme.primary,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.keyboard_arrow_left_outlined),
+                    ),
+                    Text(
+                      "January",
+                      style: Theme.of(context).textTheme.displayLarge,
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.keyboard_arrow_right_outlined),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -121,6 +131,26 @@ class _BudgetPageState extends State<BudgetPage> {
   }
 }
 
+class _FixedHeaderDelegate extends SliverPersistentHeaderDelegate {
+  final Widget child;
+  _FixedHeaderDelegate({required this.child});
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return child;
+  }
+
+  @override
+  double get maxExtent => 60; // Adjust height as needed
+  @override
+  double get minExtent => 60; // Keeps it fixed
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
+  }
+}
+
 class BudgetListCategories extends StatelessWidget {
   const BudgetListCategories({
     super.key,
@@ -146,7 +176,10 @@ class BudgetListCategories extends StatelessWidget {
               CircleAvatar(
                 radius: 20,
                 backgroundColor: category.category.color.withAlpha(150),
-                child: Icon(category.category.icon),
+                child: Icon(
+                  category.category.icon,
+                  color: Theme.of(context).iconTheme.color,
+                ),
               ),
               const Space(
                 spaceType: SpaceType.width,
@@ -165,7 +198,10 @@ class BudgetListCategories extends StatelessWidget {
                     ),
                     Text(
                       'View details',
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displaySmall!
+                          .copyWith(color: Colors.grey[300]),
                     )
                   ],
                 ),
