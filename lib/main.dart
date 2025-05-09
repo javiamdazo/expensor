@@ -1,67 +1,137 @@
+import 'package:expensor/accounts/mock/accounts_mock.dart';
 import 'package:expensor/pages/home/home_page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:expensor/utils/ux_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 void main() {
+  AccountsMock.initData();
+
   runApp(const MyApp());
 }
 
-
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Color _color = UxColors.emerald.value;
+
+  void _changeTheme(Color color) {
+    setState(() {
+      _color = color;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    ColorScheme darkTheme =
+        ColorScheme.fromSeed(seedColor: _color, brightness: Brightness.dark);
+
+    ColorScheme lightTheme =
+        ColorScheme.fromSeed(seedColor: _color, brightness: Brightness.light);
+
     return MaterialApp(
-      title: 'Expensor',
-      themeMode: ThemeMode.light, // Cambia entre claro y oscuro según la configuración del sistema
-      darkTheme: ThemeData(
-        brightness: Brightness.dark, // Tema oscuro
-        primaryColor: const Color.fromRGBO(0, 83, 157, 1),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
+        title: 'Expensor',
+        themeMode: ThemeMode.dark,
+        theme: ThemeData(
+          fontFamily: GoogleFonts.nunito().fontFamily,
+          colorScheme: lightTheme,
+          textTheme: textThemeData(),
+          iconTheme: IconThemeData(
+            color: UxColors.clouds.value,
+          ),
+          cardTheme: CardTheme(
+            margin: const EdgeInsets.all(0),
+            color: Theme.of(context).colorScheme.secondary.withAlpha(50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
         ),
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
-          bodyMedium: TextStyle(fontSize: 14.0),
+        darkTheme: ThemeData(
+          fontFamily: GoogleFonts.nunito().fontFamily,
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: UxColors.belizeHole.value,
+              primary: darkTheme.onPrimary,
+              secondary: darkTheme.onSecondary,
+              onSecondaryContainer:
+                  Theme.of(context).colorScheme.secondary.withAlpha(60),
+              brightness: Brightness.dark),
+          textTheme: darkTextThemeData(),
+          iconTheme: IconThemeData(
+            color: UxColors.clouds.value,
+          ),
+          cardTheme: CardTheme(
+            margin: const EdgeInsets.all(0),
+            color: Theme.of(context).colorScheme.secondary.withAlpha(0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
         ),
-      ),
-      theme: ThemeData(
-        brightness: Brightness.light, // Tema claro
-        primaryColor: const Color.fromRGBO(0, 83, 157, 1),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-        ),
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
-          bodyMedium: TextStyle(fontSize: 14.0),
-        ),
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+        debugShowCheckedModeBanner: false,
+        home: HomePage(
+          changeColorTheme: _changeTheme,
+        ));
+  }
+
+  TextTheme textThemeData() {
+    return const TextTheme(
+      //Titulo
+      titleLarge: TextStyle(
+          fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
+      titleMedium: TextStyle(
+          fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+      titleSmall: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+
+      //Subtitulo
+      displayLarge: TextStyle(
+          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+      displayMedium: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.normal, color: Colors.grey),
+      displaySmall: TextStyle(
+          fontSize: 15, fontWeight: FontWeight.normal, color: Colors.grey),
+
+      //Texto
+      labelLarge: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.normal, color: Colors.white),
+      labelMedium: TextStyle(
+          fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white),
+      labelSmall: TextStyle(
+          fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey),
     );
   }
-}
 
+  TextTheme darkTextThemeData() {
+    return const TextTheme(
+      //Titulo
+      titleLarge: TextStyle(
+          fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
+      titleMedium: TextStyle(
+          fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+      titleSmall: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
 
+      //Subtitulo
+      displayLarge: TextStyle(
+          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+      displayMedium: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.normal, color: Colors.grey),
+      displaySmall: TextStyle(
+          fontSize: 15, fontWeight: FontWeight.normal, color: Colors.grey),
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return const CupertinoPageScaffold(
-      child: Center(
-        child: HomePage(),
-      ),
+      //Texto
+      labelLarge: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.normal, color: Colors.white),
+      labelMedium: TextStyle(
+          fontSize: 15, fontWeight: FontWeight.normal, color: Colors.white),
+      labelSmall: TextStyle(
+          fontSize: 12, fontWeight: FontWeight.normal, color: Colors.grey),
     );
   }
 }

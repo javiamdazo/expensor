@@ -1,4 +1,4 @@
-import 'package:expensor/model/category.dart';
+import 'package:expensor/data/entity/category_entity.dart';
 import 'package:expensor/pages/category/category_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -6,12 +6,12 @@ class CategoriesPage extends StatefulWidget {
   const CategoriesPage({super.key});
 
   @override
-  _CategoriesPageState createState() => _CategoriesPageState();
+  CategoriesPageState createState() => CategoriesPageState();
 }
 
-class _CategoriesPageState extends State<CategoriesPage> {
+class CategoriesPageState extends State<CategoriesPage> {
   // Función para mostrar el modal de añadir o editar categoría
-  void showCategoryDialog({Category? category}) {
+  void showCategoryDialog({CategoryEntity? category}) {
     final TextEditingController nameController = TextEditingController();
     IconData selectedIcon = category?.icon ?? Icons.category;
 
@@ -74,7 +74,10 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   if (category == null) {
                     // Añadir nueva categoría
                     CategoryProvider.categories.add(
-                      Category(name: nameController.text, icon: selectedIcon)
+                      CategoryEntity(
+                          name: nameController.text,
+                          icon: selectedIcon,
+                          color: Colors.blue),
                     );
                   } else {
                     // Editar categoría existente
@@ -98,7 +101,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("¿Estás seguro de que deseas eliminar esta categoría?"),
+          title: const Text(
+              "¿Estás seguro de que deseas eliminar esta categoría?"),
           actions: [
             // Botón cancelar
             TextButton(
@@ -111,7 +115,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
             TextButton(
               onPressed: () {
                 setState(() {
-                  CategoryProvider.categories.removeAt(index); // Eliminar categoría
+                  CategoryProvider.categories
+                      .removeAt(index); // Eliminar categoría
                 });
                 Navigator.pop(context); // Cerrar el diálogo
               },
@@ -129,53 +134,52 @@ class _CategoriesPageState extends State<CategoriesPage> {
       appBar: AppBar(
         title: const Text("Categorías"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // Número de columnas
-            crossAxisSpacing: 8.0, // Espacio entre columnas
-            mainAxisSpacing: 8.0, // Espacio entre filas
-            childAspectRatio: 1.2, // Relación de aspecto para los ítems (ajustable)
-          ),
-          itemCount: CategoryProvider.categories.length,
-          itemBuilder: (context, index) {
-            final category = CategoryProvider.categories[index];
-            return Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  showCategoryDialog(category: category); // Editar categoría
-                },
-                onLongPress: () {
-                  showDeleteConfirmationDialog(index); // Mostrar diálogo de confirmación de eliminación
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      category.icon,
-                      size: 40,
-                      color: Colors.blue,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      category.name,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8.0,
+          mainAxisSpacing: 8.0,
+          childAspectRatio: 1.2,
         ),
+        itemCount: CategoryProvider.categories.length,
+        itemBuilder: (context, index) {
+          final category = CategoryProvider.categories[index];
+          return Card(
+            color: Theme.of(context).colorScheme.surface,
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: GestureDetector(
+              onTap: () {
+                showCategoryDialog(category: category); // Editar categoría
+              },
+              onLongPress: () {
+                showDeleteConfirmationDialog(
+                    index); // Mostrar diálogo de confirmación de eliminación
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    category.icon,
+                    size: 40,
+                    color: Colors.blue,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    category.name,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
